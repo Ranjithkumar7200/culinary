@@ -27,4 +27,8 @@ export const LogAndRegSchema = Yup.object().shape({
   loginPassword: Yup.string()
     .transform((value) => value.trim())
     .required("Password is required"),
+    location: Yup.string()
+    .required("Location is required"),
+    preferance: Yup.string()
+    .required("Preferance is required"),
 });

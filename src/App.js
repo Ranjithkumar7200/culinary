@@ -1,12 +1,10 @@
-
-import './App.css';
-import Login from './pages/loginForms/Login';
-
+import React from "react";
+import Router from "./routes";
+import "./App.css";
 function App() {
   return (
-    <div className="App">
-      <Login/>
-      
+    <div style={{ backgroundColor: "#f0f4f7" }}>
+      <Router />
     </div>
   );
 }
