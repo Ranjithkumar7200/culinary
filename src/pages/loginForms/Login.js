@@ -37,10 +37,12 @@ const Login = () => {
         email: email,
         password: password,
       });
+      console.log(response);
 
       if (response?.data) {
         toast.success(response?.data?.message, { autoClose: 1000 });
-        history("/admin/scheme");
+        history("/dashboard");
+        console.log(response.data);
       } else {
         toast.error(response?.error?.data?.message, { autoClose: 1000 });
       }
@@ -116,8 +118,8 @@ const Login = () => {
                         
                       </Col>
                     </Row>
-                    {touched.loginPassword && errors.loginPassword ? (
-                      <p className="text-danger">{errors.loginPassword}</p>
+                    {touched.email && errors.email ? (
+                      <p className="text-danger">{errors.email}</p>
                     ) : (
                       ""
                     )}
