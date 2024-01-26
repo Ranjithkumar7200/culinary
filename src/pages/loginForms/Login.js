@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Formik } from "formik";
 import { LogAndRegSchema } from "./LoginValidation";
-import TextInput from "../../components/TextInput";
 import { useLoginUserMutation } from "../../redux/api/AuthApi";
 import { toast } from "react-toastify";
 import BasicButton from "../../components/BasicButton";
@@ -53,7 +52,7 @@ const Login = () => {
   return (
     <Container
       fluid
-      className="vh-100 w-100 d-flex flex-column justify-content-center align-items-center bg-white"
+      className="vh-100 d-flex flex-column flex-wrap-wrap justify-content-center align-items-center"
       style={{ overflow: "hidden" }}
     >
       <Row className="justify-content-center align-items-center">
@@ -64,7 +63,7 @@ const Login = () => {
             className="mb-3"
             alt="..."
           />
-          <Row className="shadow p-4  bg-body rounded d-flex flex-column justify-content-center align-items-center">
+          <Row className="shadow p-3 mb-5 bg-body rounded d-flex flex-column justify-content-center align-items-center">
             <Col className="d-flex flex-column justify-content-center align-items-center">
               <h5>Login</h5>
               <p className="text-secondary text-noWarp">
@@ -86,30 +85,42 @@ const Login = () => {
                   handleSubmit,
                   isSubmitting,
                 }) => (
-                  <Form className="d-flex flex-column ">
-                    <TextInput
-                      htmlFor="email"
-                      label={"Email"}
-                      name="email"
-                      type="email"
-                      size="md"
-                      id="email"
-                      className={`form-control ${
-                        touched.email && errors.email ? "is-invalid" : ""
-                      }`}
-                      onChange={(e) => {
-                        setEmail(e.target.value.trim());
-                        handleChange(e);
-                      }}
-                      onBlur={handleBlur}
-                      validation={
-                        touched.email && errors.email ? (
-                          <p className="text-danger">{errors.email}</p>
-                        ) : (
-                          ""
-                        )
-                      }
-                    />
+                  <Form className="d-flex flex-column justify-content-center">
+                 
+                 <Row className="d-flex mt-2 flex-row justify align-items-center">
+                      <Col className="d-flex flex-row justify-end align-items-center">
+                        <Form.Label
+                          htmlFor="email"
+                          className="d-flex flex-row justify-start"
+                        >
+                          Email<span className="text-danger">*</span>
+                        </Form.Label>
+                      </Col>
+                    </Row>
+                    <Row className="d-flex flex-row justify-between align-items-center">
+                      <Col className="d-flex flex-row justify-content-end align-items-center">
+                        <Form.Control
+                          name="email"
+                          type="email"
+                          size="md"
+                          id="email"
+                          className={`form-control ${
+                            touched.email && errors.email ? "is-invalid" : ""
+                          }`}
+                          onChange={(e) => {
+                            setEmail(e.target.value.trim());
+                            handleChange(e);
+                          }}
+                          onBlur={handleBlur}
+                        />
+                        
+                      </Col>
+                    </Row>
+                    {touched.loginPassword && errors.loginPassword ? (
+                      <p className="text-danger">{errors.loginPassword}</p>
+                    ) : (
+                      ""
+                    )}
                     <Row className="d-flex mt-2 flex-row justify align-items-center">
                       <Col className="d-flex flex-row justify-end align-items-center">
                         <Form.Label
@@ -178,7 +189,31 @@ const Login = () => {
                       isLoading={isLoading}
                       label={"Login"}
                     />
-                  </Form>
+                   <Row className="mt-2">
+                        <Col>
+                          <Link
+                            to={"/forgot"}
+                            className="d-flex flex-row justify-content-center  fs-10"
+                            style={{ cursor: "pointer" }}
+                          >
+                            Forgot password?
+                          </Link>
+                        </Col>
+                      </Row>
+
+                      <Row className="m-3">
+                        <p style={{ textAlign: "center" }}>
+                          Don't have an account yet?
+                          <Link
+                            className="m-1"
+                            style={{ textDecoration: "none" }}
+                            to={"/register"}
+                          >
+                            Register
+                          </Link>
+                        </p>
+                      </Row>
+                    </Form>
                 )}
               </Formik>
             </Col>
