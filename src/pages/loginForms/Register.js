@@ -9,32 +9,36 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import BasicButton from "../../components/BasicButton";
 const Register = () => {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [passwordIcon, setPasswordIcon] = useState(false);
   const [confirmPasswordIcon, setConfirmPasswordIcon] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [location, setLocation] = useState("");
+  const [preferences, setpreferences] = useState("");
   const history = useNavigate();
   const [registerApi, { isLoading }] = useRegisterUserMutation();
   const handleRegister = async () => {
     try {
       const response = await registerApi({
-        Email: email,
-        Password: password,
-        Repeat_Password: confirmPassword,
+        email: email,
+        password: password,
+        name:name,
+        // Repeat_Password: confirmPassword,
+        location:location,
+        preferences:preferences,
+
       });
       console.log(response);
-      if (response.error.originalStatus === 200) {
+      if (response?.data) {
         setEmail("");
         setPassword("");
         setConfirmPassword("");
-        toast.success(response.error.data, { autoClose: 1000 });
-        console.log("if part");
-        console.log(response.error.data);
-        history("/login");
+        toast.success(response?.data?.message, { autoClose: 1000 });
+        history("/");
       } else {
         console.log("else part");
-        toast.error(response.error.data, { autoClose: 1000 });
+        toast.error(response?.error?.data?.message, { autoClose: 1000 });
         console.log(response.error.data);
       }
     } catch (error) {
@@ -67,18 +71,20 @@ const Register = () => {
     password: "",
     confirmPassword: "",
     location: "",
+    preferences:"",
+    name:""
   };
 
   return (
     <>
-      <Container className="vh-100 d-flex flex-column flex-wrap-wrap justify-content-center align-items-center">
+      <Container className="vh-100 w-100 d-flex flex-column flex-wrap-wrap justify-content-center align-items-center">
         <Row>
           <Col>
             <img
               src={
                 "https://marketplace.canva.com/EAFaFUz4aKo/2/0/1600w/canva-yellow-abstract-cooking-fire-free-logo-JmYWTjUsE-Q.jpg"
               }
-              width={150}
+              width={80}
               className="rounded-circle mb-3"
               alt="..."
             ></img>
@@ -137,6 +143,39 @@ const Register = () => {
                   </Row>
                   {touched.email && errors.email ? (
                     <p className="text-danger">{errors.email}</p>
+                  ) : (
+                    ""
+                  )}
+                  <Row className="d-flex mt-2 flex-row justify align-items-start">
+                    <Col className="d-flex flex-row justify-end align-items-start">
+                      <Form.Label
+                        htmlFor="name"
+                        className="d-flex flex-row justify-start"
+                      >
+                        Name<span className="text-danger">*</span>
+                      </Form.Label>
+                    </Col>
+                  </Row>
+                  <Row className="d-flex flex-row justify-between align-items-center">
+                    <Col className="d-flex flex-row justify-content-end align-items-center">
+                      <Form.Control
+                        name="name"
+                        type="text"
+                        size="md"
+                        id="name"
+                        className={`form-control ${
+                          touched.name && errors.name ? "is-invalid" : ""
+                        }`}
+                        onChange={(e) => {
+                          setName(e.target.value.trim());
+                          handleChange(e);
+                        }}
+                        onBlur={handleBlur}
+                      />
+                    </Col>
+                  </Row>
+                  {touched.name && errors.name ? (
+                    <p className="text-danger">{errors.name}</p>
                   ) : (
                     ""
                   )}
@@ -257,7 +296,7 @@ const Register = () => {
                     <Col className="d-flex flex-row justify-content-end align-items-center">
                       <Form.Select
                         className={`form-control ${
-                          touched.confirmPassword && errors.confirmPassword
+                          touched.location && errors.location
                             ? "border-danger"
                             : ""
                         }`}
@@ -269,22 +308,62 @@ const Register = () => {
                         }}
                         onBlur={handleBlur}
                       >
-                        <option value="" disabled>----select Location----</option>
+                        <option value="" disabled>
+                          ----select Location----
+                        </option>
                         <option value={"Chennai"}>Chennai</option>
                         <option value={"Hyderabad"}>Hyderabad</option>
                         <option value={"Bangalore"}>Bangalore</option>
                         <option value={"Kerala"}>Kerala</option>
                       </Form.Select>
-                      
                     </Col>
                   </Row>
-                  {touched.confirmPassword && errors.confirmPassword ? (
-                        <p className="text-danger m-1">
-                          {errors.confirmPassword}
-                        </p>
-                      ) : (
-                        ""
-                      )}
+                  {touched.location && errors.location ? (
+                    <p className="text-danger m-1">{errors.location}</p>
+                  ) : (
+                    ""
+                  )}
+                  <Row className="d-flex mt-2 flex-row justify align-items-start">
+                    <Col className="d-flex flex-row justify-end align-items-start">
+                      <Form.Label
+                        htmlFor="preferences"
+                        className="d-flex flex-row justify-start"
+                      >
+                        preferences<span className="text-danger">*</span>
+                      </Form.Label>
+                    </Col>
+                  </Row>
+                  <Row className="d-flex flex-row justify-between align-items-center">
+                    <Col className="d-flex flex-row justify-content-end align-items-center">
+                      <Form.Select
+                        className={`form-control ${
+                          touched.preferences && errors.preferences
+                            ? "border-danger"
+                            : ""
+                        }`}
+                        id="preferences"
+                        name="preferences"
+                        onChange={(e) => {
+                          setpreferences(e.target.value);
+                          handleChange(e);
+                        }}
+                        onBlur={handleBlur}
+                      >
+                        <option value="" disabled>
+                          ----select Location----
+                        </option>
+                        <option value={"North"}>North</option>
+                        <option value={"West"}>West</option>
+                        <option value={"South"}>South</option>
+                        <option value={"East"}>East</option>
+                      </Form.Select>
+                    </Col>
+                  </Row>
+                  {touched.preferences && errors.preferences ? (
+                    <p className="text-danger m-1">{errors.preferences}</p>
+                  ) : (
+                    ""
+                  )}
                   <BasicButton
                     className="mt-3 "
                     variant={"warning"}
@@ -295,9 +374,11 @@ const Register = () => {
                       password === "" ||
                       confirmPassword === "" ||
                       location === "" ||
+                      name === "" ||
                       (touched.email && errors.email) ||
+                      (touched.name && errors.name) ||
                       (touched.password && errors.password) ||
-                      (touched.confirmPassword && errors.confirmPassword)
+                      (touched.confirmPassword && errors.confirmPassword) ||
                       (touched.location && errors.location)
                         ? handleSubmit
                         : handleRegister

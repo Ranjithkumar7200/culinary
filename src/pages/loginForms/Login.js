@@ -61,8 +61,8 @@ const Login = () => {
         <Col className="d-flex flex-column justify-content-center align-items-center ">
           <img
             src={"https://marketplace.canva.com/EAFaFUz4aKo/2/0/1600w/canva-yellow-abstract-cooking-fire-free-logo-JmYWTjUsE-Q.jpg"}
-            width={150}
-            className="mb-3"
+            width={80}
+            className="mb-3 rounded-circle"
             alt="..."
           />
           <Row className="shadow p-3 mb-5 bg-body rounded d-flex flex-column justify-content-center align-items-center">
