@@ -36,7 +36,7 @@ const BasicButton = (props) => {
         <>
           <Spinner
             size={`${!loaderSize ? "sm" : loaderSize}`}
-            variant={`${!loaderVariant ? "warning" : loaderVariant}`}
+            variant={`${!loaderVariant ? "info" : loaderVariant}`}
           />
         </>
       )}
