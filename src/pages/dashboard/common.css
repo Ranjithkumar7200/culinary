@@ -1,0 +1,370 @@
+.homeContiner {
+    height: 100vh;
+    /* border: 2px solid red; */
+    display: flex;
+
+}
+
+.homeRightContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid green; */
+    padding: 10px;
+    /* margin: 0px 10px; */
+    overflow: auto;
+
+
+}
+
+.homePOstFeedContainer {
+    height: 100%;
+    width: 50%;
+    /* border: 2px solid blue; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+
+}
+
+
+
+
+.userPostCard {
+    /* border: 2px solid pink; */
+    width: 70%;
+    margin: 10px 3px;
+    border-bottom: 1px solid rgb(122, 121, 121);
+}
+
+.userContainerHead {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.userImgInPostCard {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.userImgNameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    /* border: 2px solid red; */
+
+}
+
+.userImgNameContainer p {
+    font-weight: bold;
+    /* border: 2px solid red; */
+    margin: 0px;
+}
+
+.userContainerHead span {
+    /* border: 2px solid red; */
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+
+
+}
+
+
+.userPostContent img {
+    height: 370px;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.userPostContent {
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.text-overlay {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: linear-gradient(#ffffff, #ffffffb6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-top-right-radius: 5px;
+    cursor: pointer;
+}
+
+
+.white-text {
+    font-weight: bold;
+    color: black;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+
+/* button container styles */
+
+.postButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    /* border: 2px solid red; */
+}
+
+.likeButtonContainer {
+    display: flex;
+    /* border: 2px solid red; */
+    justify-content: center;
+    align-items: center;
+}
+
+.likeButtonContainer button {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    margin: 0px 5px;
+    outline: none;
+    border: none;
+}
+
+.likeButtonContainer button span {
+
+    margin: 0px;
+    padding: 0px;
+    font-size: 28px;
+
+}
+
+.invite-btn {
+    height: 30px;
+    border: 1px solid #aaa5a5 !important;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.bookmark-btn {
+    border: none;
+    outline: none;
+    background-color: white;
+    /* border: 2px solid red; */
+    padding: 0px;
+}
+
+.bookmark-btn span {
+    margin: 0px;
+    padding: 0px;
+    font-size: 28px;
+}
+
+.procedureContainer {
+    display: flex;
+    /* justify-content: ; */
+    /* border: 2px solid red; */
+}
+
+.procedureContainer  p{
+    width: 100%;
+    /* border: 1px solid red; */
+    margin: 0px;
+    padding:2px;
+    
+}
+
+
+.userDescriptionName {
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+
+.userHomeContainer {
+    /* border: 2px solid red; */
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+
+}
+
+
+
+
+
+
+.userContainerInSuggestion {
+    /* border:  2px solid yellow; */
+    /* width: 70%; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 2px;
+}
+
+.userSuggestionInnerLeftContainer {
+    /* width: ; */
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.userSuggetionContiainerInSuggetion {
+    /* border: 1px solid red; */
+}
+
+.userSuggetionContiainerInSuggetion img {
+    height: 60px;
+    width: 60px;
+}
+
+.userSuggestedContainer {
+    /* border: 2px solid red; */
+    width: 70%;
+}
+
+.userSuggestedInner {
+    /* border: 2px solid blue; */
+}
+
+.userSuggetionName {
+    font-weight: bold;
+    /* border: 1px solid red; */
+}
+
+.usersugehtionNamecontainer p {
+    width: 100%;
+    /* border:  1px solid red; */
+    margin: 0px;
+}
+
+.usersugehtionNamecontainer {
+    /* border:  1px solid blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1px 5px;
+}
+
+.profile-link {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    /* border: 2px solid red; */
+    margin: 1px 8px;
+    padding: 3px;
+
+}
+
+.profile-link:hover {
+    color: #494949;
+}
+
+.SuggestedForYou {
+    font-size: 13px;
+}
+
+.seeAllUserSuggestion {
+    color: #4f4f4f;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    /* border: 2px solid red; */
+    margin: 1px 8px;
+    padding: 3px;
+}
+.seeallContainer{
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 2px;
+}
+
+.seeallContainer h5{
+    font-size: 15px;
+    /* border: 1px solid red; */
+    margin: 0px;
+    color: #6c6c6c;
+}
+
+
+@media (max-width: 767px) {
+
+    .userHomeContainer {
+        display: none;
+
+    }
+
+    .homeRightContainer {
+        padding:2px;
+    }
+
+    .homePOstFeedContainer {
+      
+        width: 100%;
+        padding: 1px 4px;
+      
+    }
+
+
+    .userPostCard {
+        width: 100%;
+    }
+
+    .userImgNameContainer {
+  
+        padding: 0px 4px;
+    
+    }
+    
+    .userImgNameContainer p {
+        font-size: 15px;
+    }
+
+    .userImgInPostCard {
+        height: 40px;
+        width: 40px;
+    }
+
+    .white-text{
+        font-size: 15px;
+        padding:1px 3px ;
+    }
+
+    .procedureContainer {
+        padding: 1px 4px;
+    }
+
+    .procedureContainer p{
+       font-size: 15px;
+       /* border: 1px solid red  */
+      }
+
+}

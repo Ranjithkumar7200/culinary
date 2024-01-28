@@ -23,7 +23,7 @@ const Page404 = () => {
             </p>
           </Col>
           <Col className="d-flex flex-column  justify-content-center align-items-center text-center">
-            <Link className="textDecoration-none" to={"/"}>
+            <Link className="textDecoration-none" to={"/home"}>
               <BasicButton
                 label={"GO TO HOMEPAGE"}
                 icon={<FaHome size={20} className="mx-2" />}
