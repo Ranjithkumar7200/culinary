@@ -39,7 +39,7 @@ export default function Router() {
      
       children: [
         {
-          path: "dashboard",
+          path: "/home",
           element: (
             <AuthGuard>
               <DashboardLayout/>
@@ -49,6 +49,61 @@ export default function Router() {
 
           ]
         },
+        {
+          path: "community",
+          element: (
+            <AuthGuard>
+              <Community/>
+            </AuthGuard>
+          ),
+          children:[
+
+          ]
+        },
+        {
+          path: "create",
+          element: (
+            <AuthGuard>
+              <Create/>
+            </AuthGuard>
+          ),
+          children:[
+
+          ]
+        },
+        {
+          path: "profile",
+          element: (
+            <AuthGuard>
+              <Profile/>
+            </AuthGuard>
+          ),
+          children:[
+
+          ]
+        },
+        {
+          path: "search",
+          element: (
+            <AuthGuard>
+              <Search/>
+            </AuthGuard>
+          ),
+          children:[
+
+          ]
+        },
+        // {
+        //   path: "cart",
+        //   element: (
+        //     <AuthGuard>
+        //       <Yourcart/>
+        //     </AuthGuard>
+        //   ),
+        //   children:[
+
+        //   ]
+        // }
         
       ],
     },
@@ -63,7 +118,21 @@ export default function Router() {
 }
 
 const Login = Loadable(lazy(() => import("../pages/loginForms/Login")));
+
 const Register = Loadable(lazy(() => import("../pages/loginForms/Register")));
-const DashboardLayout = Loadable(lazy(() => import("../pages/dummy/LandingPage")));
+
+const DashboardLayout = Loadable(lazy(() => import("../pages/dashboard/home")));
+
+const Community = Loadable(lazy(()=>import("../pages/dashboard/community")));
+
+const Create = Loadable(lazy(()=>import("../pages/dashboard/create")));
+
+const Profile = Loadable(lazy(()=>import("../pages/dashboard/profile")));
+
+const Search = Loadable(lazy(()=>import("../pages/dashboard/search")));
+
+const Yourcart = Loadable(lazy(()=>import("../pages/dashboard/yourcart")));
+
+
 const NotFound = Loadable(lazy(() => import("../pages/404/Page404")));
 

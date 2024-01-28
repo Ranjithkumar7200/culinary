@@ -12,9 +12,10 @@ import food6 from "../../imges/food6.jpg"
 import prabhas from "../../imges/praba.jpeg"
 
 import "./common.css"
-import { current } from '@reduxjs/toolkit';
 
-const Home = () => {
+// import { current } from '@reduxjs/toolkit';
+
+const Community = () => {
 
 
   const [showMore, setShowMore] = useState(false);
@@ -86,21 +87,21 @@ const Home = () => {
   ];
 
   // State to manage filters
-  const [locationFilter, setLocationFilter] = useState('');
-  const [foodStyleFilter, setFoodStyleFilter] = useState('');
-  const [nameFilter, setNameFilter] = useState('');
+  // const [locationFilter, setLocationFilter] = useState('');
+  // const [foodStyleFilter, setFoodStyleFilter] = useState('');
+  // const [nameFilter, setNameFilter] = useState('');
 
   // Function to handle filtering posts
-  const filterPosts = (post) => {
-    const locationMatch = post.location.toLowerCase().includes(locationFilter.toLowerCase());
-    const foodStyleMatch = post.foodStyle.toLowerCase().includes(foodStyleFilter.toLowerCase());
-    const nameMatch = post.name.toLowerCase().includes(nameFilter.toLowerCase());
+  // const filterPosts = (post) => {
+  //   const locationMatch = post.location.toLowerCase().includes(locationFilter.toLowerCase());
+  //   const foodStyleMatch = post.foodStyle.toLowerCase().includes(foodStyleFilter.toLowerCase());
+  //   const nameMatch = post.name.toLowerCase().includes(nameFilter.toLowerCase());
 
-    return locationMatch && foodStyleMatch && nameMatch;
-  };
+  //   return locationMatch && foodStyleMatch && nameMatch;
+  // };
 
-  // Filtered posts based on user input
-  const filteredPosts = postsData.filter(filterPosts);
+  // // Filtered posts based on user input
+  // const filteredPosts = postsData.filter(filterPosts);
 
   return (
     <div className=' homeContiner'>
@@ -112,63 +113,11 @@ const Home = () => {
 
 
 
-        <div class="homePOstFeedContainer">
+        <div class="homePOstFeedContainer community">
 
 
-
-          {filteredPosts.map((post) => (
-            <div key={post.id} className="userPostCard">
-              <div className='userContainerHead'>
-                <div className='userImgNameContainer' >
-                  <img className="userImgInPostCard" src={prabhas} alt='user' ></img>
-                  <p>{post.userName}</p>
-                </div>
-                <span class="material-symbols-outlined">
-                  more_horiz
-                </span>
-
-              </div>
-             
-
-              <div className='userPostContent'>
-                <div class='image-container'>
-                  <img src={post.img} alt='userPost1' />
-                  <div class='text-overlay'>
-                    <p class='white-text'>{post.name}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="postButtonContainer">
-                <div className='likeButtonContainer'>
-                  <button className="favorite-btn">
-                    <span className="material-symbols-outlined">favorite</span>
-                  </button>
-                  <button className="invite-btn">Invite</button>
-                </div>
-                <div>
-                  <button className="bookmark-btn">
-                    <span className="material-symbols-outlined">bookmark_add</span>
-                  </button>
-                </div>
-
-              </div>
-              <div className='procedureContainer'>
-
-                <p>
-                  <span className='userDescriptionName'>Description</span>
-                  {showMore ? post.content : post.content.slice(0, 20)}
-                  {post.content.length > 10 && (
-                    <span onClick={toggleShowMore} style={{ cursor: 'pointer', color: 'blue' }}>
-                      {!showMore && '... more'}
-                    </span>
-                  )}
-                </p>
-              </div>
-
-
-            </div>
-          ))}
+  <button>Invite</button>
+        
         </div>
 
         <div className='userHomeContainer'>
@@ -178,7 +127,7 @@ const Home = () => {
               <div className='userSuggestionInnerLeftContainer'>
 
                 <div className='userSuggetionContiainerInSuggetion'>
-                  <img className="userImgInPostCard " src={prabhas} />
+                  <img className="userImgInPostCard " src={prabhas} alt='user'/>
                 </div>
 
                 <div className='usersugehtionNamecontainer'>
@@ -206,7 +155,7 @@ const Home = () => {
               <a href='' className='seeAllUserSuggestion'>See all</a>
             </div>
 
-            {filteredPosts.map((post) => (
+            {postsData.map((post) => (
 
 
 
@@ -215,7 +164,7 @@ const Home = () => {
                 <div className='userSuggestionInnerLeftContainer'>
 
                   <div className='userSuggetionContiainerInSuggetion'>
-                    <img className="userImgInPostCard " src={prabhas} />
+                    <img className="userImgInPostCard " src={prabhas} alt='user' />
                   </div>
 
                   <div className='usersugehtionNamecontainer'>
@@ -248,4 +197,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Community;
