@@ -33,10 +33,43 @@ export const AuthApi = createApi({
         },
       }),
     }),
+    forgetUser: builder.mutation({
+      query: (email) => ({
+        url: "/userlogin/forget-email",
+        method: "POST",
+        body: email,
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
+    otpVerify: builder.mutation({
+      query: (otp) => ({
+        url: "/userlogin/verifyOTP",
+        method: "POST",
+        body: otp,
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
+    resetPassword: builder.mutation({
+      query: ({ Email, data }) => ({
+        url: `userlogin/reset-password/${Email}`,
+        method: "PATCH",
+        body: data,
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }),
+    }),
   }),
 });
 
 export const {
   useLoginUserMutation,
   useRegisterUserMutation,
+  useForgetUserMutation,
+  useOtpVerifyMutation,
+  useResetPasswordMutation
 } = AuthApi;

@@ -33,6 +33,30 @@ export default function Router() {
             </GuestGuard>
           ),
         },
+        {
+          path: "forgot",
+          element: (
+            <GuestGuard>
+              <Forget/>
+            </GuestGuard>
+          ),
+        },
+        {
+          path: "otp/:email",
+          element: (
+            <GuestGuard>
+              <Otp/>
+            </GuestGuard>
+          ),
+        },
+        {
+          path: "reset/:email",
+          element: (
+            <GuestGuard>
+              <Reset/>
+            </GuestGuard>
+          ),
+        },
       ],
     },
     {
@@ -120,6 +144,9 @@ export default function Router() {
 const Login = Loadable(lazy(() => import("../pages/loginForms/Login")));
 
 const Register = Loadable(lazy(() => import("../pages/loginForms/Register")));
+const Forget = Loadable(lazy(() => import("../pages/loginForms/Forget")));
+const Otp = Loadable(lazy(() => import("../pages/loginForms/Otp")));
+const Reset = Loadable(lazy(() => import("../pages/loginForms/Reset")));
 
 const DashboardLayout = Loadable(lazy(() => import("../pages/dashboard/home")));
 
