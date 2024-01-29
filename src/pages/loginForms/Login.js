@@ -41,7 +41,7 @@ const Login = () => {
 
       if (response?.data) {
         toast.success(response?.data?.message, { autoClose: 1000 });
-        history("/dashboard");
+        history("/home");
         console.log(response.data);
       } else {
         toast.error(response?.error?.data?.message, { autoClose: 1000 });
