@@ -117,17 +117,17 @@ export default function Router() {
 
           ]
         },
-        // {
-        //   path: "cart",
-        //   element: (
-        //     <AuthGuard>
-        //       <Yourcart/>
-        //     </AuthGuard>
-        //   ),
-        //   children:[
+        {
+          path: "cart",
+          element: (
+            <AuthGuard>
+              <Yourcart/>
+            </AuthGuard>
+          ),
+          children:[
 
-        //   ]
-        // }
+          ]
+        }
         
       ],
     },
