@@ -8,7 +8,7 @@ export const HomeApi = createApi({
   endpoints: (build) => ({
     getAllPosts: build.query({
       query: () => ({
-        url: `/api/getposts`,
+        url: `/api/getposts?user_id=65b28744a5e261775967bafa`,
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
