@@ -150,13 +150,13 @@ const Reset = Loadable(lazy(() => import("../pages/loginForms/Reset")));
 
 const DashboardLayout = Loadable(lazy(() => import("../pages/dashboard/home")));
 
-const Community = Loadable(lazy(()=>import("../pages/dashboard/community")));
+const Community = Loadable(lazy(()=>import("../pages/community/community")));
 
 const Create = Loadable(lazy(()=>import("../pages/dashboard/create")));
 
 const Profile = Loadable(lazy(()=>import("../pages/dashboard/profile")));
 
-const Search = Loadable(lazy(()=>import("../pages/dashboard/search")));
+const Search = Loadable(lazy(()=>import("../pages/search/search")));
 
 const Yourcart = Loadable(lazy(()=>import("../pages/dashboard/yourcart")));
 
