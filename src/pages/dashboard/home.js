@@ -120,18 +120,22 @@ const Home = () => {
             <div key={post.id} className="userPostCard">
               <div className='userContainerHead'>
                 <div className='userImgNameContainer' >
+               
                   <img className="userImgInPostCard" src={prabhas} alt='user' ></img>
+        
+                  
                   <p>{post.userName}</p>
                 </div>
-                <span class="material-symbols-outlined">
+                {/* <span class="material-symbols-outlined">
                   more_horiz
-                </span>
+                </span> */}
 
               </div>
              
 
               <div className='userPostContent'>
                 <div class='image-container'>
+                  
                   <img src={post.img} alt='userPost1' />
                   <div class='text-overlay'>
                     <p class='white-text'>{post.name}</p>
@@ -240,6 +244,8 @@ const Home = () => {
             }
 
           </div>
+
+          
         </div>
 
       </div>
