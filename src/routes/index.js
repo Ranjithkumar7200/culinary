@@ -60,28 +60,28 @@ export default function Router() {
 
           ]
         },
-        {
-          path: "create",
-          element: (
-            <AuthGuard>
-              <Create/>
-            </AuthGuard>
-          ),
-          children:[
+        // {
+        //   path: "create",
+        //   element: (
+        //     <AuthGuard>
+        //       <Create/>
+        //     </AuthGuard>
+        //   ),
+        //   children:[
 
-          ]
-        },
-        {
-          path: "profile",
-          element: (
-            <AuthGuard>
-              <Profile/>
-            </AuthGuard>
-          ),
-          children:[
+        //   ]
+        // },
+        // {
+        //   path: "profile",
+        //   element: (
+        //     <AuthGuard>
+        //       <Profile/>
+        //     </AuthGuard>
+        //   ),
+        //   children:[
 
-          ]
-        },
+        //   ]
+        // },
         {
           path: "search",
           element: (
@@ -125,13 +125,13 @@ const DashboardLayout = Loadable(lazy(() => import("../pages/dashboard/home")));
 
 const Community = Loadable(lazy(()=>import("../pages/community/community")));
 
-const Create = Loadable(lazy(()=>import("../pages/dashboard/create")));
+// const Create = Loadable(lazy(()=>import("../pages/dashboard/create")));
 
-const Profile = Loadable(lazy(()=>import("../pages/dashboard/profile")));
+// const Profile = Loadable(lazy(()=>import("../pages/dashboard/profile")));
 
 const Search = Loadable(lazy(()=>import("../pages/search/search")));
 
-const Yourcart = Loadable(lazy(()=>import("../pages/dashboard/yourcart")));
+// const Yourcart = Loadable(lazy(()=>import("../pages/dashboard/yourcart")));
 
 
 const NotFound = Loadable(lazy(() => import("../pages/404/Page404")));

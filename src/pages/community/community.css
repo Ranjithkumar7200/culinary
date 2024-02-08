@@ -1,9 +1,9 @@
-.communityContainer{
+.communityContainer {
     /* width: 100%; */
-    border: 1px solid #bababa ;
+    border: 1px solid #bababa;
 }
 
-.createCommunityButtonContainer{
+.createCommunityButtonContainer {
     width: 100%;
     height: 100%;
     /* border: 1px solid #bababa; */
@@ -15,7 +15,7 @@
 .createCommunityButtonContainer {
     /* background-color: rgba(0, 0, 0, 0.163); */
     color: yellow;
- 
+
 }
 
 .createCommunityButtonContainer button {
@@ -33,58 +33,92 @@
     color: white;
 }
 
-.cCContainer{
+.cCContainer {
     margin: 5px;
     width: 90%;
     height: 100%;
     /* border: 2px solid #bababa ; */
 }
-.cCBackButtonContianer{
-    border: 1px solid blue;
+
+.cCBackButtonContianer {
+    /* border: 1px solid blue; */
     margin: 5px;
 }
 
-.cCButtonBack{
+.cCButtonBack {
     height: 40px;
     width: 40px;
     /* border: 1px solid red; */
     display: grid;
     place-items: center;
-    border-radius:50% ;
+    border-radius: 50%;
     background-color: white;
     border: none;
 }
-.cCButtonBack:hover{
-    background-color:rgb(234, 234, 234);
-}
-.cCContainerForm{
-    /* border: 1px solid red; */
+
+.cCButtonBack:hover {
+    background-color: rgb(234, 234, 234);
 }
 
-.cCInputContainer{
-    /* border: 1px solid blue; */
+.cCContainerForm {
+    border: 1px solid red;
+}
+
+.cCInputContainer {
+    border: 1px solid blue;
     display: flex;
-    
+
 }
 
-.cCSearchInput{
- 
-    border: 1px solid  #bababa;
+.cCSearchInput {
+
+    border: 1px solid #bababa;
     /* border: none; */
     outline: none;
     padding: 4px;
     margin: 4px;
-    border-radius:3px ;
+    border-radius: 3px;
 }
 
-.cCSearchSelect{
+.cCSearchSelect {
     width: 30%;
-    border: 1px solid  #bababa;
+    border: 1px solid #bababa;
     outline: none;
     padding: 4px;
     margin: 4px;
-    border-radius:3px ;
+    border-radius: 3px;
 }
+
+
+.cCbuttonContainer {
+ 
+    border: 1px solid red;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.cCApplyButton,
+.cCClearButton {
+    width: 100px;
+    display: grid;
+    place-items: center;
+    padding: 5px 7px;
+    border: 1px solid #bababa;
+    cursor: pointer;
+    margin: 5px;
+    border-radius:5px ;
+
+}
+
+.cCClearButton {
+    /* background-color: #dc3545; */
+    /* Use a different color for the clear button */
+    /* border-color: #dc3545; */
+}
+
 
 /* 
 .container {
