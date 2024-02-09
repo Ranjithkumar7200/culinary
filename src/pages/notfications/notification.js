@@ -15,7 +15,7 @@ import prabhas from "../../imges/praba.jpeg"
 
 // import "../dashboard/common.css"
 
-import "./create.css"
+import "./notification.css"
 
 // import { current } from '@reduxjs/toolkit';
 
@@ -114,9 +114,7 @@ const CreatePost = () => {
 
 
 
-                    <div className="createCommunityButtonContainer">
-                        <button>Create Post</button>
-                    </div>
+                   <h1>notifications</h1>
 
 
 

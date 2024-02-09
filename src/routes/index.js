@@ -29,7 +29,7 @@ export default function Router() {
           path: "register",
           element: (
             <GuestGuard>
-              <Register/>
+              <Register />
             </GuestGuard>
           ),
         },
@@ -37,7 +37,7 @@ export default function Router() {
           path: "forgot",
           element: (
             <GuestGuard>
-              <Forget/>
+              <Forget />
             </GuestGuard>
           ),
         },
@@ -45,7 +45,7 @@ export default function Router() {
           path: "otp/:email",
           element: (
             <GuestGuard>
-              <Otp/>
+              <Otp />
             </GuestGuard>
           ),
         },
@@ -53,23 +53,23 @@ export default function Router() {
           path: "reset/:email",
           element: (
             <GuestGuard>
-              <Reset/>
+              <Reset />
             </GuestGuard>
           ),
         },
       ],
     },
     {
-     
+
       children: [
         {
           path: "/home",
           element: (
             <AuthGuard>
-              <DashboardLayout/>
+              <DashboardLayout />
             </AuthGuard>
           ),
-          children:[
+          children: [
 
           ]
         },
@@ -77,10 +77,10 @@ export default function Router() {
           path: "community",
           element: (
             <AuthGuard>
-              <Community/>
+              <Community />
             </AuthGuard>
           ),
-          children:[
+          children: [
 
           ]
         },
@@ -88,10 +88,10 @@ export default function Router() {
           path: "create",
           element: (
             <AuthGuard>
-              <Create/>
+              <Create />
             </AuthGuard>
           ),
-          children:[
+          children: [
 
           ]
         },
@@ -99,10 +99,22 @@ export default function Router() {
           path: "profile",
           element: (
             <AuthGuard>
-              <Profile/>
+              <Profile />
             </AuthGuard>
           ),
-          children:[
+          children: [
+
+          ]
+        },
+
+        {
+          path: "notification",
+          element: (
+            <AuthGuard>
+              <Notification />
+            </AuthGuard>
+          ),
+          children: [
 
           ]
         },
@@ -110,10 +122,10 @@ export default function Router() {
           path: "search",
           element: (
             <AuthGuard>
-              <Search/>
+              <Search />
             </AuthGuard>
           ),
-          children:[
+          children: [
 
           ]
         },
@@ -121,14 +133,14 @@ export default function Router() {
           path: "cart",
           element: (
             <AuthGuard>
-              <Yourcart/>
+              <Yourcart />
             </AuthGuard>
           ),
-          children:[
+          children: [
 
           ]
         }
-        
+
       ],
     },
     {
@@ -150,15 +162,17 @@ const Reset = Loadable(lazy(() => import("../pages/loginForms/Reset")));
 
 const DashboardLayout = Loadable(lazy(() => import("../pages/dashboard/home")));
 
-const Community = Loadable(lazy(()=>import("../pages/community/community")));
+const Community = Loadable(lazy(() => import("../pages/community/community")));
 
-const Create = Loadable(lazy(()=>import("../pages/dashboard/create")));
+const Create = Loadable(lazy(() => import("../pages/createpost/create")));
 
-const Profile = Loadable(lazy(()=>import("../pages/dashboard/profile")));
+const Profile = Loadable(lazy(() => import("../pages/dashboard/profile")));
 
-const Search = Loadable(lazy(()=>import("../pages/search/search")));
+const Notification = Loadable(lazy(() => import("../pages/notfications/notification")));
 
-const Yourcart = Loadable(lazy(()=>import("../pages/dashboard/yourcart")));
+const Search = Loadable(lazy(() => import("../pages/search/search")));
+
+const Yourcart = Loadable(lazy(() => import("../pages/dashboard/yourcart")));
 
 
 const NotFound = Loadable(lazy(() => import("../pages/404/Page404")));
