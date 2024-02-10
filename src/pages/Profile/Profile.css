@@ -1,0 +1,329 @@
+.profile-container {
+    align-items: center;
+    display: flex;
+
+}
+
+.profileright {
+    display: flex;
+}
+
+.user-name-container {
+    /* margin-top: 40px; */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    /* border: 1px solid red; */
+}
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    /* display: flex;  */
+    /* margin-right: 30px;  */
+    /* width: 300px; */
+    /* border: 3px solid red; */
+    width: 300px;
+    padding: 0;
+    margin-left: 0;
+    text-align: left;
+    margin-top: 20px;
+
+}
+
+.buttonContainer{
+    display: flex;
+}
+@media (max-width: 767px) {
+
+    .user-name {
+       display: inline-block;
+       margin-top: 0;
+       
+    }
+}
+
+.profile_button {
+    border: none;
+    padding: 0;
+    background-color: #ebe7df;
+    cursor: pointer;
+    width: 100px;
+    height: 35px;
+    /* border: 3px solid red;  */
+    /* margin-top: 10px; */
+    border-radius: 8px;
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 20px;
+
+}
+
+
+@media (max-width: 767px) {
+    .profile_button {
+        background-color: transparent;
+        margin-right: 0;
+    margin-top: 0;
+
+      
+    }
+  
+   
+  }
+
+.profile_img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 40px;
+
+
+}
+
+.container {
+    /* display: flex; */
+    /* border: 3px solid red;  */
+    text-align: center;
+    justify-content: center;
+}
+
+.profile_details {
+    background-color: #ebe7df;
+
+
+    padding-left: 200px;
+}
+
+.post_container {
+    display: flex;
+    margin: none;
+    /* border: 3px solid red; */
+
+
+
+}
+
+.post_container p {
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+/* p{
+     margin: 30px;
+   } */
+.Bio {
+
+    width: 200px;
+    max-height: 300px;
+    /* overflow: hidden; */
+    /* display: flex;
+   flex-direction: row; */
+    text-align: left;
+
+}
+
+.Bio p {
+    margin: 0;
+}
+
+/* .rowpost{
+     border: 3px solid red; 
+    width: 70%;
+    height: 40%;
+    margin: 0;
+     display: flex; 
+   }
+   @media (max-width: 767px) {
+
+    .rowpost {
+      display: none;
+    }
+    }
+    @media (min-width: 768px) {
+      .rowpost {
+        display: flex;
+      }
+    } */
+.rowpost {
+    /* width: 70%;
+    height: 40%; */
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: row;
+    /* border: 3px solid red;  */
+}
+@media (max-width: 767px) {
+
+    .rowpost {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.row{
+    width: 100%;
+    height: 40%;
+
+}
+
+@media (max-width: 767px) {
+
+    .row {
+        width: 100%;
+        height: 100%;
+        /* border: 1px solid red; */
+    }
+}
+
+
+
+.profilePostContainner {
+    /* border: 1px solid red; */
+    width: 70%;
+    height: 20%;
+    margin: 0;
+    border-top: black 1px solid;
+    display: flex;
+    /* align-items: center; */
+}
+
+.image {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+
+}
+
+.post_button {
+    border: none;
+    /* padding: 0; */
+    background-color: transparent;
+    cursor: pointer;
+    width: 100px;
+    height: 25px;
+    /* border-radius: 10px; */
+    margin: 50px;
+    text-align: center;
+    border-bottom: none;
+    /* Initially, no bottom border */
+
+    /* Style for when the cursor is over the button */
+    padding-bottom: 10px;
+
+    &:hover {
+        border-bottom: 2px solid #333;
+        /* background-color: #ebe7df Add a bottom border on hover with the desired color */
+        padding-bottom: 10px;
+    }
+}
+.post_button.active {
+    /* Styles for the active state */
+    background-color: #ebe7df;
+    color: #1a1111;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.save_post {
+    display: flex;
+}
+
+.homeRight {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid green; */
+    padding: 10px;
+    /* margin: 0px 10px; */
+    overflow: auto;
+    flex-direction: row !important;
+
+
+}
+
+.profile {
+    margin-left: 30px;
+    align-items: center;
+    /* border: 2px solid green; */
+}
+
+.container-fluid {
+    /* border: 2px solid green; */
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+
+}
+
+.number {
+    font-weight: 500;
+    color: #333;
+    font-size: 20px;
+}
+
+.cardPost {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 300px;
+    width: 300px;
+    margin: 10px;
+    /* border: 1px solid red; */
+}
+
+@media (max-width: 767px) {
+
+    .cardPost {
+        width: 250px;
+        margin: 0;
+
+
+    }
+}
+
+
+
+.card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    color: #555;
+}
+
+.Postcol {
+    display: flex;
+
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-height: 100%;
+    /* border: 1px solid red; */
+
+}
+
+.postColumn {
+    /* border: 1px solid red; */
+    margin-left: 0;
+
+}
