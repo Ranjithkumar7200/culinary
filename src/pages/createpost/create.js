@@ -16,6 +16,11 @@ import prabhas from "../../imges/praba.jpeg"
 // import "../dashboard/common.css"
 
 import "./create.css"
+import "../community/community.css"
+import "../dashboard/common.css"
+import postTypes from '../../constants/postTypes';
+import PostForm from './PostForm/PostForm';
+
 
 // import { current } from '@reduxjs/toolkit';
 
@@ -100,8 +105,11 @@ const CreatePost = () => {
     // // Filtered posts based on user input
     // const filteredPosts = postsData.filter(filterPosts);
 
+    const [isCreate, setIsCreate] = useState(false)
+    const [postType, setPostType] = useState(postTypes.HOME_POST)
+
     return (
-        <div className=' homeContiner'>
+        <div className={`create_main_container`}>
 
             <Navbar />
             <span></span>
@@ -110,15 +118,30 @@ const CreatePost = () => {
 
 
 
-                <div class="homePOstFeedContainer  communityContainer">
+                <div className="homePOstFeedContainer  communityContainer">
 
 
 
-                    <div className="createCommunityButtonContainer">
-                        <button>Create Post</button>
-                    </div>
+                    {!isCreate && <div className="create_community_button_container">
+                        <button className='create_community_button' onClick={() => setIsCreate(!isCreate)}>Create Post</button>
+                    </div>}
 
+                    {isCreate && <div className='create_post_main_container'>
+                        <div className="create_post_buttons_card">
+                            <button className='create_home_post_button' onClick={() => setPostType(postTypes.HOME_POST)}>
+                                Home Post
+                            </button>
+                            <span>||</span>
+                            <button className='create_community_post_button' onClick={() => setPostType(postTypes.COMMUNITY_POST)}>
+                                Community Post
+                            </button>
+                        </div>
+                    </div>}
 
+                    {(isCreate) ?
+                        <PostForm postType={postType} />
+                        : null
+                    }
 
                 </div>
 
@@ -140,7 +163,7 @@ const CreatePost = () => {
                             </div>
 
                             <div>
-                                <a href="profile_link" class="profile-link">View Profile</a>
+                                <a href="profile_link" className="profile-link">View Profile</a>
 
 
                             </div>
@@ -177,7 +200,7 @@ const CreatePost = () => {
                                 </div>
 
                                 <div >
-                                    <a href="profile_link" class="profile-link">Invite</a>
+                                    <a href="profile_link" className="profile-link">Invite</a>
 
 
                                 </div>

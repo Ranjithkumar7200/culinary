@@ -122,15 +122,15 @@ const Community = () => {
                 <div class="homePOstFeedContainer  communityContainer">
 
 
-                
-                        {showCreateForm ? (
-                            <CreateCommunityForm onBack={hideCreateFormHandler} />
-                        ) : (
-                            <div className="createCommunityButtonContainer">
-                                <button onClick={showCreateFormHandler}>Create Community</button>
-                            </div>
-                        )}
-                  
+
+                    {showCreateForm ? (
+                        <CreateCommunityForm onBack={hideCreateFormHandler} />
+                    ) : (
+                        <div className="createCommunityButtonContainer">
+                            <button onClick={showCreateFormHandler}>Create Community</button>
+                        </div>
+                    )}
+
 
                 </div>
 
