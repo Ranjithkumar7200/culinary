@@ -1,21 +1,21 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import CustomFetchBase from "./CustomFetchBase";
 
-export const HomeApi = createApi({
-  reducerPath: "AllPostApi",
+export const UserApi = createApi({
+  reducerPath: "AllUserApi",
   baseQuery: CustomFetchBase,
-  tagTypes: ["ALLPOSTS"],
+  tagTypes: ["ALLUSERS"],
   endpoints: (build) => ({
-    getAllPosts: build.query({
-      query: (id) => ({
-        url: `/api/getposts?user_id=${id}`,
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
+    getAllUserById: build.query({
+        query: (id) => ({
+          url: `api/getUsersdetails?user_id=${id}`,
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json; charset=UTF-8",
+          },
+        }),
+        providesTags: ["ALLUSERS"],
       }),
-      providesTags: ["ALLPOSTS"],
-    }),
     // getAllUserById: build.query({
     //   query: (id) => ({
     //     url: `api/getposts?user_id=${id}`,
@@ -50,17 +50,17 @@ export const HomeApi = createApi({
     //   }),
      
 
-    editLike: build.mutation({
-      query: ({id,data }) => ({
-        url: `api/updateposts?post_id=65b3c286d4c2ef920561ab3a`,
-        method: "PUT",
-        body: data,
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
-      }),
-      invalidatesTags: ["ALLPOSTS"],
-    }),
+    // editAllemployee: build.mutation({
+    //   query: ({ id, data }) => ({
+    //     url: `/allemployee/update/${id}`,
+    //     method: "PATCH",
+    //     body: data,
+    //     headers: {
+    //       "Content-Type": "application/json; charset=UTF-8",
+    //     },
+    //   }),
+    //   invalidatesTags: ["ALLEMPLOYEE"],
+    // }),
     // deleteAllemployee: build.mutation({
     //   query: (id) => ({
     //     url: `/allemployee/delete/${id}`,
@@ -75,6 +75,5 @@ export const HomeApi = createApi({
 });
 
 export const { 
-    useGetAllPostsQuery,
-    useEditLikeMutation
-} = HomeApi;
+    useGetAllUserByIdQuery
+} = UserApi;

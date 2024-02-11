@@ -29,13 +29,13 @@ function YourCart() {
           sm={12}
           style={{ maxHeight: "100vh", overflowY: "scroll" }}
         >
-          <Col className="shadow rounded p-xxl-5 p-xl-5 p-lg-5 p-md-2 p-sm-2 p-4 mx-2">
+          <Col className="boxShadow rounded p-xxl-5 p-xl-5 p-lg-5 p-md-2 p-sm-2 p-4 mx-2">
             <Col>
               <h5>Select delivery Address</h5>
               <p>You have a saved address in this location</p>
             </Col>
             <Row className="d-flex my-xxl-5 my-xl-5 my-lg-5 flex-wrap flex-lg-row flex-xxl-row flex-xl-row flex-column flex-md-row flex-sm-column justify-content-between align-items-start">
-              <Col className="d-flex flex-row justify-content-between align-items-center shadow p-3 m-2">
+              <Col className="d-flex flex-row justify-content-between align-items-center boxShadow p-3 m-2">
                 <Col className="d-flex flex-column justify-content-between align-items-start">
                   <Col className="d-flex flex-row justify-content-between align-items-start mt-2 mb-5">
                     <IoHomeOutline className="mx-2 my-1" />
@@ -52,7 +52,7 @@ function YourCart() {
                 </Col>
               </Col>
 
-              <Col className="d-flex flex-column justify-content-start align-items-start shadow p-3 m-2">
+              <Col className="d-flex flex-column justify-content-start align-items-start boxShadow p-3 m-2">
                 <Col className="d-flex flex-column justify-content-start align-items-start">
                   <Col className="d-flex flex-row justify-content-center align-items-start  mt-2 mb-5">
                     <MdOutlineAddLocationAlt className="mx-2 my-1" />
@@ -70,7 +70,7 @@ function YourCart() {
               </Col>
             </Row>
           </Col>
-          <Col className="shadow my-5 p-5">
+          <Col className="boxShadow my-5 p-5">
             <Col>
             <h6 className="">Payment</h6>
             </Col>
@@ -89,7 +89,7 @@ function YourCart() {
             overflowX: "hidden",
           }}
         >
-          <Col className="shadow p-4">
+          <Col className="boxShadow p-4">
             <Row style={{ borderBottom: "1px solid black" }}>
               <Col className="d-flex w-100">
                 <img src={food} alt=".." width={60} height={60} />
@@ -110,7 +110,7 @@ function YourCart() {
                 <Col className="text-dark" style={{ fontWeight: "bold" }}>
                   Chennai Biriyani
                 </Col>
-                <Col className="shadow p-2 d-flex justify-content-around align-items-center">
+                <Col className="boxShadow p-2 d-flex justify-content-around align-items-center">
                   <span className="pointer">-</span>
                   <span>1</span>
                   <span className="pointer">+</span>
@@ -123,7 +123,7 @@ function YourCart() {
                 <Col className="text-dark" style={{ fontWeight: "bold" }}>
                   Cofee
                 </Col>
-                <Col className="shadow p-2 d-flex justify-content-around align-items-center">
+                <Col className="boxShadow p-2 d-flex justify-content-around align-items-center">
                   <span className="pointer">-</span>
                   <span>1</span>
                   <span className="pointer">+</span>
@@ -136,7 +136,7 @@ function YourCart() {
                 <Col className="text-dark" style={{ fontWeight: "bold" }}>
                   Cofee
                 </Col>
-                <Col className="shadow p-2 d-flex justify-content-around align-items-center">
+                <Col className="boxShadow p-2 d-flex justify-content-around align-items-center">
                   <span className="pointer">-</span>
                   <span>1</span>
                   <span className="pointer">+</span>
@@ -149,7 +149,7 @@ function YourCart() {
                 <Col className="text-dark" style={{ fontWeight: "bold" }}>
                   Cofee
                 </Col>
-                <Col className="shadow p-2 d-flex justify-content-around align-items-center">
+                <Col className="boxShadow p-2 d-flex justify-content-around align-items-center">
                   <span className="pointer">-</span>
                   <span>1</span>
                   <span className="pointer">+</span>
@@ -162,7 +162,7 @@ function YourCart() {
                 <Col className="text-dark" style={{ fontWeight: "bold" }}>
                   Cofee
                 </Col>
-                <Col className="shadow p-2 d-flex justify-content-around align-items-center">
+                <Col className="boxShadow p-2 d-flex justify-content-around align-items-center">
                   <span className="pointer">-</span>
                   <span>1</span>
                   <span className="pointer">+</span>
@@ -175,7 +175,7 @@ function YourCart() {
                 <Col className="text-dark" style={{ fontWeight: "bold" }}>
                   Cofee
                 </Col>
-                <Col className="shadow p-2 d-flex justify-content-around align-items-center">
+                <Col className="boxShadow p-2 d-flex justify-content-around align-items-center">
                   <span className="pointer">-</span>
                   <span>1</span>
                   <span className="pointer">+</span>
@@ -188,7 +188,7 @@ function YourCart() {
                 <Col className="text-dark" style={{ fontWeight: "bold" }}>
                   Cofee
                 </Col>
-                <Col className="shadow p-2 d-flex justify-content-around align-items-center">
+                <Col className="boxShadow p-2 d-flex justify-content-around align-items-center">
                   <span className="pointer">-</span>
                   <span>1</span>
                   <span className="pointer">+</span>
@@ -201,7 +201,7 @@ function YourCart() {
                 <Col className="text-dark" style={{ fontWeight: "bold" }}>
                   Cofee
                 </Col>
-                <Col className="shadow p-2 d-flex justify-content-around align-items-center">
+                <Col className="boxShadow p-2 d-flex justify-content-around align-items-center">
                   <span className="pointer">-</span>
                   <span>1</span>
                   <span className="pointer">+</span>
@@ -219,7 +219,7 @@ function YourCart() {
               <h6>$407</h6>
             </Col>
           </Col>
-          <Col className="shadow p-5 my-sm-4 my-md-4">
+          <Col className="boxShadow p-5 my-sm-4 my-md-4">
             <Col className="border-secondary">
               <h6>
                 Review your order and address details to avoid cancellations

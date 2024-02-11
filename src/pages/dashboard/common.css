@@ -243,9 +243,7 @@
 
 }
 
-.userSuggetionContiainerInSuggetion {
-    /* border: 1px solid red; */
-}
+/*  */
 
 .userSuggetionContiainerInSuggetion img {
     height: 60px;
@@ -257,9 +255,7 @@
     width: 70%;
 }
 
-.userSuggestedInner {
-    /* border: 2px solid blue; */
-}
+
 
 .userSuggetionName {
     font-weight: bold;
