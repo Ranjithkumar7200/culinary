@@ -14,11 +14,15 @@ function NotificationsCards(props) {
                 <Card key={index}>
                     <Card.Body className="cardbody">
                         <div className="cardHead">
+                            <div className="userName">
                             <h5 className="name">{name}</h5>
+                            <p> <span>[Preference</span>  North]</p>
+                            </div>
+                            
                             <p className="type"> Request Sended</p>
                         </div>
                         <div className="HeadButtons">
-                                <Button className="buttonhead">Accept</Button>
+                                <Button className="buttonhead Accept">Accept</Button>
                                 <Button className="buttonhead">Ignore</Button>
                         </div>
                         
