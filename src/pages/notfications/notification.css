@@ -1,0 +1,98 @@
+.cardHead{
+    /* display: flex; */
+    
+    align-items: center;
+    width: 100%;
+   
+    /* border: red solid  3px; */
+}
+.HeadButtons{
+    display: flex;
+    justify-content: right;
+    flex-direction: row;
+    background-color: rgb(216, 228, 228);
+    padding: 0;
+    border-radius: 5px;
+    align-items: center;
+}
+.buttonhead {
+    /* display: inline-block; */
+    /* padding: 10px 20px; */
+    font-size: 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #4CAF50; /* Green border */
+    color: #4CAF50; /* Green text */
+    background-color: #fff; /* White background */
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: all 0.3s ease;
+   margin-left: 20px;
+   margin: 5px;
+
+   /* width: 13%; */
+   height: 50%;
+  }
+  .buttonhead:hover {
+    background-color: #4CAF50; /* Green background */
+    color: #fff; /* White text */
+  }
+  .cardbody{
+    padding: 0;
+    /* border: red solid  3px; */
+    background-color: #e4dddd;
+    padding: 10px;
+    border-radius: 7px;
+    margin: 10px;
+    display: flex;
+    
+    justify-content: space-between;
+    
+   
+
+
+    
+  }
+  @media (min-width: 768px) {
+
+    .cardbody {
+        width: 500px;
+        
+        
+        /* border: 1px solid red; */
+    }
+}
+  .card{
+    width: 100%;
+    border: 0;
+    align-items: center;
+  }
+  .head {
+    font-family: Arial, sans-serif; 
+    font-size: 20px; 
+    color: #150c0c;
+   
+    
+  }
+   .header{
+   display: flex;
+   justify-content: start;
+   /* border: red solid 3px; */
+   width: 100%;
+   }
+
+   .name{
+    
+        font-family: Arial, sans-serif; 
+        font-size: 17px; 
+        color: #150c0c;
+       
+        
+      
+   }
+   .type{
+    font-family: Arial, sans-serif; 
+    font-size: 10px; 
+    color: #150c0c;
+   }
