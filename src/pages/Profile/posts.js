@@ -144,60 +144,52 @@ function Posts() {
         },
         // Add more posts as needed
     ];
-const [locationFilter, setLocationFilter] = useState('');
+    const [locationFilter, setLocationFilter] = useState('');
     const [foodStyleFilter, setFoodStyleFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
     const [showMore, setShowMore] = useState(false);
     const [showPosts, setShowPosts] = useState(false);
 
-    
+
 
 
     const toggleShowMore = () => {
         setShowMore(!showMore);
     };
-   
+
     const toggleShowPosts = () => {
         setShowPosts(!showPosts);
     };
 
 
-const filterPosts = (post) => {
-  const locationMatch = post.location.toLowerCase().includes(locationFilter.toLowerCase());
-  const foodStyleMatch = post.foodStyle.toLowerCase().includes(foodStyleFilter.toLowerCase());
-  const nameMatch = post.name.toLowerCase().includes(nameFilter.toLowerCase());
+    const filterPosts = (post) => {
+        const locationMatch = post.location.toLowerCase().includes(locationFilter.toLowerCase());
+        const foodStyleMatch = post.foodStyle.toLowerCase().includes(foodStyleFilter.toLowerCase());
+        const nameMatch = post.name.toLowerCase().includes(nameFilter.toLowerCase());
 
-  return locationMatch && foodStyleMatch && nameMatch;
-};
-
-
-// Filtered posts based on user input
-// Change this line
-const filteredPosts = postsData.filter(filterPosts);
+        return locationMatch && foodStyleMatch && nameMatch;
+    };
 
 
-  return (
-    <div className="profilePostContainner">
-    <div className=" row row-cols-1 row-cols-md-2 row-cols-lg-3">
-        {filteredPosts.map((post) => (
-            <div key={post.id} className="col  postColumn ">
-                <div className="cardPost">
-                    <img src={post.img} className="card-img-top" alt={post.name} />
+    // Filtered posts based on user input
+    // Change this line
+    const filteredPosts = postsData.filter(filterPosts);
 
-                </div>
+
+    return (
+        <div className="profilePostContainner">
+            <div className="postInnerContainer">
+                {filteredPosts.map((post) => (
+
+                    <div className="cardPost">
+                        <img src={post.img} className="card-img-top" alt={post.name} />
+
+                    </div>
+
+                ))}
             </div>
-        ))}
-    </div>
-
-
-
-
-
-
-
-
-</div>
-  )
+        </div>
+    )
 }
 
 export default Posts;
