@@ -1,89 +1,86 @@
-.communityContainer{
-    /* width: 100%; */
-    border: 1px solid #bababa ;
-}
-
-.createCommunityButtonContainer{
-    width: 100%;
-    height: 100%;
-    /* border: 1px solid #bababa; */
-    padding: 10px;
-    display: grid;
-    place-items: center;
+.communityContainer {
+  /* width: 100%; */
+  border: 1px solid #bababa;
 }
 
 .createCommunityButtonContainer {
-    /* background-color: rgba(0, 0, 0, 0.163); */
-    color: yellow;
- 
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid #bababa; */
+  padding: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.createCommunityButtonContainer {
+  /* background-color: rgba(0, 0, 0, 0.163); */
+  color: yellow;
 }
 
 .createCommunityButtonContainer button {
-    background-color: rgb(255, 255, 0);
-    color: black;
-    padding: 8px 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
+  background-color: rgb(255, 255, 0);
+  color: black;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .createCommunityButtonContainer button:hover {
-    background-color: rgb(172, 172, 172);
-    color: white;
+  background-color: rgb(172, 172, 172);
+  color: white;
 }
 
-.cCContainer{
-    margin: 5px;
-    width: 90%;
-    height: 100%;
-    /* border: 2px solid #bababa ; */
+.cCContainer {
+  margin: 5px;
+  width: 90%;
+  height: 100%;
+  /* border: 2px solid #bababa ; */
 }
-.cCBackButtonContianer{
-    border: 1px solid blue;
-    margin: 5px;
-}
-
-.cCButtonBack{
-    height: 40px;
-    width: 40px;
-    /* border: 1px solid red; */
-    display: grid;
-    place-items: center;
-    border-radius:50% ;
-    background-color: white;
-    border: none;
-}
-.cCButtonBack:hover{
-    background-color:rgb(234, 234, 234);
-}
-.cCContainerForm{
-    /* border: 1px solid red; */
+.cCBackButtonContianer {
+  border: 1px solid blue;
+  margin: 5px;
 }
 
-.cCInputContainer{
-    /* border: 1px solid blue; */
-    display: flex;
-    
+.cCButtonBack {
+  height: 40px;
+  width: 40px;
+  /* border: 1px solid red; */
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+}
+.cCButtonBack:hover {
+  background-color: rgb(234, 234, 234);
+}
+.cCContainerForm {
+  /* border: 1px solid red; */
 }
 
-.cCSearchInput{
- 
-    border: 1px solid  #bababa;
-    /* border: none; */
-    outline: none;
-    padding: 4px;
-    margin: 4px;
-    border-radius:3px ;
+.cCInputContainer {
+  /* border: 1px solid blue; */
+  display: flex;
 }
 
-.cCSearchSelect{
-    width: 30%;
-    border: 1px solid  #bababa;
-    outline: none;
-    padding: 4px;
-    margin: 4px;
-    border-radius:3px ;
+.cCSearchInput {
+  border: 1px solid #bababa;
+  /* border: none; */
+  outline: none;
+  padding: 4px;
+  margin: 4px;
+  border-radius: 3px;
+}
+
+.cCSearchSelect {
+  width: 30%;
+  border: 1px solid #bababa;
+  outline: none;
+  padding: 4px;
+  margin: 4px;
+  border-radius: 3px;
 }
 
 /* 
