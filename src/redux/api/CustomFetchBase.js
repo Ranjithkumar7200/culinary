@@ -22,14 +22,14 @@ const CustomFetchBase = async (args, api, extraOptions) => {
   await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result.error?.status === 401) {
-    toast.warning("UnAuthorized", {
-      position: toast.POSITION.BOTTOM_LEFT,
-    });
-    <ToastContainer />;
-    localStorage.clear();
-    window.location.href = "/";
-  }
+  // if (result.error?.status === 401) {
+  //   toast.warning("UnAuthorized", {
+  //     position: toast.POSITION.BOTTOM_LEFT,
+  //   });
+  //   <ToastContainer />;
+  //   localStorage.clear();
+  //   window.location.href = "/";
+  // }
   return result;
 };
 export default CustomFetchBase;
