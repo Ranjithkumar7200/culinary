@@ -123,3 +123,111 @@
   color: #fff;
   background: #084cdf;
 }
+
+/* CSS for the main image container */
+.file-inner-container {
+  border: 2px dashed #ccc;
+  /* Add a dashed border */
+  border-radius: 10px;
+  /* Rounded corners */
+  padding: 20px;
+  /* Add some padding */
+  text-align: center;
+  /* Center the content */
+  background-color: #f9f9f9;
+  /* Light background color */
+}
+
+/* Styles for the uploaded image */
+/* Styles for the uploaded image */
+.courseUploadImgContainer img {
+  max-width: 100%;
+  /* Ensure the image doesn't exceed container width */
+  max-height: 150px;
+  /* Limit the height of the image */
+  display: block;
+  /* Make the image behave as a block element */
+  margin: 0 auto;
+  /* Center the image horizontally */
+  object-fit: contain;
+  /* Maintain aspect ratio while fitting within container */
+}
+
+
+/* Styles for the upload logo and text */
+.UploadImgInCourse {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  /* border: 1px solid red; */
+}
+
+.UploadToCloudCont {
+  margin-bottom: 10px;
+  /* Add some space below the upload logo */
+}
+
+.UploadToCloudContPara {
+  font-size: 14px;
+  /* Adjust font size */
+  color: #555;
+  /* Text color */
+}
+
+/* Styles for the browse button */
+.browse-btn {
+  width: 30px;
+  height: 30px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  /* padding: 5px;  */
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.browse-btn span {
+  font-size: 20px;
+  /* border: 1px solid red; */
+  margin: 0px;
+
+}
+
+.browse-btn:hover {
+  background-color: #0056b3;
+  /* Darker background color on hover */
+}
+
+.dragButtonContainerCourse {
+  /* border: 1px solid red; */
+  display: grid;
+  place-items: center;
+
+}
+
+.imgSecondStyles {
+  /* border: 1px solid red; */
+  margin: 5px;
+}
+
+.multiselect-container {
+  /* width: 100%; */
+  
+  background-color: white;
+  border-radius: 4px;
+  /* padding: 8px 12px; */
+  border:none;
+  font-size: 16px;
+  height: auto;
+  max-width: 330px;
+  border-style: solid;
+  border-width: 2px;
+  /* border-radius: 5px; */
+  /* padding-left: 15px; */
+}

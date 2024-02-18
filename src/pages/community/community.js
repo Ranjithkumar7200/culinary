@@ -115,7 +115,7 @@ const Community = () => {
             <Navbar />
             <span></span>
 
-            <div className='homeRightContainer'>
+            <div className='posthomeRightContainer'>
 
 
 

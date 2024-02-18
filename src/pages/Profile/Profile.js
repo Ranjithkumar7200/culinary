@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect } from 'react';
 import Navbar from '../../components/navbar/navbar';
 import "./Profile.css";
 import Modal from 'react-modal';
@@ -6,6 +6,8 @@ import { FaPenToSquare } from "react-icons/fa6";
 import { Link, Route, Switch } from 'react-router-dom';
 import Posts from '../Profile/posts';
 import Comunityposts from '../Profile/comunityposts';
+
+
 
 import food1 from "../../imges/food1.jpeg";
 import food2 from "../../imges/food2.jpg";
@@ -15,6 +17,7 @@ import food5 from "../../imges/food5.jpg";
 import food6 from "../../imges/food6.jpg";
 import prabhas from "../../imges/praba.jpeg";
 import "../dashboard/common.css";
+import { adminPanalApiServices } from '../../services/allApiServeces';
 
 Modal.setAppElement('#root');
 
@@ -22,6 +25,9 @@ function Profile() {
     const [showMore, setShowMore] = useState(false);
     const [showPosts, setShowPosts] = useState(true);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+
+
+
 
     const toggleShowMore = () => {
         setShowMore(!showMore);

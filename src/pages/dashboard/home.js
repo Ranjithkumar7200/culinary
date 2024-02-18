@@ -17,9 +17,13 @@ import { toast } from "react-toastify";
 
 const Home = () => {
   const [showMore, setShowMore] = useState(false);
+
   const id = TokenService.getUserIdFromToken();
+
   const { data: posts, isLoading,} = useGetAllPostsQuery(id);
+
   const { data: user } = useGetAllUserByIdQuery(id);
+  
   const [postId,setPostId]=useState("");
   const [EditLike] = useEditLikeMutation(postId);
   const [likeBool,setLikeBool]= useState(false);

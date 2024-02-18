@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Navbar from '../../components/navbar/navbar';
+ import NotificationsCards from '../notfications/notficationsCards';
 
 import food1 from "../../imges/food1.jpeg"
 import food2 from "../../imges/food2.jpg"
@@ -11,11 +12,13 @@ import food6 from "../../imges/food6.jpg"
 
 import prabhas from "../../imges/praba.jpeg"
 
+
 // import CreateCommunityForm from './createcommunity';
 
 // import "../dashboard/common.css"
 
 import "./notification.css"
+import "../dashboard/common.css"
 
 // import { current } from '@reduxjs/toolkit';
 
@@ -82,6 +85,9 @@ const CreatePost = () => {
         },
         // Add more posts as needed
     ];
+    const sendedNotifications = ["Rohith", "satish", "vikky"];
+    const responseNotifications = ["rohith", "satish", "vikky"];
+
 
     // State to manage filters
     // const [locationFilter, setLocationFilter] = useState('');
@@ -110,12 +116,15 @@ const CreatePost = () => {
 
 
 
-                <div class="homePOstFeedContainer  communityContainer">
+                <div class="homePOstFeedContainer  communityContainer ">
 
+                <div className="header">
+                     <h1 className="head">Notifications</h1></div>
 
-
-                   <h1>notifications</h1>
-
+                     <NotificationsCards
+                        sendedNotifications={sendedNotifications}
+                        responseNotifications={responseNotifications}
+                    />
 
 
                 </div>
