@@ -3,7 +3,7 @@ import { jwtDecode } from "jwt-decode";
 class TokenService {
     static getUserIdFromToken() {
         const user = JSON.parse(localStorage.getItem("user"));
-        console.log(user.token);
+        
         if (user.token) {
             try {
                 const decodedToken = jwtDecode(user.token);

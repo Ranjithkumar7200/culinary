@@ -51,8 +51,19 @@ export const HomeApi = createApi({
      
 
     editLike: build.mutation({
-      query: ({id,data }) => ({
-        url: `api/updateposts?post_id=65b3c286d4c2ef920561ab3a`,
+      query: ({data }) => ({
+        url: `/api/like`,
+        method: "PUT",
+        body: data,
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["ALLPOSTS"],
+    }),
+    unLike: build.mutation({
+      query: ({data }) => ({
+        url: `/api/unlike`,
         method: "PUT",
         body: data,
         headers: {
@@ -76,5 +87,6 @@ export const HomeApi = createApi({
 
 export const { 
     useGetAllPostsQuery,
-    useEditLikeMutation
+    useEditLikeMutation,
+    useUnLikeMutation
 } = HomeApi;

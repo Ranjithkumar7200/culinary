@@ -6,6 +6,7 @@ import "./common.css";
 import {
   useEditLikeMutation,
   useGetAllPostsQuery,
+  useUnLikeMutation,
 } from "../../redux/api/HomeApi";
 import Loader from "../loader/Loader";
 import TokenService from "../../services/TokenServices";
@@ -21,7 +22,8 @@ const Home = () => {
   const { data: posts, isLoading,} = useGetAllPostsQuery(id);
   const { data: user } = useGetAllUserByIdQuery(id);
   const [postId,setPostId]=useState("");
-  const [EditLike] = useEditLikeMutation(postId);
+  const [EditLike] = useEditLikeMutation();
+  const [unLike] = useUnLikeMutation();
   const [likeBool,setLikeBool]= useState(false);
   const [postsData, setPostsData] = useState([]);
   const [userData, setUserData] = useState([]);
@@ -29,7 +31,7 @@ const Home = () => {
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
-  console.log(posts);
+  
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -50,8 +52,29 @@ const Home = () => {
     console.log(id);
     try {
       const response = await EditLike({
-        isLiked: likeBool
-      });
+        "post_id":id,
+        "user_id":TokenService.getUserIdFromToken()
+    });
+      console.log("like : "+response.data.data);
+      console.log("like");
+      if (response?.data) {
+        console.log(response?.data.message);
+      } else {
+        console.log("jii");
+      }
+    } catch (error) {
+      toast("An error occurred while registering.");
+    }
+  };
+  const unlike = async (id) => {
+    setLikeBool(!likeBool);
+    setPostId(id);
+    console.log(id);
+    try {
+      const response = await unLike({
+        "post_id":id,
+        "user_id":TokenService.getUserIdFromToken()
+    });
       console.log(response);
       if (response?.data) {
       } else {
@@ -108,14 +131,14 @@ const Home = () => {
                         <div className="likeButtonContainer">
                           <button
                             className={`favorite-btn`}
-                            onClick={() => like(post._id)}
+                            
                           >
                             <div className="d-flex flex-column align-items-center justify-content-center">
                               <span>
                                 {post.isLiked ? (
-                                  <MdFavorite color="red" />
+                                  <MdFavorite color="red" onClick={() => unlike(post._id)} />
                                 ) : (
-                                  <MdFavoriteBorder />
+                                  <MdFavoriteBorder onClick={() => like(post._id)} />
                                 )}
                               </span>
                               <p className="fs-6">
