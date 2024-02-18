@@ -16,21 +16,30 @@ import CreateCommunityForm from './createcommunity';
 import "../dashboard/common.css"
 
 import "./community.css"
+import GroupCommunity from './GroupCommunity';
+import { Button, Form, Modal } from 'react-bootstrap';
 
 // import { current } from '@reduxjs/toolkit';
 
 const Community = () => {
 
 
-    const [showCreateForm, setShowCreateForm] = useState(false);
+   
+    const [showModal, setShowModal] = useState(false);
+    const [showGruop, setShowGroup] = useState(false);
+  const [inputValue, setInputValue] = useState('');
 
-    const showCreateFormHandler = () => {
-        setShowCreateForm(true);
-    };
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
-    const hideCreateFormHandler = () => {
-        setShowCreateForm(false);
-    };
+
+  const handleShowGroup = () =>{
+    setShowGroup(true);
+    setShowModal(false)
+
+  }
+
+    
 
 
 
@@ -91,6 +100,7 @@ const Community = () => {
         },
         // Add more posts as needed
     ];
+    
 
     // State to manage filters
     // const [locationFilter, setLocationFilter] = useState('');
@@ -123,11 +133,12 @@ const Community = () => {
 
 
 
-                    {showCreateForm ? (
-                        <CreateCommunityForm onBack={hideCreateFormHandler} />
+                    {showGruop ? (
+                        
+                        <GroupCommunity groupName={inputValue} />
                     ) : (
                         <div className="createCommunityButtonContainer">
-                            <button onClick={showCreateFormHandler}>Create Community</button>
+                            <button onClick={handleShow}>Create Community</button>
                         </div>
                     )}
 
@@ -206,9 +217,36 @@ const Community = () => {
                 </div>
 
             </div>
+            <Modal show={showModal} centered onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Create Community</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formInput">
+              
+              <Form.Control
+                type="text"
+                placeholder="Enter Community name"
+                value={inputValue}
+                onChange={(e)=>setInputValue(e.target.value)}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+        <Button onClick={ handleShowGroup} variant="primary" type="button">
+              Create
+            </Button>
+        </Modal.Footer>
+      </Modal>
         </div>
 
+
+
     );
+
+    
 };
 
 export default Community;
