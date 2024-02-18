@@ -76,7 +76,7 @@ const Register = () => {
 
   return (
     <>
-      <Container className="vh-100 w-100 d-flex flex-column flex-wrap-wrap justify-content-center align-items-center">
+      <Container  className="vh-100 w-100 d-flex flex-column flex-wrap-wrap justify-content-center align-items-center">
         <Row>
           <Col>
             <img
@@ -131,6 +131,7 @@ const Register = () => {
                             type="email"
                             size="md"
                             id="email"
+                            
                             className={`form-control ${
                               touched.email && errors.email ? "is-invalid" : ""
                             }`}
