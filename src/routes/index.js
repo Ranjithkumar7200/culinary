@@ -167,7 +167,9 @@ const Community = Loadable(lazy(() => import("../pages/community/community")));
 const Create = Loadable(lazy(() => import("../pages/createpost/create")));
 
 // const Profile = Loadable(lazy(() => import("../pages/dashboard/profile")));
+
 const Profile = Loadable(lazy(()=>import("../pages/Profile/Profile")));
+
 const Notification = Loadable(lazy(() => import("../pages/notfications/notification")));
 
 const Search = Loadable(lazy(() => import("../pages/search/search")));

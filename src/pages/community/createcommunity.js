@@ -1,19 +1,146 @@
 import React, { useState } from 'react';
 
+import food1 from "../../imges/food1.jpeg"
+import food2 from "../../imges/food2.jpg"
+import food3 from "../../imges/food3.jpeg"
+import food4 from "../../imges/food4.jpg"
+import food5 from "../../imges/food5.jpg"
+import food6 from "../../imges/food6.jpg"
+
+import prabhas from "../../imges/praba.jpeg"
+
 const CreateCommunityForm = ({ onBack }) => {
     const [formData, setFormData] = useState({
         communityName: '',
         location: 'location1', // default value for location
         type: 'type1', // default value for type
     });
+    const [postsData, setPostsData] = useState([
+        {
+            id: 1,
+            img: food1,
+            userName: 'sathish57',
+            name: 'Biriyani',
+            location: 'City 1',
+            foodStyle: 'Mediterranean',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            status: 'pending',
+        },
+        {
+            id: 2,
+            img: food2,
+            userName: 'Dosaa',
+            name: 'Mediterranean Dish 2',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'invite',
+        },
+        {
+            id: 3,
+            img: food3,
+            userName: 'ranjiths88',
+            name: 'Upma',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'in',
+        },
+        {
+            id: 4,
+            img: food4,
+            userName: 'rohith_roy',
+            name: 'Chicken',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'invite',
+        },
+        {
+            id: 5,
+            img: food5,
+            userName: 'firzzzzzzzz',
+            name: 'Rayala sima chicken',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'invite',
+        },
+        {
+            id: 6,
+            img: food6,
+            userName: 'somthing',
+            name: 'kodikuraa',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'invite',
+        },
+        {
+            id: 7,
+            img: food1,
+            userName: 'sathish57',
+            name: 'Biriyani',
+            location: 'City 1',
+            foodStyle: 'Mediterranean',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            status: 'invite',
+        },
+        {
+            id: 8,
+            img: food2,
+            userName: 'Dosaa',
+            name: 'Mediterranean Dish 2',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'invite',
+        },
+        {
+            id: 9,
+            img: food3,
+            userName: 'ranjiths88',
+            name: 'Upma',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'inv',
+        },
+        {
+            id: 10,
+            img: food4,
+            userName: 'rohith_roy',
+            name: 'Chicken',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'invite',
+        },
+        {
+            id: 11,
+            img: food5,
+            userName: 'firzzzzzzzz',
+            name: 'Rayala sima chicken',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'dghdjkjd',
+        },
+        {
+            id: 13,
+            img: food6,
+            userName: 'somthing',
+            name: 'kodikuraa',
+            location: 'City 2',
+            foodStyle: 'Mediterranean',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            status: 'invite',
+        },
+        // Add more posts as needed
+    ]);
 
 
     const handleBack = () => {
-        // Reset form state
-        // setCommunityName('');
-        // setLocation('');
-
-        // Call the onBack callback
         onBack();
     };
 
@@ -36,17 +163,27 @@ const CreateCommunityForm = ({ onBack }) => {
         }));
     };
 
+    const handleInvite = (postId) => {
+        setPostsData((prevPosts) =>
+            prevPosts.map((post) =>
+                post.id === postId ? { ...post, status: post.status === 'invite' ? 'pending' : 'invite' } : post
+            )
+        );
+    };
+    
+
+
     return (
         <div className='cCContainer'>
-            <div className='cCBackButtonContianer' >
+            <div className='cCBackButtonContianer'>
                 <button className='cCButtonBack' onClick={handleBack}>
                     <span class="material-symbols-outlined">
                         arrow_back
-                    </span>
+                        </span>
                 </button>
             </div>
             <div className='cCContainerForm'>
-                <form className="container" onSubmit={handleSubmit}>
+                <form className="communityFIlterContainer" onSubmit={handleSubmit}>
                     <div className="cCInputContainer">
                         <input
                             type="text"
@@ -82,10 +219,30 @@ const CreateCommunityForm = ({ onBack }) => {
                     </div>
                 </form>
             </div>
-
+            <div className="SearchContainer" >
+                {postsData.map((post) => (
+                    <div className='userContainerInSuggestion Suggestioncenter' key={post.id}>
+                        <div className='userSuggestionInnerLeftContainer '>
+                            <div className='userSuggetionContiainerInSuggetion'>
+                                <img className="userImgInPostCard " src={post.img} alt='user' />
+                            </div>
+                            <div className='usersugehtionNamecontainer'>
+                                <p className='userSuggetionName'>{post.userName}</p>
+                                <p className='SuggestedForYou'>Suggested for you</p>
+                            </div>
+                        </div>
+                        <div>
+                            {post.status === 'invite' ? (
+                                <button className="StatusBtn" onClick={() => handleInvite(post.id)}>Invite</button>
+                            ) : (
+                                <button className="StatusBtn" onClick={() => handleInvite(post.id)}>Pending</button>
+                                //   <span className="StatusBtn">Pending</span>
+                                )}
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-
-
     );
 };
 

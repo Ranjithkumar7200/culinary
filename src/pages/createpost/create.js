@@ -16,9 +16,13 @@ import prabhas from "../../imges/praba.jpeg"
 // import "../dashboard/common.css"
 
 import "./create.css"
+
 import "../community/community.css"
+
 import "../dashboard/common.css"
+
 import postTypes from '../../constants/postTypes';
+
 import PostForm from './PostForm/PostForm';
 
 
