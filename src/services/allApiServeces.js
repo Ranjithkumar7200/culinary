@@ -26,6 +26,15 @@ export class adminPanalApiServices {
         return axios.post(userUrl,bodyData);
     };
 
+    
+    static getUserProfile = () => {
+        const userUrl =` ${this.baseURL}/api/getUsersdetails?user_id=${userId}`;
+        return axios.get(userUrl,{});
+    };
+    static getNotifications = () => {
+        const userUrl = `${this.baseURL}/api/getnotifications?user_id=${userId}`;
+        return axios.get(userUrl,{});
+    };
 
 
 }
