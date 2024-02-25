@@ -4,24 +4,16 @@ import "./Profile.css";
 import { Button, Form, Modal } from 'react-bootstrap';
 
 
-// import Modal from 'react-modal';
-import { FaPenToSquare } from "react-icons/fa6";
-import { Link, Route, Switch } from 'react-router-dom';
 import Posts from '../Profile/posts';
 import Comunityposts from '../Profile/comunityposts';
-import { toast } from 'react-toastify';
+import Saveposts from '../Profile/saveposts'
 
 
 
 
 
-import food1 from "../../imges/food1.jpeg";
-import food2 from "../../imges/food2.jpg";
-import food3 from "../../imges/food3.jpeg";
-import food4 from "../../imges/food4.jpg";
-import food5 from "../../imges/food5.jpg";
-import food6 from "../../imges/food6.jpg";
-import prabhas from "../../imges/praba.jpeg";
+
+
 import "../dashboard/common.css";
 import { adminPanalApiServices } from '../../services/allApiServeces';
 
@@ -45,6 +37,7 @@ const Profile = ({ filteredPostsLength }) => {
     const [showModal, setShowModal] = useState(false);
     const [showGruop, setShowGroup] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const [selectedTab, setSelectedTab] = useState('posts');
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
@@ -55,6 +48,10 @@ const Profile = ({ filteredPostsLength }) => {
         setShowModal(false)
 
     }
+    const handleTabChange = (tab) => {
+        setSelectedTab(tab);
+    };
+
 
 
 
@@ -112,7 +109,7 @@ const Profile = ({ filteredPostsLength }) => {
         setUploadedImage(URL.createObjectURL(file));
         setErrorMsgState({ imgErrorMsg: false });
     };
-    
+
 
     const onClickUpload = () => {
         fileInputRef.current.click();
@@ -178,7 +175,7 @@ const Profile = ({ filteredPostsLength }) => {
 
 
                                         </div>
-                                       
+
 
 
                                         <Modal show={showModal} centered onHide={handleClose}>
@@ -303,7 +300,7 @@ const Profile = ({ filteredPostsLength }) => {
                                             </div>
 
 
-                                           
+
                                             <Modal show={showModal} centered onHide={handleClose}>
 
                                                 <Modal.Body>
@@ -410,32 +407,32 @@ const Profile = ({ filteredPostsLength }) => {
                             {/* Buttons for toggling between posts and community */}
                             <div className="save_post">
                                 <div className='innerSavePostContainer'>
-
-
-                                    <button className={`post_button ${showPosts ? 'post_buttonAactive' : ''}`} onClick={toggleShowPosts}>
-                                        <span class="material-symbols-outlined">
+                                    <button className={`post_button ${selectedTab === 'posts' ? 'post_buttonAactive' : ''}`} onClick={() => handleTabChange('posts')}>
+                                        <span className="material-symbols-outlined">
                                             grid_on
                                         </span>
                                         <span className="desktop-text">POSTS</span>
                                     </button>
-                                    <button className={`post_button ${!showPosts ? 'post_buttonAactive' : ''}`} onClick={toggleShowPosts}>
-                                        <span class="material-symbols-outlined">
+                                    <button className={`post_button ${selectedTab === 'community' ? 'post_buttonAactive' : ''}`} onClick={() => handleTabChange('community')}>
+                                        <span className="material-symbols-outlined">
                                             diversity_2
                                         </span>
                                         <span className="desktop-text"> COMMUNITY </span>
                                     </button>
-                                    <button className={`post_button ${!showPosts ? 'post_buttonAactive' : ''}`} onClick={toggleShowPosts}>
-                                        <span class="material-symbols-outlined">
+                                    <button className={`post_button ${selectedTab === 'saved' ? 'post_buttonAactive' : ''}`} onClick={() => handleTabChange('saved')}>
+                                        <span className="material-symbols-outlined">
                                             bookmark
                                         </span>
                                         <span className="desktop-text">  SAVED </span>
                                     </button>
-
                                 </div>
                             </div>
 
-                            {/* Conditional rendering of posts or community */}
-                            {showPosts ? <Posts /> : <Comunityposts />}
+                            {/* Conditional rendering of posts or community
+                            {showPosts ? <Posts /> : <Comunityposts />} */}
+                            {selectedTab === 'posts' && <Posts />}
+            {selectedTab === 'community' && <Comunityposts />}
+            {selectedTab === 'saved' && <Saveposts />}
                         </div>
                     </div>
                 </div>

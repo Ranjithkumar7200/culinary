@@ -30,6 +30,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: red 1px solid;
 }
 
 .create_post_buttons_card {
@@ -64,4 +65,12 @@
   font-weight: 500;
   border-style: none;
   border-radius: 5px;
+}
+@media (max-width: 767px) {
+  .create_home_post_button .text{
+    display: none;
+  }
+  .create_community_post_button .text{
+    display: none; 
+  }
 }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import Navbar from '../../components/navbar/navbar';
+import { FaHome } from "react-icons/fa";
+import { MdGroups2 } from "react-icons/md";
 
 import food1 from "../../imges/food1.jpeg"
 import food2 from "../../imges/food2.jpg"
@@ -133,11 +135,11 @@ const CreatePost = () => {
                     {isCreate && <div className='create_post_main_container'>
                         <div className="create_post_buttons_card">
                             <button className='create_home_post_button' onClick={() => setPostType(postTypes.HOME_POST)}>
-                                Home Post
+                            <span><FaHome /></span><span className="text">Home Post</span>
                             </button>
                             <span>||</span>
                             <button className='create_community_post_button' onClick={() => setPostType(postTypes.COMMUNITY_POST)}>
-                                Community Post
+                               <span><MdGroups2 /></span>  <span className="text">Community Post</span>
                             </button>
                         </div>
                     </div>}
