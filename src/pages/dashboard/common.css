@@ -18,7 +18,7 @@
 .homePOstFeedContainer {
   height: 100%;
   width: 50%;
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   display: flex;
   flex-direction: column;
   /* justify-content: center;

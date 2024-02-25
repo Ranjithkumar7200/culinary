@@ -2,18 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '../../components/navbar/navbar';
 import "./Profile.css";
 import { Button, Form, Modal } from 'react-bootstrap';
-
-
 import Posts from '../Profile/posts';
 import Comunityposts from '../Profile/comunityposts';
 import Saveposts from '../Profile/saveposts'
-
-
-
-
-
-
-
 import "../dashboard/common.css";
 import { adminPanalApiServices } from '../../services/allApiServeces';
 
@@ -38,6 +29,8 @@ const Profile = ({ filteredPostsLength }) => {
     const [showGruop, setShowGroup] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [selectedTab, setSelectedTab] = useState('posts');
+
+    const [ postsData , setPostData] = useState([])
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
@@ -64,7 +57,12 @@ const Profile = ({ filteredPostsLength }) => {
     useEffect(() => {
         const fetchData = async () => {
             let userDetails = await adminPanalApiServices.getUserProfile()
+
             setUserDetails(userDetails.data.data[0])
+             
+            console.log(userDetails.data.data[0].posts.posts)
+            setPostData(userDetails.data.data[0].posts.posts)
+
         }
         fetchData()
     }, [])
@@ -129,7 +127,7 @@ const Profile = ({ filteredPostsLength }) => {
     };
 
     const formTitle = "Home";
-    console.log(filteredPostsLength, "hello");
+    // console.log(filteredPostsLength, "hello");
     const [isDesktop, setIsDesktop] = useState(true);
 
     useEffect(() => {
@@ -430,14 +428,12 @@ const Profile = ({ filteredPostsLength }) => {
 
                             {/* Conditional rendering of posts or community
                             {showPosts ? <Posts /> : <Comunityposts />} */}
-                            {selectedTab === 'posts' && <Posts />}
-            {selectedTab === 'community' && <Comunityposts />}
-            {selectedTab === 'saved' && <Saveposts />}
+                            {selectedTab === 'posts' && <Posts postInfo={postsData} />}
+                            {selectedTab === 'community' && <Comunityposts />}
+                            {selectedTab === 'saved' && <Saveposts />}
                         </div>
                     </div>
                 </div>
-
-
             }
 
 
