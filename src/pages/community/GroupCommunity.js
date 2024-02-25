@@ -50,7 +50,7 @@ function GroupCommunity({ ...props }) {
     setShowCreateForm(false);
   };
   const chatMessages = Array.from({ length: 30 }, (_, index) => (
-    <Card key={index} >
+    <Card key={index} className="my-3" border="0" >
       <Col className="d-flex flex-row align-items-start p-2 m-1">
       <Image
         width={30}
@@ -61,13 +61,13 @@ function GroupCommunity({ ...props }) {
       />
       <Col>
         <Col className="d-flex justify-content-between">
-        <h6>{"@Ranjith"}</h6>
+        <h6 className="mx-2">{"@Ranjith"}</h6>
         <p>{hours < 10 ? `0${hours}` : hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</p>
         </Col>
         <Image
-        width={300}
+        width={250}
         height={300}
-        src={prabhas}
+        src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oMiQKCzp4zPtiLdJiCBIWsyf-UfPQUMmAA&usqp=CAU"}
         
         className=""
       />
@@ -84,8 +84,8 @@ function GroupCommunity({ ...props }) {
         </p>
       </Col>
       </Col>
-      <Col className="m-1">
-      <Button>Order Now</Button>
+      <Col className="m-1 justify-content-center d-flex align-items-center">
+      <Button className="text-light  fw-2" variant="warning" size="sm">Add Cart</Button>
       </Col>
     </Card>
   ));
