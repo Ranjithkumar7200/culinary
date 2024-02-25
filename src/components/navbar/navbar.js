@@ -18,7 +18,7 @@ const ResponsiveNavbar = () => {
 
                     <ul class="sideBarUnOrderList">
                         <li className={`nav-item ${location.pathname === '/home' ? 'active' : ''}`}>
-                            
+
                             <Link to="/home" className="nav-link">
 
                                 <span className="material-symbols-outlined">
@@ -38,7 +38,7 @@ const ResponsiveNavbar = () => {
 
                             </Link>
                         </li>
-                        <li  className={`nav-item ${location.pathname === '/search' ? 'active' : ''}`}>
+                        <li className={`nav-item ${location.pathname === '/search' ? 'active' : ''}`}>
 
                             <Link to="/search" className="nav-link">
                                 <span class="material-symbols-outlined">
@@ -48,46 +48,46 @@ const ResponsiveNavbar = () => {
                             </Link>
                         </li>
 
-                        <li  className={`nav-item ${location.pathname === '/create' ? 'active' : ''}`}>
-                           
+                        <li className={`nav-item ${location.pathname === '/create' ? 'active' : ''}`}>
+
                             <Link to="/create" className="nav-link">
 
-                         
+
                                 <span class="material-symbols-outlined">
                                     add_circle
                                 </span>
                                 Create
-                                </Link>
+                            </Link>
                         </li>
 
-                        <li  className={`nav-item ${location.pathname === '/notification' ? 'active' : ''}`}>
-                        <Link to="/notification" className="nav-link">
+                        <li className={`nav-item ${location.pathname === '/notification' ? 'active' : ''}`}>
+                            <Link to="/notification" className="nav-link">
                                 <span class="material-symbols-outlined">
                                     favorite
                                 </span>
                                 Notification
-                                </Link>
+                            </Link>
                         </li>
 
-                        <li  className={`nav-item ${location.pathname === '/cart' ? 'active' : ''}`}>
-                        <Link to="/cart" className="nav-link">
-                           
+                        <li className={`nav-item ${location.pathname === '/cart' ? 'active' : ''}`}>
+                            <Link to="/cart" className="nav-link">
+
                                 <span class="material-symbols-outlined">
                                     shopping_cart
                                 </span>
                                 Your cart
-                                </Link>
+                            </Link>
                         </li>
-                        <li  className={`nav-item ${location.pathname === '/profile' ? 'active' : ''}`}>
+                        <li className={`nav-item ${location.pathname === '/profile' ? 'active' : ''}`}>
 
-                        <Link to="/profile" className="nav-link">
+                            <Link to="/profile" className="nav-link">
 
-                      
+
                                 <span class="material-symbols-outlined">
                                     person
                                 </span>
                                 Profile
-                                </Link>
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -100,31 +100,68 @@ const ResponsiveNavbar = () => {
 
 
             <div className="navBarBottomInMobileView fixed-bottom navbar-light bg-light d-md-none">
-                <div className='mobileViewNavButton'>
-                    <span class="material-symbols-outlined">
-                        home
-                    </span>
-                </div>
-                <div className='mobileViewNavButton'>
-                    <span class="material-symbols-outlined">
-                        diversity_2
-                    </span>
-                </div>
-                <div className='mobileViewNavButton'>
-                    <span class="material-symbols-outlined">
-                        add_circle
-                    </span>
-                </div>
-                <div className='mobileViewNavButton'>
-                    <span class="material-symbols-outlined">
-                        shopping_cart
-                    </span>
-                </div>
-                <div className='mobileViewNavButton'>
-                    <span class="material-symbols-outlined">
-                        person
-                    </span>
-                </div>
+                <Link to="/home" className="nav-link">
+                    <div className='mobileViewNavButton' >
+                        <span class="material-symbols-outlined">
+                            home
+                        </span>
+                    </div>
+                </Link>
+
+                <Link to="/community" className="nav-link">
+                    <div className='mobileViewNavButton'>
+                        <span class="material-symbols-outlined">
+                            diversity_2
+                        </span>
+                    </div>
+                </Link>
+
+                <Link to="/create" className="nav-link">
+                    <div className='mobileViewNavButton'>
+                        <span class="material-symbols-outlined">
+                            add_circle
+                        </span>
+                    </div>
+
+                </Link>
+
+                <Link to="/cart" className="nav-link">
+                    <div className='mobileViewNavButton'>
+                        <span class="material-symbols-outlined">
+                            shopping_cart
+                        </span>
+                    </div>
+                </Link>
+
+                <Link to="/profile" className="nav-link">
+                    <div className='mobileViewNavButton'>
+                        <span class="material-symbols-outlined">
+                            person
+                        </span>
+                    </div>
+                </Link>
+            </div>
+
+
+            <div className="navBarTopInMobileView fixed-top navbar-light  d-md-none">
+
+
+                <Link to="/home" className="AppName">
+                    <div>
+                        <h1>
+                            Culinary
+                        </h1>
+                    </div>
+                </Link>
+
+                <Link to="/notification" className="nav-link">
+                    <div className='mobileViewNavButton'>
+                        <span class="material-symbols-outlined">
+                            notifications_active
+                        </span>
+
+                    </div>
+                </Link>
             </div>
 
 

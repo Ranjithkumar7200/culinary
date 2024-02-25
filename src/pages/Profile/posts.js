@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { adminPanalApiServices } from '../../services/allApiServeces';
 import Profile from './Profile';
 
-function Posts() {
+
+const Posts = ({ postInfo }) => {
+
     const [locationFilter, setLocationFilter] = useState('');
     const [foodStyleFilter, setFoodStyleFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');
@@ -14,10 +16,16 @@ function Posts() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const userDetailsResponse = await adminPanalApiServices.getUserProfile();
-                const posts = userDetailsResponse.data.data[0]?.posts?.posts || [];
-                setUserDetails(userDetailsResponse.data.data[0]);
-                setPostsData(posts);
+                // const userDetailsResponse = await adminPanalApiServices.getUserProfile();
+
+                // console.log(userDetailsResponse)
+
+                // const posts = userDetailsResponse.data.data[0]?.posts?.posts || [];
+
+                // setUserDetails(userDetailsResponse.data.data[0]);
+
+                // setPostsData(posts);
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -47,16 +55,20 @@ function Posts() {
     return (
         <div className="profilePostContainner">
             <div className="postInnerContainer">
-              
-                {filteredPosts.length === 0 ? (
-                   <div className="noPostContainer"><p>No posts available</p></div> 
-                ) : (
-                    filteredPosts.map((post, index) => (
-                        <div className="cardPost" key={index}>
-                            <img src={post.img} className="card-img-top" alt={post.name} />
-                        </div>
-                    ))
-                )}
+                <>
+
+
+                    {postInfo.length === 0 ? (
+                        <div className="noPostContainer"><p>No posts available</p></div>
+                    ) : (
+                        postInfo.map((post, index) => (
+                            <div className="cardPost" key={post._id}>
+                                <img src={post.attachments[0].img_url} className="card-img-top" alt={post.dishName} />
+                            </div>
+                        ))
+                    )}
+
+                </>
             </div>
         </div>
     );

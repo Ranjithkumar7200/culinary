@@ -28,6 +28,7 @@ import postTypes from '../../constants/postTypes';
 import PostForm from './PostForm/PostForm';
 
 
+
 // import { current } from '@reduxjs/toolkit';
 
 const CreatePost = () => {
