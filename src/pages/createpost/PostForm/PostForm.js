@@ -6,18 +6,20 @@ import { adminPanalApiServices } from '../../../services/allApiServeces';
 import { toast } from 'react-toastify';
 import Multiselect from 'multiselect-react-dropdown';
 // import Multiselect from 'react-multiselect-checkbox';
+import { useNavigate } from 'react-router-dom';
 
 
 import 'react-toastify/dist/ReactToastify.css';
 
 const PostForm = ({ postType }) => {
+
     const [formData, setFormData] = useState({
         // imageFile: null,
         nameInput: '',
-        dietInput: '',
-        category:[],
+        category: [],
         descriptionInput: '',
-        rateInput: ''
+        rateInput: '',
+        duration: ""
     });
 
     const [imageFile, setImageFile] = useState(null)
@@ -28,6 +30,9 @@ const PostForm = ({ postType }) => {
     });
 
     const fileInputRef = useRef(null);
+
+    const navigate = useNavigate();
+
 
     const handleOnDrop = (event) => {
         event.preventDefault();
@@ -65,20 +70,13 @@ const PostForm = ({ postType }) => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        let userId = JSON.parse(localStorage.getItem("user")).userId
+        let finalData = new FormData();
+
 
         if (validateForm()) {
 
             if (postType === "homePost") {
-
-
-
-                let userId = JSON.parse(localStorage.getItem("user")).userId
-
-                // console.log(userId)
-
-                // console.log("Initial formData:", formData);
-
-                let finalData = new FormData();
 
                 finalData.append('image', imageFile);
 
@@ -87,25 +85,63 @@ const PostForm = ({ postType }) => {
                     postType: "posts",
                     dishName: formData.nameInput,
                     descr: formData.descriptionInput,
-                    aboutfood:formData.category
+                    aboutfood: formData.category
 
 
                 }
 
-                console.log(postDataFormate)
+                finalData.append('data', JSON.stringify(postDataFormate));
 
-                //                 {"postedBy":"65b28744a5e261775967bafa",
-                // "postType":"community",
-                // "dishName":"sss@gmai",
-                // "descr":"sss@gmai",
-                // "aboutfood":["Vegans"]
+                let homePost = await adminPanalApiServices.createPost(finalData)
+                console.log(homePost.data.code)
 
+                if (homePost.data.code === 200) {
+                    toast.success(homePost.data.message)
+
+                    setTimeout(() => {
+                        navigate("/profile")
+
+                    }, 2000)
+
+                } else {
+                    toast.error(homePost.data.message)
+
+
+                }
+
+            } else {
+
+                console.log(formData)
+                finalData.append('image', imageFile);
+
+                let postDataFormate = {
+                    postedBy: userId,
+                    postType: "community",
+                    dishName: formData.nameInput,
+                    descr: formData.descriptionInput,
+                    aboutfood: formData.category,
+                    rate: formData.rateInput,
+                    duration: formData.duration
+                }
 
                 finalData.append('data', JSON.stringify(postDataFormate));
 
+                let homePost = await adminPanalApiServices.createPost(finalData)
+                console.log(homePost)
 
-                await adminPanalApiServices.createPost(finalData)
+                if (homePost.data.code === 200) {
 
+                    toast.success(homePost.data.message)
+
+                    setTimeout(() => {
+                        navigate("/profile")
+
+                    }, 2000)
+
+                } else {
+                    toast.error(homePost.data.message)
+
+                }
             }
 
         }
@@ -140,10 +176,10 @@ const PostForm = ({ postType }) => {
             ...prevState,
             category: updatedCategory
         }));
-    
-        
+
+
     };
-    
+
 
 
     const handleSelect = (selectedList, selectedItem) => {
@@ -152,10 +188,10 @@ const PostForm = ({ postType }) => {
             ...prevState,
             category: [...prevState.category, selectedItem.key]
         }));
-    
+
 
     };
-    
+
 
 
     return (
@@ -197,7 +233,7 @@ const PostForm = ({ postType }) => {
                                         onChange={(e) => handleFileChange(e)}
                                     />
                                     <button type='button' onClick={onClickUpload} className="browse-btn">
-                                        <span class="material-symbols-outlined">
+                                        <span className="material-symbols-outlined">
                                             add
                                         </span>
                                     </button>
@@ -223,10 +259,19 @@ const PostForm = ({ postType }) => {
                     </div>
 
                     {!isHomePost &&
-                        <div className='home_post_label_input_card'>
-                            <label htmlFor='rate' className='home_post_name_label'>Rate</label>
-                            <input name='rateInput' id='rate' type='number' placeholder='Price' className='home_post_name_input' onChange={handleChange} />
-                        </div>
+                        (
+                            <>
+                                <div className='home_post_label_input_card'>
+                                    <label htmlFor='rate' className='home_post_name_label'>Rate</label>
+                                    <input name='rateInput' id='rate' type='number' placeholder='Price' className='home_post_name_input' onChange={handleChange} />
+                                </div>
+
+                                <div className='home_post_label_input_card'>
+                                    <label htmlFor='rate' className='home_post_name_label'>Duration</label>
+                                    <input name="duration" id='rate' type='time' placeholder='timeLine' className='home_post_name_input' onChange={handleChange} />
+                                </div>
+                            </>
+                        )
                     }
                     <div className='home_post_label_input_card'>
                         <label htmlFor='text-area' className='home_post_name_label'>Description</label>
@@ -242,3 +287,4 @@ const PostForm = ({ postType }) => {
 }
 
 export default PostForm;
+
