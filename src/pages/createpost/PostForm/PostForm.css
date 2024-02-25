@@ -129,6 +129,7 @@
   border: 2px dashed #ccc;
   /* Add a dashed border */
   border-radius: 10px;
+
   /* Rounded corners */
   padding: 20px;
   /* Add some padding */
@@ -218,11 +219,11 @@
 
 .multiselect-container {
   /* width: 100%; */
-  
+
   background-color: white;
   border-radius: 4px;
   /* padding: 8px 12px; */
-  border:none;
+  border: none;
   font-size: 16px;
   height: auto;
   max-width: 330px;
@@ -230,4 +231,58 @@
   border-width: 2px;
   /* border-radius: 5px; */
   /* padding-left: 15px; */
+}
+
+@media (max-width: 767px) {
+  .home_post_form_card {
+    height: 100%;
+    width: 100% !important;
+
+
+
+
+  }
+
+  .home_post_form_main_container {
+    padding-left: 0px;
+    padding-right: 0px;
+    border: #007bff solid 1px;
+  }
+
+  .file-inner-container {
+    margin-left: 0px;
+    width: 100% !important;
+   
+
+  }
+
+  .home_post_name_input {
+    width: 100% !important;
+    /* border: #007bff solid 1px; */
+
+
+  }
+
+  .home_post_label_input_card {
+    padding-left: 0px !important;
+   
+    width: 100%;
+
+    
+  }
+  
+
+  .home_post_text_area {
+    width: 100%;
+  }
+  .multiselect-container {
+    width: 100% !important;
+    
+  }
+  .inputcontainer{
+    /* border: #182533 solid 1px; */
+    width: 100%;
+    padding: 0px;
+
+  }
 }

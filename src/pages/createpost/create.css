@@ -52,6 +52,8 @@
   font-weight: 500;
   border-style: none;
   border-radius: 5px;
+  margin: 5px;
+  align-items: center;
 }
 
 .create_community_post_button {

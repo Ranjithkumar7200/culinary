@@ -89,22 +89,6 @@ const CreatePost = () => {
     const responseNotifications = ["rohith", "satish", "vikky"];
 
 
-    // State to manage filters
-    // const [locationFilter, setLocationFilter] = useState('');
-    // const [foodStyleFilter, setFoodStyleFilter] = useState('');
-    // const [nameFilter, setNameFilter] = useState('');
-
-    // Function to handle filtering posts
-    // const filterPosts = (post) => {
-    //   const locationMatch = post.location.toLowerCase().includes(locationFilter.toLowerCase());
-    //   const foodStyleMatch = post.foodStyle.toLowerCase().includes(foodStyleFilter.toLowerCase());
-    //   const nameMatch = post.name.toLowerCase().includes(nameFilter.toLowerCase());
-
-    //   return locationMatch && foodStyleMatch && nameMatch;
-    // };
-
-    // // Filtered posts based on user input
-    // const filteredPosts = postsData.filter(filterPosts);
 
     return (
         <div className=' homeContiner'>
