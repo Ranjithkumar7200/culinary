@@ -1,21 +1,23 @@
-.cardHead{
-    /* display: flex; */
-    
-    align-items: center;
-    width: 100%;
-   
-    /* border: red solid  3px; */
+.cardHead {
+  /* display: flex; */
+
+  align-items: center;
+  width: 100%;
+
+  /* border: red solid  3px; */
 }
-.HeadButtons{
-    display: flex;
-    justify-content: right;
-    flex-direction: row;
-    /* background-color: rgb(242, 242, 242); */
-    padding: 0;
-    border-radius: 5px;
-    align-items: center;
+
+.HeadButtons {
+  display: flex;
+  justify-content: right;
+  flex-direction: row;
+  /* background-color: rgb(242, 242, 242); */
+  padding: 0;
+  border-radius: 5px;
+  align-items: center;
 }
-.userName{
+
+.userName {
   display: flex;
   /* align-items: center; */
   /* text-align: center; */
@@ -23,102 +25,123 @@
   /* justify-content: center;
   flex-direction: column;  */
 }
+
 .buttonhead {
-    /* display: inline-block; */
-    /* padding: 10px 20px; */
-    font-size: 8px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    /* border: 2px solid #4CAF50;  */
-    color: #131613; 
-    background-color: #fff; 
-    cursor: pointer;
-    border-radius: 5px; 
-    transition: all 0.3s ease;
-   margin-left: 20px;
-   margin: 5px;
-   border: none;
-
-   
-   height: 50%;
-  }
-  .Accept{
-    color: #3b2aee; 
-    background-color: #f0eff6;
-  }
-  .userName p{
-    font-size: 10;
-   margin-top: 10px;
-    
-  }
-  .buttonhead:hover {
-    background-color: #141414; /* Green background */
-    color: #fff; /* White text */
-  }
-  .cardbody{
-    padding: 0;
-    /* border: red solid  3px; */
-    background-color: #9e9a9a;
-    padding: 10px;
-    border-radius: 7px;
-    margin: 10px;
-    display: flex;
-    color: #f0eff6;
-    
-    justify-content: space-between;
-    
-    width: 100%;
+  /* display: inline-block; */
+  /* padding: 10px 20px; */
+  font-size: 8px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  /* border: 2px solid #4CAF50;  */
+  color: #131613;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+  margin: 5px;
+  border: none;
 
 
-    
-  }
-  @media (min-width: 768px) {
-
-    .cardbody {
-        width: 500px;
-        
-        
-        /* border: 1px solid red; */
-    }
+  height: 50%;
 }
-  .card{
-    width: 100%;
-    border: 0;
-    align-items: center;
-  }
-  .head {
-    font-family: Arial, sans-serif; 
-    font-size: 20px; 
-    color: #150c0c;
-   
-    
-  }
-   .header{
-   display: flex;
-   justify-content: start;
-   /* border: red solid 3px; */
-   width: 100%;
-   }
 
-   .name{
-    
-        font-family: Arial, sans-serif; 
-        font-size: 17px; 
-        color: #150c0c;
-        width: 30%;
-        margin-bottom: 0;
-        display: flex;
-        justify-content: center;
+.Accept {
+  color: #3b2aee;
+  background-color: #f0eff6;
+}
+
+.userName p {
+  font-size: 10;
+  margin-top: 10px;
+  color: #150c0c;
+
+}
+
+.buttonhead:hover {
+  background-color: #141414;
+  /* Green background */
+  color: #fff;
+  /* White text */
+}
+
+.cardbody {
+  padding: 0;
+  /* border: red solid  3px; */
+
+  padding: 10px;
+  border-radius: 7px;
+  margin: 10px;
+  display: flex;
+  color: #141220;
+
+  justify-content: space-between;
+
+  width: 100%;
+
+
+
+}
+
+
+
+.card {
+  width: 100%;
+  border: 0;
+  align-items: center;
+}
+
+.head {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  color: #150c0c;
+
+
+}
+
+.header {
+  display: flex;
+  justify-content: start;
+  /* border: red solid 3px; */
+  width: 100%;
+}
+
+.name {
+
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  color: #150c0c;
+  width: 30%;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
   flex-direction: column;
-  color: #f0eff6;
-       
-        
-      
-   }
-   .type{
-    font-family: Arial, sans-serif; 
-    font-size: 10px; 
-    color: #150c0c;
-    color: #f0eff6;
-   }
+  font-weight: bold;
+
+
+
+
+}
+
+.type {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  color: #150c0c;
+
+}
+@media (min-width: 768px) {
+
+  .cardbody {
+    width: 500px;
+
+
+    /* border: 1px solid red; */
+  }
+  
+}
+@media (max-width: 767px) {
+  .preferencetype {
+    font-size: 10px !important;
+  }
+}

@@ -162,8 +162,8 @@ const PostForm = ({ postType }) => {
         <div className='home_post_form_main_container'>
             <form className='home_post_form_card' onSubmit={handleFormSubmit}>
                 <h1 className='home_post_main_title'>{formTitle} Post Form</h1>
-                <div>
-                    <label className="form-label">Upload Image<span className="starIcon">*</span> </label>
+               
+                    <label className="form-label m-3">Upload Image<span className="starIcon">*</span> </label>
                     <div className="dragAndDropContainer">
                         <div className="file-inner-container" onDrop={handleOnDrop} onDragOver={handleDragOver} >
                             <div className="folderContainer">
@@ -205,9 +205,9 @@ const PostForm = ({ postType }) => {
                             </div>
                         </div>
                     </div>
-
+                    <div className="inputcontainer">
                     <div className='home_post_label_input_card'>
-                        <label htmlFor='name' className='home_post_name_label'>Name of Dish</label>
+                        <label htmlFor='name' className='home_post_name_label '>Name of Dish</label>
                         <input name='nameInput' id='name' type='text' placeholder='Name' className='home_post_name_input' onChange={handleChange} />
                     </div>
                     <div className='home_post_label_input_card'>
@@ -221,7 +221,6 @@ const PostForm = ({ postType }) => {
                             className="multiselect-container"
                         />
                     </div>
-
                     {!isHomePost &&
                         <div className='home_post_label_input_card'>
                             <label htmlFor='rate' className='home_post_name_label'>Rate</label>
@@ -235,7 +234,11 @@ const PostForm = ({ postType }) => {
                     <div className='home_post_submit_button_card'>
                         <button className='home_post_submit_button' type='submit'>Submit</button>
                     </div>
-                </div>
+                    </div>
+                    
+
+                    
+                
             </form>
         </div>
     );

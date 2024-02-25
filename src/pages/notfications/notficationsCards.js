@@ -16,7 +16,7 @@ function NotificationsCards(props) {
                         <div className="cardHead">
                             <div className="userName">
                             <h5 className="name">{name}</h5>
-                            <p> <span>[Preference</span>  North]</p>
+                             <span className="preferencetype">[Preference  North]</span> 
                             </div>
                             
                             <p className="type"> Request Sended</p>
