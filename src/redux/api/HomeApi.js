@@ -72,6 +72,16 @@ export const HomeApi = createApi({
       }),
       invalidatesTags: ["ALLPOSTS"],
     }),
+    getConnection: build.mutation({
+      query: ({myId,userId,userName }) => ({
+        url: `api/userconnections?sentBy=${myId}&sentTo=${userId}&type=Sent&name=${userName}`,
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["ALLPOSTS"],
+    }),
     // deleteAllemployee: build.mutation({
     //   query: (id) => ({
     //     url: `/allemployee/delete/${id}`,
@@ -88,5 +98,6 @@ export const HomeApi = createApi({
 export const { 
     useGetAllPostsQuery,
     useEditLikeMutation,
-    useUnLikeMutation
+    useUnLikeMutation,
+    useGetConnectionMutation
 } = HomeApi;
