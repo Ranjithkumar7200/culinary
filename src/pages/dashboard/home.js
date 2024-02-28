@@ -78,8 +78,10 @@ const Home = () => {
       });
       console.log(response);
       if (response?.data) {
+        console.log(response?.data?.message);
+        toast.success(response?.data?.message, { autoClose: 1000 });
       } else {
-        console.log("jii");
+        toast.error(response?.error?.data?.message, { autoClose: 1000 });
       }
     } catch (error) {
       toast("An error occurred while registering.");
@@ -93,12 +95,11 @@ const Home = () => {
         userId: user_id,
         userName: userName,
       });
-      if (response && response.data) {
-        console.log(response);
+      if (response?.data) {
+        console.log(response?.data?.message);
+        toast.success(response?.data?.message, { autoClose: 1000 });
       } else {
-        console.log(response.data);
-        console.log(response);
-        console.log("Error occurred while getting connection data.");
+        toast.error(response?.error?.data?.message, { autoClose: 1000 });
       }
     } catch (error) {
       console.log(error);

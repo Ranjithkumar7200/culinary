@@ -14,11 +14,14 @@ import {
 import { FaRegPaperPlane, FaUserPlus } from "react-icons/fa";
 import prabhas from "../../imges/praba.jpeg";
 import CreateCommunityForm from "./createcommunity";
-function GroupCommunity({ ...props }) {
+import { useGetCommunityQuery } from "../../redux/api/CommunityApi";
+function GroupCommunity() {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(2);
+  const [communityDetails, setCommunityDetails] = useState([]);
+  const {data:communityData} = useGetCommunityQuery();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -42,6 +45,12 @@ function GroupCommunity({ ...props }) {
 
     return () => clearInterval(timer);
   }, [seconds, minutes, hours]);
+
+  useEffect(() => {
+    if (communityData && communityData.communityDetails) {
+      setCommunityDetails(communityData.communityDetails);
+    }
+  }, [communityData]);
   const showCreateFormHandler = () => {
     setShowCreateForm(true);
   };
@@ -100,7 +109,9 @@ function GroupCommunity({ ...props }) {
           <>
             <Card className="w-100" style={{ flex: "1 1 auto" }}>
               <CardHeader className="text-center d-flex justify-content-between fs-5">
-                <h5>{props.groupName}</h5>
+              {communityDetails.map(community => (
+                <h5>{community.communityName}</h5>
+                ))}
                 <h5>
                   <FaUserPlus
                     className="pointer"

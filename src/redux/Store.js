@@ -3,6 +3,7 @@ import UserReducer from './features/userSlice'
 import { AuthApi } from "./api/AuthApi";
 import { HomeApi } from "./api/HomeApi";
 import { UserApi } from "./api/UserApi";
+import { CommunityApi } from "./api/CommunityApi";
 
 export const store = configureStore({
   reducer: {
@@ -10,12 +11,14 @@ export const store = configureStore({
     [AuthApi.reducerPath]: AuthApi.reducer,
     [HomeApi.reducerPath]:HomeApi.reducer,
     [UserApi.reducerPath]:UserApi.reducer,
+    [CommunityApi.reducerPath]:CommunityApi.reducer,
   },
   devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat([
       AuthApi.middleware,
       HomeApi.middleware,
-      UserApi.middleware
+      UserApi.middleware,
+      CommunityApi.middleware
     ]),
 });
