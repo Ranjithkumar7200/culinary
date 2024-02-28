@@ -10,8 +10,7 @@ import food5 from "../../imges/food5.jpg"
 import food6 from "../../imges/food6.jpg"
 import { adminPanalApiServices } from '../../services/allApiServeces';
 
-
-function Savepost() {
+const Savepost = ({postInfo}) => {
 
 
  
@@ -78,10 +77,10 @@ const filteredPosts = communityData.filter(filterPosts);
 
     <div className="profilePostContainner">
                 <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-                    {filteredPosts.length === 0 ? (
+                    {postInfo.length === 0 ? (
                        <div className="noPostContainer"> <p>No  Save posts available</p></div> 
                     ) : (
-                        filteredPosts.map((post) => (
+                        postInfo.map((post) => (
                             <div key={post.id} className="col postColumn">
                                 <div className="cardPost">
                                     <img src={post.img} className="card-img-top" alt={post.name} />

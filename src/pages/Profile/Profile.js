@@ -32,6 +32,10 @@ const Profile = ({ filteredPostsLength }) => {
 
     const [ postsData , setPostData] = useState([])
 
+    const [ community ,  setcommunityData] =  useState([])
+
+    const [ savePost , setSavePost] =  useState([])
+
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
 
@@ -60,8 +64,11 @@ const Profile = ({ filteredPostsLength }) => {
 
             setUserDetails(userDetails.data.data[0])
              
-            console.log(userDetails.data.data[0].posts.posts)
+            console.log(userDetails.data.data[0].saved_posts_data)
             setPostData(userDetails.data.data[0].posts.posts)
+            setcommunityData(userDetails.data.data[0].posts.community)
+
+            setSavePost(userDetails.data.data[0].saved_posts_data)
 
         }
         fetchData()
@@ -426,11 +433,10 @@ const Profile = ({ filteredPostsLength }) => {
                                 </div>
                             </div>
 
-                            {/* Conditional rendering of posts or community
-                            {showPosts ? <Posts /> : <Comunityposts />} */}
+            
                             {selectedTab === 'posts' && <Posts postInfo={postsData} />}
-                            {selectedTab === 'community' && <Comunityposts />}
-                            {selectedTab === 'saved' && <Saveposts />}
+                            {selectedTab === 'community' && <Posts postInfo={community} /> }
+                            {selectedTab === 'saved' && <Posts postInfo={community} />}
                         </div>
                     </div>
                 </div>
