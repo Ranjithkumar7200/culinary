@@ -33,6 +33,7 @@ const Community = () => {
   const [showGruop, setShowGroup] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [communityDetails, setCommunityDetails] = useState([]);
+  const user = localStorage.getItem("user");
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
@@ -67,6 +68,8 @@ const Community = () => {
         toast.success(response?.data.message, { autoClose: 1000 });
         console.log("if part");
         console.log(response);
+        console.log(JSON.parse(user).userId);
+
       } else {
         toast.success(response.error.data, { autoClose: 1000 });
         console.log("else part");
@@ -152,17 +155,25 @@ const Community = () => {
 
       <div className="posthomeRightContainer">
         <div class="homePOstFeedContainer  communityContainer">
-          {communityDetails.map((community) => (
-            <React.Fragment key={community.communityName}>
-              {community.communityName ? (
-                <GroupCommunity />
-              ) : (
-                <div className="createCommunityButtonContainer">
-                  <button onClick={handleShow}>Create Community</button>
-                </div>
-              )}
-            </React.Fragment>
-          ))}
+        {communityDetails.length > 0 ? (
+  communityDetails.map((community) => (
+    <React.Fragment key={community.communityName}>
+      {community.communityName !== "" ? (
+        <GroupCommunity />
+      ) : (
+        <div className="createCommunityButtonContainer">
+          <button onClick={handleShow}>Create Community</button>
+        </div>
+      )}
+    </React.Fragment>
+  ))
+) : (
+  <div className="createCommunityButtonContainer">
+    <button onClick={handleShow}>Create Community</button>
+  </div>
+)}
+
+
           {/* {showGruop ? (
             <GroupCommunity  />
           ) : (
@@ -170,6 +181,7 @@ const Community = () => {
               <button onClick={handleShow}>Create Community</button>
             </div>
           )} */}
+          
         </div>
 
         <div className="userHomeContainer">

@@ -4,6 +4,9 @@ let userId = "";
 const user = localStorage.getItem("user");
 if (user) {
   userId = JSON.parse(user).userId ?? "";
+  console.log('====================================');
+  console.log(userId);
+  console.log('====================================');
 }
 
 export const CommunityApi = createApi({
@@ -56,15 +59,13 @@ export const CommunityApi = createApi({
      
     createCommunity: build.mutation({
       query: ({communityName}) => ({
-        url: `api/updateUsers`,
+        url: `/api/updateUsers`,
         method: "PUT",
         body:{
             "user_id":userId,
             "communityName":communityName
         },
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
+       
       }),
       invalidatesTags: ["COMMUNITY"],
     }),
