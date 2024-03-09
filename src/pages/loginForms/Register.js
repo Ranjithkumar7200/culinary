@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
@@ -7,6 +7,7 @@ import { useRegisterUserMutation } from "../../redux/api/AuthApi";
 import { toast } from "react-toastify";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import BasicButton from "../../components/BasicButton";
+import "../createpost/PostForm/PostForm.css"
 const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -16,18 +17,38 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [location, setLocation] = useState("");
   const [preferences, setpreferences] = useState("");
+
+  const [uploadedImage, setUploadedImage] = useState(null);
+
+  const [formData, setFormData] = useState({ });
+  const [imageFile, setImageFile] = useState(null)
+
+
   const history = useNavigate();
+
+  const fileInputRef = useRef(null);
+
+
   const [registerApi, { isLoading }] = useRegisterUserMutation();
+
   const handleRegister = async () => {
     try {
-      const response = await registerApi({
+
+      let finalData = new FormData();
+
+      finalData.append('image', imageFile);
+
+      finalData.append("data",JSON.stringify({
         email: email,
         password: password,
         name: name,
         // Repeat_Password: confirmPassword,
         location: location,
         preferences: preferences,
-      });
+      }))
+
+      const response = await registerApi(finalData);
+
       console.log(response);
       if (response?.data) {
         setEmail("");
@@ -74,9 +95,31 @@ const Register = () => {
     name: "",
   };
 
+
+  const handleProfileImageChange = () => {
+
+  }
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+
+    if (!file) {
+      return; // Exit the function if no file is selected
+    }
+    setFormData({ ...formData, imageFile: file });
+    setImageFile(file)
+    setUploadedImage(URL.createObjectURL(file));
+    // setErrorMsgState({ imgErrorMsg: false });
+  };
+
+  const onClickUpload = () => {
+    fileInputRef.current.click();
+  };
+
   return (
     <>
-      <Container  className="vh-100 w-100 d-flex flex-column flex-wrap-wrap justify-content-center align-items-center">
+      <Container className="vh-100 w-100 d-flex flex-column flex-wrap-wrap justify-content-center align-items-center">
         <Row>
           <Col>
             <img
@@ -112,8 +155,45 @@ const Register = () => {
                 isSubmitting,
               }) => (
                 <Form className="d-flex flex-column justify-content-start">
+
                   <Row className="d-flex flex-xl-row flex-xxl-row flex-lg-row flex-md-column flex-sm-column flex-column justify-content-between align-items-center">
+                    <div className="folderContainer">
+                      {uploadedImage ? (
+                        <div className="imgSecondStyles">
+                          <div className="courseUploadImgContainer">
+                            <img src={uploadedImage} alt="Uploaded" />
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="UploadImgInCourse">
+                          <div className="UploadToCloudCont">
+                            <img
+                              src="https://img.icons8.com/ios/50/upload-to-cloud--v1.png"
+                              alt="upload to cloud"
+                              className="upload-logo"
+                            />
+                            <p className="UploadToCloudContPara">Drag course logo here</p>
+                          </div>
+                          <p className="UploadToCloudContPara">or</p>
+                        </div>
+                      )}
+
+                      <div className="dragButtonContainerCourse">
+                        <input
+                          type="file"
+                          ref={fileInputRef}
+                          style={{ display: "none" }}
+                          onChange={(e) => handleFileChange(e)}
+                        />
+                        <button type="button" onClick={onClickUpload} className="browse-btn">
+                          <span className="material-symbols-outlined">add</span>
+                        </button>
+                      </div>
+                    </div>
+
                     <Col>
+
+
                       <Row className="d-flex mt-2 flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
                           <Form.Label
@@ -131,10 +211,9 @@ const Register = () => {
                             type="email"
                             size="md"
                             id="email"
-                            
-                            className={`form-control ${
-                              touched.email && errors.email ? "is-invalid" : ""
-                            }`}
+
+                            className={`form-control ${touched.email && errors.email ? "is-invalid" : ""
+                              }`}
                             onChange={(e) => {
                               setEmail(e.target.value.trim());
                               handleChange(e);
@@ -148,7 +227,7 @@ const Register = () => {
                       ) : (
                         ""
                       )}
-                      
+
                       <Row className="d-flex mt-2 flex-row justify align-items-center">
                         <Col className="d-flex flex-row justify-end align-items-center">
                           <Form.Label
@@ -166,11 +245,10 @@ const Register = () => {
                             type="password"
                             size="md"
                             id="password"
-                            className={`position-relative form-control ${
-                              touched.password && errors.password
-                                ? "border-danger"
-                                : ""
-                            }`}
+                            className={`position-relative form-control ${touched.password && errors.password
+                              ? "border-danger"
+                              : ""
+                              }`}
                             onChange={(e) => {
                               setPassword(e.target.value.trim());
                               handleChange(e);
@@ -218,11 +296,10 @@ const Register = () => {
                             type="password"
                             size="md"
                             id="RepeatPassword"
-                            className={`position-relative form-control ${
-                              touched.confirmPassword && errors.confirmPassword
-                                ? "border-danger"
-                                : ""
-                            }`}
+                            className={`position-relative form-control ${touched.confirmPassword && errors.confirmPassword
+                              ? "border-danger"
+                              : ""
+                              }`}
                             onChange={(e) => {
                               setConfirmPassword(e.target.value.trim());
                               handleChange(e);
@@ -256,7 +333,7 @@ const Register = () => {
                       )}
                     </Col>
                     <Col>
-                    <Row className="d-flex mt-2 flex-row justify align-items-start">
+                      <Row className="d-flex mt-2 flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
                           <Form.Label
                             htmlFor="name"
@@ -273,9 +350,8 @@ const Register = () => {
                             type="text"
                             size="md"
                             id="name"
-                            className={`form-control ${
-                              touched.name && errors.name ? "is-invalid" : ""
-                            }`}
+                            className={`form-control ${touched.name && errors.name ? "is-invalid" : ""
+                              }`}
                             onChange={(e) => {
                               setName(e.target.value.trim());
                               handleChange(e);
@@ -302,11 +378,10 @@ const Register = () => {
                       <Row className="d-flex flex-row justify-between align-items-center">
                         <Col className="d-flex flex-row justify-content-end align-items-center">
                           <Form.Select
-                            className={`form-control ${
-                              touched.location && errors.location
-                                ? "border-danger"
-                                : ""
-                            }`}
+                            className={`form-control ${touched.location && errors.location
+                              ? "border-danger"
+                              : ""
+                              }`}
                             id="location"
                             name="location"
                             onChange={(e) => {
@@ -343,11 +418,10 @@ const Register = () => {
                       <Row className="d-flex flex-row justify-between align-items-center">
                         <Col className="d-flex flex-row justify-content-end align-items-center">
                           <Form.Select
-                            className={`form-control ${
-                              touched.preferences && errors.preferences
-                                ? "border-danger"
-                                : ""
-                            }`}
+                            className={`form-control ${touched.preferences && errors.preferences
+                              ? "border-danger"
+                              : ""
+                              }`}
                             id="preferences"
                             name="preferences"
                             onChange={(e) => {
@@ -371,41 +445,41 @@ const Register = () => {
                       ) : (
                         ""
                       )}
-                      </Col>
+                    </Col>
                   </Row>
-                  
-                      <BasicButton
-                        className="mt-3 "
-                        variant={"warning"}
-                        type="button"
-                        disabled={isSubmitting}
-                        onClick={
-                          email === "" ||
-                          password === "" ||
-                          confirmPassword === "" ||
-                          location === "" ||
-                          name === "" ||
-                          (touched.email && errors.email) ||
-                          (touched.name && errors.name) ||
-                          (touched.password && errors.password) ||
-                          (touched.confirmPassword && errors.confirmPassword) ||
-                          (touched.location && errors.location)
-                            ? handleSubmit
-                            : handleRegister
-                        }
-                        isLoading={isLoading}
-                        label={"Register"}
-                      />
 
-                      <Row className="m-4">
-                        <p className="text-center">
-                          Already have an account?
-                          <Link className="m-1 textDecoration-none" to={"/"}>
-                            Login
-                          </Link>
-                        </p>
-                      </Row>
-                    
+                  <BasicButton
+                    className="mt-3 "
+                    variant={"warning"}
+                    type="button"
+                    disabled={isSubmitting}
+                    onClick={
+                      email === "" ||
+                        password === "" ||
+                        confirmPassword === "" ||
+                        location === "" ||
+                        name === "" ||
+                        (touched.email && errors.email) ||
+                        (touched.name && errors.name) ||
+                        (touched.password && errors.password) ||
+                        (touched.confirmPassword && errors.confirmPassword) ||
+                        (touched.location && errors.location)
+                        ? handleSubmit
+                        : handleRegister
+                    }
+                    isLoading={isLoading}
+                    label={"Register"}
+                  />
+
+                  <Row className="m-4">
+                    <p className="text-center">
+                      Already have an account?
+                      <Link className="m-1 textDecoration-none" to={"/"}>
+                        Login
+                      </Link>
+                    </p>
+                  </Row>
+
                 </Form>
               )}
             </Formik>

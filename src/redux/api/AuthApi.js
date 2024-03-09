@@ -28,9 +28,9 @@ export const AuthApi = createApi({
         url: "/users/register",
         method: "POST",
         body: data,
-        headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
+        // headers: {
+        //   "Content-Type": "application/json; charset=UTF-8",
+        // },
       }),
     }),
     forgetUser: builder.mutation({
