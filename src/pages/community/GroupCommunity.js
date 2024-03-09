@@ -16,6 +16,7 @@ import prabhas from "../../imges/praba.jpeg";
 import CreateCommunityForm from "./createcommunity";
 import { useGetCommunityQuery } from "../../redux/api/CommunityApi";
 import TokenService from "../../services/TokenServices";
+import FadeIn from "react-fade-in/lib/FadeIn";
 function GroupCommunity() {
   const id = TokenService.getUserIdFromToken();
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -61,7 +62,8 @@ function GroupCommunity() {
     setShowCreateForm(false);
   };
   const chatMessages = Array.from({ length: 30 }, (_, index) => (
-    <Card key={index} className="my-3" border="0" >
+    <FadeIn>
+      <Card key={index} className="my-3" border="0" >
       <Col className="d-flex flex-row align-items-start p-2 m-1">
       <Image
         width={30}
@@ -99,6 +101,7 @@ function GroupCommunity() {
       <Button className="text-light  fw-2" variant="warning" size="sm">Add Cart</Button>
       </Col>
     </Card>
+    </FadeIn>
   ));
   return (
     <>

@@ -17,6 +17,7 @@ import { useGetAllUserByIdQuery } from "../../redux/api/UserApi";
 import { toast } from "react-toastify";
 
 import { adminPanalApiServices } from "../../services/allApiServeces"
+import FadeIn from "react-fade-in/lib/FadeIn";
 
 const Home = () => {
   const [showMore, setShowMore] = useState(false);
@@ -266,7 +267,8 @@ const Home = () => {
               {postsData &&
                 postsData.map((post) => (
                   post.attachments.length > 0 && (
-                    <div key={post._id} className="userPostCard">
+                    <FadeIn key={post._id} className="userPostCard">
+                      
                       <div className="userContainerHead">
                         <div className="userImgNameContainer">
 
@@ -386,7 +388,8 @@ const Home = () => {
                           {/* )} */}
                         </p>
                       </div>
-                    </div>
+                   
+                    </FadeIn>
                   )
                 ))}
             </>
@@ -425,7 +428,8 @@ const Home = () => {
 
                 post.postedBy !== userData._id && (
 
-                  <div className="userContainerInSuggestion" key={post._id}>
+                <FadeIn className="userContainerInSuggestion" key={post._id}>
+                    
                     <div className="userSuggestionInnerLeftContainer">
                       <div className="userSuggetionContiainerInSuggetion">
                         <img
@@ -446,7 +450,9 @@ const Home = () => {
                         Invite
                       </a>
                     </div>
-                  </div>)
+                  
+                </FadeIn>
+                  )
 
               ))}
           </div>

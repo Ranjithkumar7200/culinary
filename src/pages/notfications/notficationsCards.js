@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 import "./notification.css"
+import FadeIn from 'react-fade-in/lib/FadeIn';
 
 function NotificationsCards(props) {
     const { sendedNotifications, responseNotifications } = props;
@@ -11,7 +12,8 @@ function NotificationsCards(props) {
         <div>
            
             {sendedNotifications.map((name, index) => (
-                <Card key={index}>
+                <FadeIn>
+                    <Card key={index}>
                     <Card.Body className="cardbody">
                         <div className="cardHead">
                             <div className="userName">
@@ -28,10 +30,12 @@ function NotificationsCards(props) {
                         
                     </Card.Body>
                 </Card>
+                </FadeIn>
             ))}
            
             {responseNotifications.map((name, index) => (
-                <Card key={index}>
+                <FadeIn>
+                    <Card key={index}>
                     <Card.Body className="cardbody">
                         <div className="cardHead">
                             <h5 className="name">{name}</h5>
@@ -41,6 +45,7 @@ function NotificationsCards(props) {
                         <p>Accepted</p>
                     </Card.Body>
                 </Card>
+                </FadeIn>
             ))}
         </div>
     );

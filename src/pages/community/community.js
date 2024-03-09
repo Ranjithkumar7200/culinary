@@ -26,6 +26,7 @@ import {
 } from "../../redux/api/CommunityApi";
 import { toast } from "react-toastify";
 import TokenService from "../../services/TokenServices";
+import FadeIn from "react-fade-in/lib/FadeIn";
 
 // import { current } from '@reduxjs/toolkit';
 
@@ -218,7 +219,7 @@ const Community = () => {
             </div>
 
             {postsData.map((post) => (
-              <div className="userContainerInSuggestion">
+              <FadeIn className="userContainerInSuggestion">
                 <div className="userSuggestionInnerLeftContainer">
                   <div className="userSuggetionContiainerInSuggetion">
                     <img
@@ -239,7 +240,7 @@ const Community = () => {
                     Invite
                   </a>
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>

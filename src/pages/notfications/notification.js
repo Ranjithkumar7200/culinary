@@ -19,6 +19,7 @@ import prabhas from "../../imges/praba.jpeg"
 
 import "./notification.css"
 import "../dashboard/common.css"
+import FadeIn from 'react-fade-in/lib/FadeIn';
 
 // import { current } from '@reduxjs/toolkit';
 
@@ -152,7 +153,7 @@ const CreatePost = () => {
 
 
 
-                            <div className='userContainerInSuggestion'>
+                            <FadeIn className='userContainerInSuggestion'>
 
                                 <div className='userSuggestionInnerLeftContainer'>
 
@@ -174,7 +175,7 @@ const CreatePost = () => {
                                 </div>
 
 
-                            </div>
+                            </FadeIn>
 
 
                         ))
