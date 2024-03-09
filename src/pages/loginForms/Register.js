@@ -114,7 +114,7 @@ const Register = () => {
 
   return (
     <>
-      <Container className="vh-100 w-100 d-flex flex-column flex-wrap-wrap justify-content-center align-items-center">
+      <Container className="d-flex flex-column flex-wrap-wrap justify-content-center align-items-center">
         <Row>
           <Col>
             <img
@@ -180,7 +180,7 @@ const Register = () => {
                     <Col>
 
 
-                      <Row className="d-flex mt-2 flex-row justify align-items-start">
+                      <Row className="d-flex  flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
                           <Form.Label
                             htmlFor="email"
@@ -211,10 +211,10 @@ const Register = () => {
                       {touched.email && errors.email ? (
                         <p className="text-danger">{errors.email}</p>
                       ) : (
-                        ""
+                        <p style={{ width: '100px', height: '10px'}}></p>
                       )}
 
-                      <Row className="d-flex mt-2 flex-row justify align-items-center">
+                      <Row className="d-flex flex-row justify align-items-center">
                         <Col className="d-flex flex-row justify-end align-items-center">
                           <Form.Label
                             htmlFor="password*"
@@ -262,9 +262,9 @@ const Register = () => {
                       {touched.password && errors.password ? (
                         <p className="text-danger m-1">{errors.password}</p>
                       ) : (
-                        ""
+                        <p style={{ width: '100px', height: '10px' }}></p>
                       )}
-                      <Row className="d-flex mt-2 flex-row justify align-items-center">
+                      <Row className="d-flex  flex-row justify align-items-center">
                         <Col className="d-flex flex-row justify-end align-items-center">
                           <Form.Label
                             htmlFor="RepeatPassword"
@@ -315,11 +315,11 @@ const Register = () => {
                           {errors.confirmPassword}
                         </p>
                       ) : (
-                        ""
+                        <p style={{ width: '100px', height: '10px' }}></p>
                       )}
                     </Col>
                     <Col>
-                      <Row className="d-flex mt-2 flex-row justify align-items-start">
+                      <Row className="d-flex  flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
                           <Form.Label
                             htmlFor="name"
@@ -349,9 +349,9 @@ const Register = () => {
                       {touched.name && errors.name ? (
                         <p className="text-danger">{errors.name}</p>
                       ) : (
-                        ""
+                        <p style={{ width: '100px', height: '10px' }}></p>
                       )}
-                      <Row className="d-flex mt-2 flex-row justify align-items-start">
+                      <Row className="d-flex  flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
                           <Form.Label
                             htmlFor="location"
@@ -376,7 +376,7 @@ const Register = () => {
                             }}
                             onBlur={handleBlur}
                           >
-                            <option value="" disabled>
+                            <option value="" disabled selected>
                               ----select Location----
                             </option>
                             <option value={"Chennai"}>Chennai</option>
@@ -389,9 +389,9 @@ const Register = () => {
                       {touched.location && errors.location ? (
                         <p className="text-danger m-1">{errors.location}</p>
                       ) : (
-                        ""
+                        <p style={{ width: '100px', height: '10px' }}></p>
                       )}
-                      <Row className="d-flex mt-2 flex-row justify align-items-start">
+                      <Row className="d-flex  flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
                           <Form.Label
                             htmlFor="preferences"
@@ -416,7 +416,7 @@ const Register = () => {
                             }}
                             onBlur={handleBlur}
                           >
-                            <option value="" disabled>
+                            <option value="" disabled selected>
                               ----select Location----
                             </option>
                             <option value={"North"}>North</option>
@@ -429,7 +429,7 @@ const Register = () => {
                       {touched.preferences && errors.preferences ? (
                         <p className="text-danger m-1">{errors.preferences}</p>
                       ) : (
-                        ""
+                        <p style={{ width: '100px', height: '10px' }}></p>
                       )}
                     </Col>
                   </Row>
