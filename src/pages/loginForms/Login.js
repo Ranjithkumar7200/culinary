@@ -43,7 +43,6 @@ const Login = () => {
         toast.success(response?.data?.message, { autoClose: 1000 });
         history("/home");
         console.log(response.data);
-        localStorage.setItem("userDefId", response?.data?.userId);
       } else {
         toast.error(response?.error?.data?.message, { autoClose: 1000 });
       }
