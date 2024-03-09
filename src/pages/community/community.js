@@ -25,6 +25,7 @@ import {
   useGetCommunityQuery,
 } from "../../redux/api/CommunityApi";
 import { toast } from "react-toastify";
+import TokenService from "../../services/TokenServices";
 
 // import { current } from '@reduxjs/toolkit';
 
@@ -33,12 +34,12 @@ const Community = () => {
   const [showGruop, setShowGroup] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [communityDetails, setCommunityDetails] = useState([]);
-  const user = localStorage.getItem("user");
+  const id = TokenService.getUserIdFromToken();
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
   const [createCommunity, { isLoading }] = useCreateCommunityMutation();
-  const { data: communityData } = useGetCommunityQuery();
+  const { data: communityData } = useGetCommunityQuery(id);
 
   const validationSchema = Yup.object().shape({
     communityName: Yup.string()
@@ -50,13 +51,11 @@ const Community = () => {
       setCommunityDetails(communityData.communityDetails);
     }
   }, [communityData]);
-
-  // Other code...
-
   console.log(communityDetails);
   const handleShowGroup = async () => {
     try {
       const response = await createCommunity({
+        id:id,
         communityName: inputValue,
       });
       console.log(response);
@@ -68,7 +67,7 @@ const Community = () => {
         toast.success(response?.data.message, { autoClose: 1000 });
         console.log("if part");
         console.log(response);
-        console.log(JSON.parse(user).userId);
+        
 
       } else {
         toast.success(response.error.data, { autoClose: 1000 });
@@ -158,7 +157,7 @@ const Community = () => {
         {communityDetails.length > 0 ? (
   communityDetails.map((community) => (
     <React.Fragment key={community.communityName}>
-      {community.communityName !== "" ? (
+      {community.communityName !== "" && community.communityName!=null ? (
         <GroupCommunity />
       ) : (
         <div className="createCommunityButtonContainer">
