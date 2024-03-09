@@ -11,17 +11,19 @@ import {
   Image,
   Row,
 } from "react-bootstrap";
-import { FaRegPaperPlane, FaUserPlus } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa";
 import prabhas from "../../imges/praba.jpeg";
 import CreateCommunityForm from "./createcommunity";
 import { useGetCommunityQuery } from "../../redux/api/CommunityApi";
+import TokenService from "../../services/TokenServices";
 function GroupCommunity() {
+  const id = TokenService.getUserIdFromToken();
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(2);
   const [communityDetails, setCommunityDetails] = useState([]);
-  const {data:communityData} = useGetCommunityQuery();
+  const {data:communityData} = useGetCommunityQuery(id);
 
   useEffect(() => {
     const timer = setInterval(() => {

@@ -25,6 +25,7 @@ import {
   useGetCommunityQuery,
 } from "../../redux/api/CommunityApi";
 import { toast } from "react-toastify";
+import TokenService from "../../services/TokenServices";
 
 // import { current } from '@reduxjs/toolkit';
 
@@ -33,11 +34,12 @@ const Community = () => {
   const [showGruop, setShowGroup] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [communityDetails, setCommunityDetails] = useState([]);
+  const id = TokenService.getUserIdFromToken();
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
   const [createCommunity, { isLoading }] = useCreateCommunityMutation();
-  const { data: communityData } = useGetCommunityQuery();
+  const { data: communityData } = useGetCommunityQuery(id);
 
   const validationSchema = Yup.object().shape({
     communityName: Yup.string()
@@ -49,13 +51,11 @@ const Community = () => {
       setCommunityDetails(communityData.communityDetails);
     }
   }, [communityData]);
-
-  // Other code...
-
   console.log(communityDetails);
   const handleShowGroup = async () => {
     try {
       const response = await createCommunity({
+        id:id,
         communityName: inputValue,
       });
       console.log(response);
@@ -67,6 +67,8 @@ const Community = () => {
         toast.success(response?.data.message, { autoClose: 1000 });
         console.log("if part");
         console.log(response);
+        
+
       } else {
         toast.success(response.error.data, { autoClose: 1000 });
         console.log("else part");
@@ -152,17 +154,25 @@ const Community = () => {
 
       <div className="posthomeRightContainer">
         <div class="homePOstFeedContainer  communityContainer">
-          {communityDetails.map((community) => (
-            <React.Fragment key={community.communityName}>
-              {community.communityName ? (
-                <GroupCommunity />
-              ) : (
-                <div className="createCommunityButtonContainer">
-                  <button onClick={handleShow}>Create Community</button>
-                </div>
-              )}
-            </React.Fragment>
-          ))}
+        {communityDetails.length > 0 ? (
+  communityDetails.map((community) => (
+    <React.Fragment key={community.communityName}>
+      {community.communityName !== "" && community.communityName!=null ? (
+        <GroupCommunity />
+      ) : (
+        <div className="createCommunityButtonContainer">
+          <button onClick={handleShow}>Create Community</button>
+        </div>
+      )}
+    </React.Fragment>
+  ))
+) : (
+  <div className="createCommunityButtonContainer">
+    <button onClick={handleShow}>Create Community</button>
+  </div>
+)}
+
+
           {/* {showGruop ? (
             <GroupCommunity  />
           ) : (
@@ -170,6 +180,7 @@ const Community = () => {
               <button onClick={handleShow}>Create Community</button>
             </div>
           )} */}
+          
         </div>
 
         <div className="userHomeContainer">

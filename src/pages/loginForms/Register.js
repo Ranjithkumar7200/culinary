@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Image, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import { LogAndRegSchema } from "./LoginValidation";
@@ -95,11 +95,6 @@ const Register = () => {
     name: "",
   };
 
-
-  const handleProfileImageChange = () => {
-
-  }
-
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
@@ -157,38 +152,29 @@ const Register = () => {
                 <Form className="d-flex flex-column justify-content-start">
 
                   <Row className="d-flex flex-xl-row flex-xxl-row flex-lg-row flex-md-column flex-sm-column flex-column justify-content-between align-items-center">
-                    <div className="folderContainer">
+                  <div className="text-center mb-4">
                       {uploadedImage ? (
-                        <div className="imgSecondStyles">
-                          <div className="courseUploadImgContainer">
-                            <img src={uploadedImage} alt="Uploaded" />
-                          </div>
-                        </div>
+                        <Image
+                          src={uploadedImage}
+                          alt="Uploaded"
+                          width={80}
+                          height={80}
+                          roundedCircle
+                        />
                       ) : (
-                        <div className="UploadImgInCourse">
-                          <div className="UploadToCloudCont">
-                            <img
-                              src="https://img.icons8.com/ios/50/upload-to-cloud--v1.png"
-                              alt="upload to cloud"
-                              className="upload-logo"
-                            />
-                            <p className="UploadToCloudContPara">Drag course logo here</p>
-                          </div>
-                          <p className="UploadToCloudContPara">or</p>
+                        <div>
+                          <label htmlFor="file" className="btn btn-secondary">
+                            Upload Photo
+                          </label>
+                          <input
+                            type="file"
+                            id="file"
+                            className="d-none"
+                            onChange={handleFileChange}
+                            ref={fileInputRef}
+                          />
                         </div>
                       )}
-
-                      <div className="dragButtonContainerCourse">
-                        <input
-                          type="file"
-                          ref={fileInputRef}
-                          style={{ display: "none" }}
-                          onChange={(e) => handleFileChange(e)}
-                        />
-                        <button type="button" onClick={onClickUpload} className="browse-btn">
-                          <span className="material-symbols-outlined">add</span>
-                        </button>
-                      </div>
                     </div>
 
                     <Col>
