@@ -112,14 +112,15 @@ function GroupCommunity() {
       >
         {!showCreateForm ? (
           <>
-            <Card className="w-100" style={{ flex: "1 1 auto" }}>
-              <CardHeader className="text-center d-flex justify-content-between fs-5">
+            <Card  className="w-100 " style={{ flex: "1 1 auto" }}>
+              <CardHeader  className="text-center bg-warning d-flex justify-content-between fs-5">
               {communityDetails.map(community => (
-                <h5>{community.communityName}</h5>
+                <h5 className="text-light">{community.communityName}</h5>
                 ))}
                 <h5>
                   <FaUserPlus
                     className="pointer"
+                    color="white"
                     onClick={showCreateFormHandler}
                   />
                 </h5>

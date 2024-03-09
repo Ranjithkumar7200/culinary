@@ -33,4 +33,12 @@ export const LogAndRegSchema = Yup.object().shape({
     .required("Preferance is required"),
     name: Yup.string()
     .required("Preferance is required"),
+    image: Yup.mixed()
+    .required('Image is required')
+    .test('fileType', 'Only image files are allowed', (value) => {
+      return value && value.type.startsWith('image');
+    })
+    .test('fileSize', 'File size exceeds 10MB', (value) => {
+      return value && value.size <= 10 * 1024 * 1024; // 10MB
+    }),
 });

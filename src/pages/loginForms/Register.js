@@ -6,8 +6,10 @@ import { LogAndRegSchema } from "./LoginValidation";
 import { useRegisterUserMutation } from "../../redux/api/AuthApi";
 import { toast } from "react-toastify";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { FaPlus } from "react-icons/fa";
 import BasicButton from "../../components/BasicButton";
-import "../createpost/PostForm/PostForm.css"
+import "../createpost/PostForm/PostForm.css";
+import defaultImage from "../../imges/default-image.png";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -20,32 +22,33 @@ const Register = () => {
 
   const [uploadedImage, setUploadedImage] = useState(null);
 
-  const [formData, setFormData] = useState({ });
-  const [imageFile, setImageFile] = useState(null)
-
+  const [formData, setFormData] = useState({});
+  const [imageFile, setImageFile] = useState(null);
+ 
 
   const history = useNavigate();
 
   const fileInputRef = useRef(null);
 
-
   const [registerApi, { isLoading }] = useRegisterUserMutation();
 
   const handleRegister = async () => {
     try {
-
       let finalData = new FormData();
 
-      finalData.append('image', imageFile);
+      finalData.append("image", imageFile);
 
-      finalData.append("data",JSON.stringify({
-        email: email,
-        password: password,
-        name: name,
-        // Repeat_Password: confirmPassword,
-        location: location,
-        preferences: preferences,
-      }))
+      finalData.append(
+        "data",
+        JSON.stringify({
+          email: email,
+          password: password,
+          name: name,
+          // Repeat_Password: confirmPassword,
+          location: location,
+          preferences: preferences,
+        })
+      );
 
       const response = await registerApi(finalData);
 
@@ -93,17 +96,17 @@ const Register = () => {
     location: "",
     preferences: "",
     name: "",
+    image: null,
   };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 
-
     if (!file) {
       return; // Exit the function if no file is selected
     }
     setFormData({ ...formData, imageFile: file });
-    setImageFile(file)
+    setImageFile(file);
     setUploadedImage(URL.createObjectURL(file));
     // setErrorMsgState({ imgErrorMsg: false });
   };
@@ -150,36 +153,50 @@ const Register = () => {
                 isSubmitting,
               }) => (
                 <Form className="d-flex flex-column justify-content-start">
-
                   <Row className="d-flex flex-xl-row flex-xxl-row flex-lg-row flex-md-column flex-sm-column flex-column justify-content-between align-items-center">
                   <div className="text-center mb-4">
-                      {uploadedImage ? (
-                        <Image
-                          src={uploadedImage}
+                    <label htmlFor="file">
+                      <div
+                        style={{
+                          position: "relative",
+                          display: "inline-block",
+                        }}
+                      >
+                        <img
+                          src={uploadedImage ?? defaultImage}
                           alt="Uploaded"
                           width={80}
                           height={80}
-                          roundedCircle
+                          style={{ borderRadius: "50%" }}
                         />
-                      ) : (
-                        <div>
-                          <label htmlFor="file" className="btn btn-secondary">
-                            Upload Photo
-                          </label>
-                          <input
-                            type="file"
-                            id="file"
-                            className="d-none"
-                            onChange={handleFileChange}
-                            ref={fileInputRef}
-                          />
-                        </div>
-                      )}
-                    </div>
+                        <FaPlus
+                          style={{
+                            position: "absolute",
+                            right: 0,
+                            bottom: 0,
+                            cursor: "pointer",
+                            transform: "translate(-50%, -10%)",
+                          }}
+                        />
+                      </div>
+                      <input
+                        type="file"
+                        name="image"
+                        id="file"
+                        className="d-none"
+                        onChange={handleFileChange}
+                        ref={fileInputRef}
+                      />
+                    </label>
+                    {touched.image && errors.image ? (
+                      <p className="text-danger">{errors.image}</p>
+                    ) : (
+                      <p style={{ width: "100px", height: "10px" }}></p>
+                    )}
+                   
+                  </div>
 
                     <Col>
-
-
                       <Row className="d-flex  flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
                           <Form.Label
@@ -197,9 +214,9 @@ const Register = () => {
                             type="email"
                             size="md"
                             id="email"
-
-                            className={`form-control ${touched.email && errors.email ? "is-invalid" : ""
-                              }`}
+                            className={`form-control ${
+                              touched.email && errors.email ? "is-invalid" : ""
+                            }`}
                             onChange={(e) => {
                               setEmail(e.target.value.trim());
                               handleChange(e);
@@ -211,7 +228,7 @@ const Register = () => {
                       {touched.email && errors.email ? (
                         <p className="text-danger">{errors.email}</p>
                       ) : (
-                        <p style={{ width: '100px', height: '10px'}}></p>
+                        <p style={{ width: "100px", height: "10px" }}></p>
                       )}
 
                       <Row className="d-flex flex-row justify align-items-center">
@@ -231,10 +248,11 @@ const Register = () => {
                             type="password"
                             size="md"
                             id="password"
-                            className={`position-relative form-control ${touched.password && errors.password
-                              ? "border-danger"
-                              : ""
-                              }`}
+                            className={`position-relative form-control ${
+                              touched.password && errors.password
+                                ? "border-danger"
+                                : ""
+                            }`}
                             onChange={(e) => {
                               setPassword(e.target.value.trim());
                               handleChange(e);
@@ -262,7 +280,7 @@ const Register = () => {
                       {touched.password && errors.password ? (
                         <p className="text-danger m-1">{errors.password}</p>
                       ) : (
-                        <p style={{ width: '100px', height: '10px' }}></p>
+                        <p style={{ width: "100px", height: "10px" }}></p>
                       )}
                       <Row className="d-flex  flex-row justify align-items-center">
                         <Col className="d-flex flex-row justify-end align-items-center">
@@ -282,10 +300,11 @@ const Register = () => {
                             type="password"
                             size="md"
                             id="RepeatPassword"
-                            className={`position-relative form-control ${touched.confirmPassword && errors.confirmPassword
-                              ? "border-danger"
-                              : ""
-                              }`}
+                            className={`position-relative form-control ${
+                              touched.confirmPassword && errors.confirmPassword
+                                ? "border-danger"
+                                : ""
+                            }`}
                             onChange={(e) => {
                               setConfirmPassword(e.target.value.trim());
                               handleChange(e);
@@ -315,7 +334,7 @@ const Register = () => {
                           {errors.confirmPassword}
                         </p>
                       ) : (
-                        <p style={{ width: '100px', height: '10px' }}></p>
+                        <p style={{ width: "100px", height: "10px" }}></p>
                       )}
                     </Col>
                     <Col>
@@ -336,8 +355,9 @@ const Register = () => {
                             type="text"
                             size="md"
                             id="name"
-                            className={`form-control ${touched.name && errors.name ? "is-invalid" : ""
-                              }`}
+                            className={`form-control ${
+                              touched.name && errors.name ? "is-invalid" : ""
+                            }`}
                             onChange={(e) => {
                               setName(e.target.value.trim());
                               handleChange(e);
@@ -349,7 +369,7 @@ const Register = () => {
                       {touched.name && errors.name ? (
                         <p className="text-danger">{errors.name}</p>
                       ) : (
-                        <p style={{ width: '100px', height: '10px' }}></p>
+                        <p style={{ width: "100px", height: "10px" }}></p>
                       )}
                       <Row className="d-flex  flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
@@ -364,10 +384,11 @@ const Register = () => {
                       <Row className="d-flex flex-row justify-between align-items-center">
                         <Col className="d-flex flex-row justify-content-end align-items-center">
                           <Form.Select
-                            className={`form-control ${touched.location && errors.location
-                              ? "border-danger"
-                              : ""
-                              }`}
+                            className={`form-control ${
+                              touched.location && errors.location
+                                ? "border-danger"
+                                : ""
+                            }`}
                             id="location"
                             name="location"
                             onChange={(e) => {
@@ -389,7 +410,7 @@ const Register = () => {
                       {touched.location && errors.location ? (
                         <p className="text-danger m-1">{errors.location}</p>
                       ) : (
-                        <p style={{ width: '100px', height: '10px' }}></p>
+                        <p style={{ width: "100px", height: "10px" }}></p>
                       )}
                       <Row className="d-flex  flex-row justify align-items-start">
                         <Col className="d-flex flex-row justify-end align-items-start">
@@ -404,10 +425,11 @@ const Register = () => {
                       <Row className="d-flex flex-row justify-between align-items-center">
                         <Col className="d-flex flex-row justify-content-end align-items-center">
                           <Form.Select
-                            className={`form-control ${touched.preferences && errors.preferences
-                              ? "border-danger"
-                              : ""
-                              }`}
+                            className={`form-control ${
+                              touched.preferences && errors.preferences
+                                ? "border-danger"
+                                : ""
+                            }`}
                             id="preferences"
                             name="preferences"
                             onChange={(e) => {
@@ -429,7 +451,7 @@ const Register = () => {
                       {touched.preferences && errors.preferences ? (
                         <p className="text-danger m-1">{errors.preferences}</p>
                       ) : (
-                        <p style={{ width: '100px', height: '10px' }}></p>
+                        <p style={{ width: "100px", height: "10px" }}></p>
                       )}
                     </Col>
                   </Row>
@@ -441,15 +463,16 @@ const Register = () => {
                     disabled={isSubmitting}
                     onClick={
                       email === "" ||
-                        password === "" ||
-                        confirmPassword === "" ||
-                        location === "" ||
-                        name === "" ||
-                        (touched.email && errors.email) ||
-                        (touched.name && errors.name) ||
-                        (touched.password && errors.password) ||
-                        (touched.confirmPassword && errors.confirmPassword) ||
-                        (touched.location && errors.location)
+                      password === "" ||
+                      confirmPassword === "" ||
+                      location === "" ||
+                      name === "" ||
+                      imageFile===""||
+                      (touched.email && errors.email) ||
+                      (touched.name && errors.name) ||
+                      (touched.password && errors.password) ||
+                      (touched.confirmPassword && errors.confirmPassword) ||
+                      (touched.location && errors.location)
                         ? handleSubmit
                         : handleRegister
                     }
@@ -465,7 +488,6 @@ const Register = () => {
                       </Link>
                     </p>
                   </Row>
-
                 </Form>
               )}
             </Formik>
