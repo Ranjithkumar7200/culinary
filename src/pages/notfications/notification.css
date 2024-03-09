@@ -67,10 +67,10 @@
 }
 
 .cardbody {
-  padding: 0;
+ 
   /* border: red solid  3px; */
 
-  padding: 10px;
+ 
   border-radius: 7px;
   margin: 10px;
   display: flex;

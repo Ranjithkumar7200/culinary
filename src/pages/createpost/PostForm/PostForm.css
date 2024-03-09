@@ -252,6 +252,7 @@
   .file-inner-container {
     margin-left: 0px;
     width: 100% !important;
+    border: #007bff solid 1px;
    
 
   }
