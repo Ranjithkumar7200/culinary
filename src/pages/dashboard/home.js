@@ -16,9 +16,13 @@ import { useNavigate } from "react-router-dom";
 import { useGetAllUserByIdQuery } from "../../redux/api/UserApi";
 import { toast } from "react-toastify";
 
+import { adminPanalApiServices } from "../../services/allApiServeces"
+
 const Home = () => {
   const [showMore, setShowMore] = useState(false);
+
   const id = TokenService.getUserIdFromToken();
+
   const { data: posts, isLoading } = useGetAllPostsQuery(id);
   const { data: user } = useGetAllUserByIdQuery(id);
   const [getConnectionMutation] = useGetConnectionMutation();
@@ -28,23 +32,45 @@ const Home = () => {
   const [likeBool, setLikeBool] = useState(false);
   const [postsData, setPostsData] = useState([]);
   const [userData, setUserData] = useState([]);
+
+  const [moreIdlist, setMoreIdList] = useState([])
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (posts && posts.data) {
-      setPostsData(posts.data);
+      function shuffleArray(array) {
+        // Make a copy of the array
+        const newArray = array.slice();
+        // Shuffle the copied array
+        for (let i = newArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+      }
+
+      // Create a shuffled copy of posts.data
+      let reArrangedArray = shuffleArray(posts.data);
+
+      // Set the shuffled array to the state
+      setPostsData(reArrangedArray);
+      console.log(posts.data, "from");
+      console.log(userData);
     }
   }, [posts]);
 
+
+
   useEffect(() => {
     if (user && user.data) {
+
+
       setUserData(user.data[0]);
     }
   }, [posts, user]);
 
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
-  };
+
 
   const like = async (id) => {
     setLikeBool(!likeBool);
@@ -88,9 +114,9 @@ const Home = () => {
     }
   };
 
-  const getConnection = async(id, user_id, userName) => {
+  const getConnection = async (id, user_id, userName) => {
     try {
-      const response =await getConnectionMutation({
+      const response = await getConnectionMutation({
         myId: id,
         userId: user_id,
         userName: userName,
@@ -106,7 +132,126 @@ const Home = () => {
       toast("An error occurred while registering.");
     }
   };
-  
+
+
+  const handleLike = async (particularPostData) => {
+
+
+
+
+
+
+    console.log(particularPostData)
+    const updatedPostsData = postsData.map((post) => {
+      if (post._id === particularPostData._id) {
+        return {
+          ...post,
+          isLiked: post.isLiked ? false : true,
+          likes_ttl: post.isLiked ? post.likes_ttl - 1 : post.likes_ttl + 1
+
+        };
+      }
+      return post;
+    });
+
+    setPostsData(updatedPostsData);
+
+    let bodyData = {
+      post_id: particularPostData._id,
+      user_id: userData._id
+    };
+
+
+    if (particularPostData.isLiked) {
+      await adminPanalApiServices.userUnLike(bodyData);
+    } else {
+      await adminPanalApiServices.userLike(bodyData);
+    }
+
+  };
+
+  const handleInvite = async (particularPostData) => {
+    const updatedPostsData = postsData.map((post) => {
+      if (post._id === particularPostData._id) {
+        return {
+          ...post,
+          connection: {
+            request_type: "Received"
+          }
+
+        };
+      }
+      return post;
+    });
+
+    setPostsData(updatedPostsData);
+
+    console.log(particularPostData)
+    // postedBy
+    // 
+
+    let bodyData = {
+      sentBy: userData._id,
+      sentTo: particularPostData.postedBy,
+      type: "Sent",
+      name: userData.name
+    }
+
+    await adminPanalApiServices.userInvite(bodyData)
+
+  }
+
+
+  const handleSave = async (particularPostData) => {
+
+    const updatedPostsData = postsData.map((post) => {
+      if (post._id === particularPostData._id) {
+        return {
+          ...post,
+          isSaved: post.isSaved ? false : true
+
+        };
+      }
+      return post;
+    });
+
+    setPostsData(updatedPostsData);
+    console.log(particularPostData)
+
+    if (particularPostData.isSaved) {
+      let bodyData = {
+        user_id: userData._id,
+        saved_posts: particularPostData._id,
+        save_type: "remove"
+      }
+      await adminPanalApiServices.userSavePost(bodyData);
+    } else {
+      let bodyData = {
+        user_id: userData._id,
+        saved_posts: particularPostData._id,
+        save_type: "add" //add,remove
+      }
+      await adminPanalApiServices.userSavePost(bodyData);
+    }
+  }
+
+  const toggleShowMore = (particularPostData) => {
+    console.log("how more")
+    // setShowMore(!showMore);
+    // setMoreIdList(prv=>[...,particularPostData._id])
+    setMoreIdList(prev => [...prev, particularPostData._id]);
+
+
+
+
+  };
+
+
+  const toggleLessMore = (particularPostData) => {
+    setMoreIdList(prevArray => prevArray.filter(id => id !== particularPostData._id));
+
+  }
+
 
   return (
     <div className=" homeContiner">
@@ -124,14 +269,14 @@ const Home = () => {
                     <div key={post._id} className="userPostCard">
                       <div className="userContainerHead">
                         <div className="userImgNameContainer">
-                          {post.attachments.map((img) => (
-                            <img
-                              key={img._id}
-                              className="userImgInPostCard"
-                              src={img.img_url}
-                              alt="user"
-                            />
-                          ))}
+
+                          <img
+                            key={post._id}
+                            className="userImgInPostCard"
+                            src={post.postedByProfileImage}
+                            alt="user"
+                          />
+
                           <p>{post.postedByName}</p>
                         </div>
                         <span className="material-symbols-outlined">
@@ -153,44 +298,57 @@ const Home = () => {
                         </div>
                       </div>
                       <div className="postButtonContainer">
+
                         <div className="likeButtonContainer">
-                          <button className={`favorite-btn`}>
-                            <div className="d-flex flex-column align-items-center justify-content-center">
+
+                          <div className="likeButtonInnerCont">
+
+                            <button className="favorite-btn" onClick={() => handleLike(post)}>
                               <span>
                                 {post.isLiked ? (
                                   <MdFavorite
                                     color="red"
-                                    onClick={() => unlike(post._id)}
+                                  // onClick={() => unlike(post._id)}
                                   />
                                 ) : (
                                   <MdFavoriteBorder
-                                    onClick={() => like(post._id)}
+                                  // onClick={() => like(post._id)}
                                   />
                                 )}
                               </span>
-                              <p className="fs-6">
-                                {post.likes}{" "}
-                                {post.likes > 1 ? "Likes" : "Like"}
-                              </p>
-                            </div>
-                          </button>
-                          {post.connection?.request_type === "Follower" && (
+                            </button>
+
+                            <p className="favParaCont">
+                              {post.likes_ttl}{" "}
+                              {post.likes_ttl > 1 ? "Likes" : "Like"}
+                            </p>
+
+                          </div>
+
+                          {post.connection ? (
                             <button
                               className="invite-btn"
-                              onClick={() =>
-                                getConnection(
-                                  id,
-                                  post.connection.user_id,
-                                  post.postedByName
-                                )
-                              }
+                            //  onClick={() => handleInvite(post)}
+                            >
+                              {post.connection.request_type === "Received" || "Sent" ? "Pending" : "Member"}
+
+                            </button>
+                          ) : (
+                            <button
+                              className="invite-btn"
+                              onClick={() => handleInvite(post)}
                             >
                               Invite
                             </button>
-                          )}
+
+                          )
+                          }
+
+
                         </div>
-                        <div>
-                          <button className="bookmark-btn">
+
+                        <div className="inviteButtonContainer">
+                          <button className="bookmark-btn" onClick={() => handleSave(post)}>
                             <span>
                               {!post.isSaved ? (
                                 <FaRegBookmark />
@@ -201,20 +359,31 @@ const Home = () => {
                           </button>
                         </div>
                       </div>
+
                       <div className="procedureContainer">
                         <p>
                           <span className="userDescriptionName">
                             Description
                           </span>
-                          {showMore ? post.descr : post.descr.slice(0, 20)}
-                          {post.descr.length > 10 && (
-                            <span
-                              onClick={toggleShowMore}
-                              style={{ cursor: "pointer", color: "blue" }}
-                            >
-                              {!showMore && "... more"}
-                            </span>
+                          {/* {showMore ? post.descr : } */}
+                          {/* {post.descr.length > 10 && ( */}
+
+                          {moreIdlist.includes(post._id) ? (
+                            post.descr
+                          ) : (
+                            <>
+                              {post.descr.slice(0, 20)}
+                              < span
+                                onClick={() => toggleShowMore(post)}
+                                style={{ cursor: "pointer", color: "blue" }}
+                              >
+                                &nbsp; ...more
+                              </span>
+                            </>
                           )}
+
+
+                          {/* )} */}
                         </p>
                       </div>
                     </div>
@@ -230,8 +399,8 @@ const Home = () => {
                 <div className="userSuggetionContiainerInSuggetion">
                   <img
                     className="userImgInPostCard "
-                    src={prabhas}
-                    alt="..."
+                    src={userData.image}
+                    alt="userImg"
                   />
                 </div>
                 <div className="usersugehtionNamecontainer">
@@ -253,33 +422,37 @@ const Home = () => {
             </div>
             {postsData &&
               postsData.map((post) => (
-                <div className="userContainerInSuggestion" key={post._id}>
-                  <div className="userSuggestionInnerLeftContainer">
-                    <div className="userSuggetionContiainerInSuggetion">
-                      <img
-                        className="userImgInPostCard "
-                        alt="..."
-                        src={prabhas}
-                      />
+
+                post.postedBy !== userData._id && (
+
+                  <div className="userContainerInSuggestion" key={post._id}>
+                    <div className="userSuggestionInnerLeftContainer">
+                      <div className="userSuggetionContiainerInSuggetion">
+                        <img
+                          className="userImgInPostCard "
+                          alt="..."
+                          src={post.postedByProfileImage}
+                        />
+                      </div>
+                      <div className="usersugehtionNamecontainer">
+                        <p className="userSuggetionName">
+                          {post.postedByName}
+                        </p>
+                        <p className="SuggestedForYou">Suggested for you</p>
+                      </div>
                     </div>
-                    <div className="usersugehtionNamecontainer">
-                      <p className="userSuggetionName">
-                        {post.postedByName}
-                      </p>
-                      <p className="SuggestedForYou">Suggested for you</p>
+                    <div>
+                      <a href="profile_link" className="profile-link">
+                        Invite
+                      </a>
                     </div>
-                  </div>
-                  <div>
-                    <a href="profile_link" className="profile-link">
-                      Invite
-                    </a>
-                  </div>
-                </div>
+                  </div>)
+
               ))}
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
