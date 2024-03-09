@@ -201,7 +201,7 @@ const PostForm = ({ postType }) => {
                
                     <label className="form-label m-3">Upload Image<span className="starIcon">*</span> </label>
                     <div className="dragAndDropContainer">
-                        <div className="file-inner-container" onDrop={handleOnDrop} onDragOver={handleDragOver} >
+                        <div className="file-inner-container" onDrop={handleOnDrop} onDragOver={handleDragOver}>
                             <div className="folderContainer">
                                 {uploadedImage ? (
                                     <div className="imgSecondStyles">
