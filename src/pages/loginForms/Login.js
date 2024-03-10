@@ -60,7 +60,9 @@ const Login = () => {
       <Row className="justify-content-center align-items-center">
         <Col className="d-flex flex-column justify-content-center align-items-center ">
           <img
-            src={"https://marketplace.canva.com/EAFaFUz4aKo/2/0/1600w/canva-yellow-abstract-cooking-fire-free-logo-JmYWTjUsE-Q.jpg"}
+            src={
+              "https://marketplace.canva.com/EAFaFUz4aKo/2/0/1600w/canva-yellow-abstract-cooking-fire-free-logo-JmYWTjUsE-Q.jpg"
+            }
             width={80}
             className="mb-3 rounded-circle"
             alt="..."
@@ -88,8 +90,7 @@ const Login = () => {
                   isSubmitting,
                 }) => (
                   <Form className="d-flex flex-column justify-content-center">
-                 
-                 <Row className="d-flex mt-2 flex-row justify align-items-center">
+                    <Row className="d-flex mt-2 flex-row justify align-items-center">
                       <Col className="d-flex flex-row justify-end align-items-center">
                         <Form.Label
                           htmlFor="email"
@@ -115,7 +116,6 @@ const Login = () => {
                           }}
                           onBlur={handleBlur}
                         />
-                        
                       </Col>
                     </Row>
                     {touched.email && errors.email ? (
@@ -191,31 +191,31 @@ const Login = () => {
                       isLoading={isLoading}
                       label={"Login"}
                     />
-                   <Row className="mt-2">
-                        <Col>
-                          <Link
-                            to={"/forgot"}
-                            className="d-flex flex-row justify-content-center  fs-10"
-                            style={{ cursor: "pointer" }}
-                          >
-                            Forgot password?
-                          </Link>
-                        </Col>
-                      </Row>
+                    <Row className="mt-2">
+                      <Col>
+                        <Link
+                          to={"/forgot"}
+                          className="d-flex flex-row justify-content-center  fs-10"
+                          style={{ cursor: "pointer" }}
+                        >
+                          Forgot password?
+                        </Link>
+                      </Col>
+                    </Row>
 
-                      <Row className="m-3">
-                        <p style={{ textAlign: "center" }}>
-                          Don't have an account yet?
-                          <Link
-                            className="m-1"
-                            style={{ textDecoration: "none" }}
-                            to={"/register"}
-                          >
-                            Register
-                          </Link>
-                        </p>
-                      </Row>
-                    </Form>
+                    <Row className="m-3">
+                      <p style={{ textAlign: "center" }}>
+                        Don't have an account yet?
+                        <Link
+                          className="m-1"
+                          style={{ textDecoration: "none" }}
+                          to={"/register"}
+                        >
+                          Register
+                        </Link>
+                      </p>
+                    </Row>
+                  </Form>
                 )}
               </Formik>
             </Col>

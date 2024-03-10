@@ -7,8 +7,6 @@ import food4 from "../../imges/food4.jpg"
 import food5 from "../../imges/food5.jpg"
 import food6 from "../../imges/food6.jpg"
 
-import prabhas from "../../imges/praba.jpeg"
-
 const CreateCommunityForm = ({ onBack }) => {
     const [formData, setFormData] = useState({
         communityName: '',

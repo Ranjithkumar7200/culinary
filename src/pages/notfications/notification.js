@@ -6,6 +6,9 @@ import { adminPanalApiServices } from '../../services/allApiServeces';
 
 import "./notification.css"
 import "../dashboard/common.css"
+import FadeIn from 'react-fade-in/lib/FadeIn';
+
+// import { current } from '@reduxjs/toolkit';
 
 const CreatePost = () => {
     const [notifications, setNotifications] = useState([]);

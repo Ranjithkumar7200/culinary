@@ -11,17 +11,20 @@ import {
   Image,
   Row,
 } from "react-bootstrap";
-import { FaRegPaperPlane, FaUserPlus } from "react-icons/fa";
+import { FaUserPlus } from "react-icons/fa";
 import prabhas from "../../imges/praba.jpeg";
 import CreateCommunityForm from "./createcommunity";
 import { useGetCommunityQuery } from "../../redux/api/CommunityApi";
+import TokenService from "../../services/TokenServices";
+import FadeIn from "react-fade-in/lib/FadeIn";
 function GroupCommunity() {
+  const id = TokenService.getUserIdFromToken();
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(2);
   const [communityDetails, setCommunityDetails] = useState([]);
-  const {data:communityData} = useGetCommunityQuery();
+  const {data:communityData} = useGetCommunityQuery(id);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -59,7 +62,8 @@ function GroupCommunity() {
     setShowCreateForm(false);
   };
   const chatMessages = Array.from({ length: 30 }, (_, index) => (
-    <Card key={index} className="my-3" border="0" >
+    <FadeIn>
+      <Card key={index} className="my-3" border="0" >
       <Col className="d-flex flex-row align-items-start p-2 m-1">
       <Image
         width={30}
@@ -97,6 +101,7 @@ function GroupCommunity() {
       <Button className="text-light  fw-2" variant="warning" size="sm">Add Cart</Button>
       </Col>
     </Card>
+    </FadeIn>
   ));
   return (
     <>
@@ -107,14 +112,15 @@ function GroupCommunity() {
       >
         {!showCreateForm ? (
           <>
-            <Card className="w-100" style={{ flex: "1 1 auto" }}>
-              <CardHeader className="text-center d-flex justify-content-between fs-5">
+            <Card  className="w-100 " style={{ flex: "1 1 auto" }}>
+              <CardHeader  className="text-center bg-warning d-flex justify-content-between fs-5">
               {communityDetails.map(community => (
-                <h5>{community.communityName}</h5>
+                <h5 className="text-light">{community.communityName}</h5>
                 ))}
                 <h5>
                   <FaUserPlus
                     className="pointer"
+                    color="white"
                     onClick={showCreateFormHandler}
                   />
                 </h5>

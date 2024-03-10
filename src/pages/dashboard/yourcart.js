@@ -14,7 +14,7 @@ function YourCart() {
           // className="d-none d-xxl-flex d-xl-flex d-xxl-flex d-lg-flex d-md-none d-sm-none flex-xxl-row flex-xl-row flex-lg-row flex-md-row flex-sm-column justify-content-between align-items-center"
           style={{ overflowY: "scroll" }}
         >
-          <Col lg={2} xxl={2} xl={2} md={12} xs={12}>
+          <Col style={{marginLeft:"-12px"}} lg={2} xxl={2} xl={2} md={12} xs={12}>
             <Navbar />
           </Col>
         </Col>

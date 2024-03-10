@@ -6,6 +6,7 @@ import { adminPanalApiServices } from '../../services/allApiServeces';
 import axios from 'axios'; // Import axios
 
 import "./notification.css"
+import FadeIn from 'react-fade-in/lib/FadeIn';
 
 function NotificationsCards() {
     const [sendedNotifications, setSendedNotifications] = useState([]);

@@ -1,10 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import CustomFetchBase from "./CustomFetchBase";
-let userId = "";
-const user = localStorage.getItem("user");
-if (user) {
-  userId = JSON.parse(user).userId ?? "";
-}
+
+
 
 export const CommunityApi = createApi({
   reducerPath: "CommunityApi",
@@ -12,8 +9,8 @@ export const CommunityApi = createApi({
   tagTypes: ["COMMUNITY"],
   endpoints: (build) => ({
     getCommunity: build.query({
-      query: () => ({
-        url: `api/getcommunityposts?user_id=${userId}`,
+      query: (id) => ({
+        url: `api/getcommunityposts?user_id=${id}`,
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
@@ -55,16 +52,17 @@ export const CommunityApi = createApi({
     //   }),
      
     createCommunity: build.mutation({
-      query: ({communityName}) => ({
-        url: `api/updateUsers`,
+      query: ({id,communityName}) => ({
+        url: `/api/updateUsers`,
         method: "PUT",
         body:{
-            "user_id":userId,
+            "user_id":id,
             "communityName":communityName
         },
         headers: {
-          "Content-Type": "application/json; charset=UTF-8",
-        },
+                "Content-Type": "application/json; charset=UTF-8",
+              },
+       
       }),
       invalidatesTags: ["COMMUNITY"],
     }),

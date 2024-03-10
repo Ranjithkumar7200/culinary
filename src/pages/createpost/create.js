@@ -26,6 +26,7 @@ import "../dashboard/common.css"
 import postTypes from '../../constants/postTypes';
 
 import PostForm from './PostForm/PostForm';
+import FadeIn from 'react-fade-in/lib/FadeIn';
 
 
 
@@ -191,7 +192,7 @@ const CreatePost = () => {
 
 
 
-                            <div className='userContainerInSuggestion'>
+                            <FadeIn className='userContainerInSuggestion'>
 
                                 <div className='userSuggestionInnerLeftContainer'>
 
@@ -213,7 +214,7 @@ const CreatePost = () => {
                                 </div>
 
 
-                            </div>
+                            </FadeIn>
 
 
                         ))
