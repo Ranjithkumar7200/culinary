@@ -181,11 +181,14 @@ border: 1px soild blue;
 
 .card-body {
   width: 100%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   overflow: auto;
   background-color: #fff;
   max-height: calc(100vh - 100px);
   /* width: fit-content; */
+}
+.type{
+  font-size: 10px;
 }
 
 .message-card {

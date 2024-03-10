@@ -22,6 +22,8 @@
   /* align-items: center; */
   /* text-align: center; */
   /* border: 2px solid #4CAF50; */
+
+  /* border-radius: 50%; */
   /* justify-content: center;
   flex-direction: column;  */
 }
@@ -43,7 +45,6 @@
   margin: 5px;
   border: none;
 
-
   height: 50%;
 }
 
@@ -56,7 +57,6 @@
   font-size: 10;
   margin-top: 10px;
   color: #150c0c;
-
 }
 
 .buttonhead:hover {
@@ -69,22 +69,17 @@
 .cardbody {
   padding: 0;
   /* border: red solid  3px; */
-
+  width: 100%;
   padding: 10px;
   border-radius: 7px;
   margin: 10px;
   display: flex;
   color: #141220;
-
+  border: 1px solid rgb(219, 214, 214);
   justify-content: space-between;
-
+  box-shadow: rgba(175, 172, 172, 0.15) 1.95px 1.95px 2.6px;
   width: 95%;
-  
-
-
 }
-
-
 
 .card {
   width: 95%;
@@ -96,8 +91,6 @@
   font-family: Arial, sans-serif;
   font-size: 20px;
   color: #150c0c;
-
-
 }
 
 .header {
@@ -105,10 +98,10 @@
   justify-content: start;
   /* border: red solid 3px; */
   width: 100%;
+  /* position: sticky; */
 }
 
 .name {
-
   font-family: Arial, sans-serif;
   font-size: 10px;
   color: #150c0c;
@@ -118,76 +111,86 @@
   justify-content: center;
   flex-direction: column;
   font-weight: bold;
+  /* border: 1px solid red; */
+}
+.preferencetype {
+  font-size: 14px !important;
+}
 
-
-
-
+@keyframes blink {
+  0% {
+    color: green;
+  }
+  50% {
+    color: rgb(4, 0, 255);
+  }
+  100% {
+    color: green;
+  }
 }
 
 .type {
   font-family: Arial, sans-serif;
-  font-size: 10px;
-  color: #150c0c;
-
+  font-size: 12px;
+  color: #146e08;
+  /* border: 1px solid red; */
+  animation: blink 3s infinite;
+  font-weight: 600;
+  margin-top: 6px;
 }
+
 .type1 {
   font-family: Arial, sans-serif;
   font-size: 10px;
   color: #150c0c;
-
 }
 @media (min-width: 768px) {
-
   .cardbody {
     /* width: 500px; */
     width: 95%;
-   
 
     /* border: 1px solid red; */
   }
-  .name{
+  .name {
     font-size: 17px !important;
   }
-  .logo{
+  .logo {
     width: 30%;
   }
-  .type1{
+  .type1 {
     display: none;
   }
-  
-  
 }
 @media (max-width: 767px) {
   .preferencetype {
     font-size: 8px !important;
   }
-  .logo{
+  .logo {
     width: 20%;
   }
-  .type{
+  .type {
     display: none;
   }
-  
+  .type1{
+    display: none;
+      }
 }
-.logo{
+.logo {
   /* border:  #f0eff6 solid 1px; */
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
 }
-.leftcontainer{
+.leftcontainer {
   width: 10px;
-  height: 50%; 
- 
+  height: 90%;
   position: absolute;
-  top: 50%; 
-  transform: translateY(-50%); 
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
-border-top-right-radius: 5px;
-border-bottom-right-radius: 5px;
 }
-.cardbod{
+.cardbod {
   margin: 5px;
-  border: 1px solid black;
-
+  width: 100%;
+  /* border: 1px solid black; */
 }

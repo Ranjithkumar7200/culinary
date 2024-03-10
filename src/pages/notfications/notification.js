@@ -88,13 +88,10 @@ const CreatePost = () => {
         <div className='homeContiner'>
             <Navbar />
             <div className='homeRightContainer'>
-
-
-
                 <div class="homePOstFeedContainer  communityContainer ">
-
+                
                 <div className="header">
-                     <h1 className="head">Notifications</h1></div>
+                <h1 className="head">Notifications</h1></div>
 
                      <NotificationsCards
                        
