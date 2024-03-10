@@ -78,8 +78,8 @@
 
   justify-content: space-between;
 
-  width: 100%;
-
+  width: 95%;
+  
 
 
 }
@@ -87,7 +87,7 @@
 
 
 .card {
-  width: 100%;
+  width: 95%;
   border: 0;
   align-items: center;
 }
@@ -110,7 +110,7 @@
 .name {
 
   font-family: Arial, sans-serif;
-  font-size: 17px;
+  font-size: 10px;
   color: #150c0c;
   width: 30%;
   margin-bottom: 0;
@@ -130,18 +130,64 @@
   color: #150c0c;
 
 }
+.type1 {
+  font-family: Arial, sans-serif;
+  font-size: 10px;
+  color: #150c0c;
+
+}
 @media (min-width: 768px) {
 
   .cardbody {
-    width: 500px;
-
+    /* width: 500px; */
+    width: 95%;
+   
 
     /* border: 1px solid red; */
   }
+  .name{
+    font-size: 17px !important;
+  }
+  .logo{
+    width: 30%;
+  }
+  .type1{
+    display: none;
+  }
+  
   
 }
 @media (max-width: 767px) {
   .preferencetype {
-    font-size: 10px !important;
+    font-size: 8px !important;
   }
+  .logo{
+    width: 20%;
+  }
+  .type{
+    display: none;
+  }
+  
+}
+.logo{
+  /* border:  #f0eff6 solid 1px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.leftcontainer{
+  width: 10px;
+  height: 50%; 
+ 
+  position: absolute;
+  top: 50%; 
+  transform: translateY(-50%); 
+  left: 0;
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+}
+.cardbod{
+  margin: 5px;
+  border: 1px solid black;
+
 }

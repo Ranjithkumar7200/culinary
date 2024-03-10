@@ -18,7 +18,18 @@ export class adminPanalApiServices {
 
         return axios.post(userUrl, bodyData);
     };
+    static getnotification = () => {
 
+       
+
+        let userUrl = `${this.baseURL}/api/getnotifications?user_id=${userId}`;
+
+        return axios.get(userUrl,{});
+    };
+    static acceptUser = (Touser, type, userName) => {
+        let userUrl = `${this.baseURL}/api/userconnections?sentBy=${userId}&sentTo=${Touser}&type=${type}&name=${userName}`;
+        return axios.put(userUrl);
+    };
 
     static editPost = (bodyData) => {
 
