@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   margin: 0px;
+  border: 1px solid red;
 
 }
 .posthomeRightContainer{
@@ -157,52 +158,152 @@ border: 1px soild blue;
   margin: 30px;
    
 }
-/* 
+
 .container {
-    max-width: 400px;
-    margin: auto;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.form-group {
-    margin-bottom: 15px;
+.card {
+  flex: 1 1 auto;
+  margin: 10px;
 }
 
-.form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffc107;
+  font-size: 1.2rem;
+  padding: 10px;
 }
 
-.form-select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
+.card-body {
+  width: 100%;
+  /* border: 1px solid red; */
+  overflow: auto;
+  background-color: #fff;
+  max-height: calc(100vh - 100px);
+  /* width: fit-content; */
+}
+.type{
+  font-size: 10px;
 }
 
-.btn-container {
-    display: flex;
-    gap: 10px;
+.message-card {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  margin: 10px;
 }
 
-.btn {
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.message-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
-.btn-create {
-    background-color: #28a745;
-    color: #fff;
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.btn-back {
-    background-color: #dc3545;
-    color: #fff;
+.message-info {
+  display: flex;
+  flex-direction: column;
 }
 
-.btn:hover {
-    filter: brightness(90%);
-} */
+.message-timestamp {
+  margin-top: 10px;
+}
+
+.add-cart-button {
+  margin-top: 10px;
+  background-color: #ffc107;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+/* For small screens */
+@media (max-width: 576px) {
+  .card {
+    margin: 5px;
+  }
+
+  .card-header {
+    font-size: 1rem;
+  }
+
+  .message-card {
+    margin: 5px;
+  }
+
+  .profile-pic {
+    width: 20px;
+    height: 20px;
+  }
+
+  .add-cart-button {
+    padding: 3px 5px;
+  }
+}
+
+/* For medium screens */
+@media (min-width: 577px) and (max-width: 768px) {
+  .card {
+    margin: 10px;
+  }
+
+  .card-header {
+    font-size: 1.1rem;
+  }
+
+  .message-card {
+    margin: 7px;
+  }
+
+  .profile-pic {
+    width: 25px;
+    height: 25px;
+  }
+
+  .add-cart-button {
+    padding: 5px 8px;
+  }
+}
+
+/* For large screens */
+@media (min-width: 769px) {
+  .card {
+    margin: 15px;
+  }
+
+  .card-header {
+    font-size: 1.3rem;
+  }
+
+  .message-card {
+    margin: 10px;
+  }
+
+  .profile-pic {
+    width: 30px;
+    height: 30px;
+  }
+
+  .add-cart-button {
+    padding: 7px 10px;
+  }
+}

@@ -28,35 +28,68 @@ import { toast } from "react-toastify";
 import TokenService from "../../services/TokenServices";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
+import { adminPanalApiServices } from "../../services/allApiServeces";
+
+import Loader from "../loader/Loader";
+
 // import { current } from '@reduxjs/toolkit';
 
 const Community = () => {
   const [showModal, setShowModal] = useState(false);
   const [showGruop, setShowGroup] = useState(false);
   const [inputValue, setInputValue] = useState("");
+
+  const [isLoder, setIsLoader] = useState(true)
+
   const [communityDetails, setCommunityDetails] = useState([]);
+
   const id = TokenService.getUserIdFromToken();
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
+
+
   const [createCommunity, { isLoading }] = useCreateCommunityMutation();
+
   const { data: communityData } = useGetCommunityQuery(id);
 
   const validationSchema = Yup.object().shape({
+
     communityName: Yup.string()
       .min(3, "Community name must be at least 3 characters")
       .required("Community name is required"),
   });
+
+
+
   useEffect(() => {
-    if (communityData && communityData.communityDetails) {
-      setCommunityDetails(communityData.communityDetails);
+    
+    setIsLoader(true)
+
+    const fetchData = async () => {
+
+      let communityDetails = await adminPanalApiServices.getCommunityDetails()
+
+      // setCommunityDetails(communityDetails.data.communityDetails)
+
+      console.log(communityDetails.data.communityDetails)
+
+      setIsLoader(false)
+
     }
-  }, [communityData]);
-  console.log(communityDetails);
+
+    fetchData()
+
+  }, []);
+
+
+  // console.log(communityDetails);
+
+
   const handleShowGroup = async () => {
     try {
       const response = await createCommunity({
-        id:id,
+        id: id,
         communityName: inputValue,
       });
       console.log(response);
@@ -68,7 +101,7 @@ const Community = () => {
         toast.success(response?.data.message, { autoClose: 1000 });
         console.log("if part");
         console.log(response);
-        
+
 
       } else {
         toast.success(response.error.data, { autoClose: 1000 });
@@ -154,35 +187,44 @@ const Community = () => {
       <span></span>
 
       <div className="posthomeRightContainer">
-        <div class="homePOstFeedContainer  communityContainer">
-        {communityDetails.length > 0 ? (
-  communityDetails.map((community) => (
-    <React.Fragment key={community.communityName}>
-      {community.communityName !== "" && community.communityName!=null ? (
-        <GroupCommunity />
-      ) : (
-        <div className="createCommunityButtonContainer">
-          <button onClick={handleShow}>Create Community</button>
-        </div>
-      )}
-    </React.Fragment>
-  ))
-) : (
-  <div className="createCommunityButtonContainer">
-    <button onClick={handleShow}>Create Community</button>
-  </div>
-)}
 
 
-          {/* {showGruop ? (
-            <GroupCommunity  />
-          ) : (
-            <div className="createCommunityButtonContainer">
-              <button onClick={handleShow}>Create Community</button>
-            </div>
-          )} */}
-          
-        </div>
+        {isLoder ? (
+          <Loader />
+
+        ) : (
+          <div class="homePOstFeedContainer  communityContainer">
+            {communityDetails.length > 0 ? (
+              communityDetails.map((community) => (
+                <React.Fragment key={community.communityName}>
+                  {community.communityName !== "" && community.communityName != null ? (
+                    <GroupCommunity />
+                  ) : (
+                    <div className="createCommunityButtonContainer">
+                      <button onClick={handleShow}>Create Community</button>
+                    </div>
+                  )}
+                </React.Fragment>
+              ))
+            ) : (
+              <div className="createCommunityButtonContainer">
+                <button onClick={handleShow}>Create Community</button>
+              </div>
+            )}
+
+
+            {/* {showGruop ? (
+    <GroupCommunity  />
+  ) : (
+    <div className="createCommunityButtonContainer">
+      <button onClick={handleShow}>Create Community</button>
+    </div>
+  )} */}
+
+          </div>
+
+        )}
+
 
         <div className="userHomeContainer">
           <div className="userSuggestedContainer">
@@ -245,6 +287,8 @@ const Community = () => {
           </div>
         </div>
       </div>
+
+
       <Formik
         validationSchema={validationSchema}
         onSubmit={handleShowGroup}
@@ -271,11 +315,10 @@ const Community = () => {
                     name="communityName"
                     placeholder="Enter Community name"
                     value={inputValue}
-                    className={`form-control ${
-                      touched.communityName && errors.communityName
-                        ? "is-invalid"
-                        : ""
-                    }`}
+                    className={`form-control ${touched.communityName && errors.communityName
+                      ? "is-invalid"
+                      : ""
+                      }`}
                     onChange={(e) => {
                       setInputValue(e.target.value);
                       handleChange(e);
@@ -298,7 +341,7 @@ const Community = () => {
                 disabled={isSubmitting}
                 onClick={
                   inputValue === "" ||
-                  (touched.communityName && errors.communityName)
+                    (touched.communityName && errors.communityName)
                     ? handleSubmit
                     : handleShowGroup
                 }
@@ -309,6 +352,8 @@ const Community = () => {
           </Modal>
         )}
       </Formik>
+
+
     </div>
   );
 };
