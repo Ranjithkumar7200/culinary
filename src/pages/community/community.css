@@ -184,6 +184,9 @@
   position: relative;
   padding-bottom: 25px;
 }
+.type{
+  font-size: 10px;
+}
 
 .message-card {
   width: 400px;
