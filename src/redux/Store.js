@@ -4,6 +4,7 @@ import { AuthApi } from "./api/AuthApi";
 import { HomeApi } from "./api/HomeApi";
 import { UserApi } from "./api/UserApi";
 import { CommunityApi } from "./api/CommunityApi";
+import { CartApi } from "./api/CartApi";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     [HomeApi.reducerPath]:HomeApi.reducer,
     [UserApi.reducerPath]:UserApi.reducer,
     [CommunityApi.reducerPath]:CommunityApi.reducer,
+    [CartApi.reducerPath]:CartApi.reducer,
   },
   devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) =>
@@ -19,6 +21,7 @@ export const store = configureStore({
       AuthApi.middleware,
       HomeApi.middleware,
       UserApi.middleware,
-      CommunityApi.middleware
+      CommunityApi.middleware,
+      CartApi.middleware,
     ]),
 });
