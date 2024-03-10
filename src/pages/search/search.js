@@ -44,7 +44,7 @@ const Home = () => {
   const { data: posts, isLoading } = useGetAllPostsQuery(id);
   const [getConnectionMutation] = useGetConnectionMutation();
   const { data: user } = useGetAllUserByIdQuery(id);
-  const { data: filter } = useFilterSearchQuery(nameFilter);
+  const { data: filter } = useFilterSearchQuery({userName:nameFilter,location:locationFilter,foodType:foodStyleFilter});
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -273,11 +273,13 @@ const Home = () => {
                   <select
                     name="location"
                     className="searchSearchSelect"
-                    value={formData.location}
-                    onChange={handleChange}
+                    value={locationFilter}
+                    onChange={(e)=>{
+                      setLocationFilter(e.target.value)
+                    }}
                     
                   >
-                    <option value="" disabled selected>
+                    <option value=""  selected>
                       ----select Location----
                     </option>
                     <option value={"Chennai"}>Chennai</option>
@@ -288,11 +290,11 @@ const Home = () => {
                   <select
                     name="type"
                     className="searchSearchSelect"
-                    value={formData.type}
-                    onChange={handleChange}
-                    onKeyPress={handleKeyPress}
+                    value={foodStyleFilter}
+                    onChange={(e)=>setFoodStyleFilter(e.target.value)}
+                    
                   >
-                    <option value="" disabled selected>
+                    <option value=""selected>
                       ----select Location----
                     </option>
                     <option value="yellow">Housewife</option>

@@ -17,8 +17,8 @@ export const HomeApi = createApi({
       providesTags: ["ALLPOSTS"],
     }),
     filterSearch: build.query({
-      query: (userName) => ({
-        url: `api/getusersmaxlikedposts?name=${userName}&location=&foodType=&preferences=`,
+      query: ({userName,location,foodType}) => ({
+        url: `api/getusersmaxlikedposts?name=${userName}&location=${location}&foodType=${foodType}&preferences=`,
         method: "GET",
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
