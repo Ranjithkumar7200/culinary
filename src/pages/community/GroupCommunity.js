@@ -135,13 +135,16 @@ function GroupCommunity() {
                         <p className="dish-name">{postData.dishName}</p>
                         <p className="description">Price: &nbsp;{postData.price ? ` ${postData.price} Rs` : 'Free'}</p>
                         <p className="description">Description: &nbsp;{postData.descr}</p>
-                        <button
-                          className="add-cart-button"
-                          // disabled={disableButton}
-                          onClick={() => addToCart(postData)} // Call addToCart function onClick
-                        >
-                          Add to Cart
-                        </button>
+                        <div className="buttonContainerCommunity">
+                          <button
+                            className="add-cart-button"
+                            // disabled={disableButton}
+                            onClick={() => addToCart(postData)} // Call addToCart function onClick
+                          >
+                            Add to Cart
+                          </button>
+                        </div>
+
                       </div>
 
                     ))}

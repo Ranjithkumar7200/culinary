@@ -177,6 +177,7 @@
 /* lkdkldkldmklkmlkmlkmldmklmklkmllllllxkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk */
 
 .card-body {
+  width: 100%;
   border: 1px solid red;
   display: flex;
   align-items: center;
@@ -189,10 +190,12 @@
 }
 
 .message-card {
+
   width: 400px;
   height: auto;
   background-color: #ffffcc;
-  padding: 15px;
+  padding: 15px ;
+  padding-left: 30yypx;
   margin-bottom: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -255,6 +258,7 @@
 }
 
 .add-cart-button {
+
   background-color: #ff9900;
   color: #fff;
   border: none;
@@ -267,6 +271,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.buttonContainerCommunity{
+  display:flex;
+  justify-content: flex-end;
+  /* align-items:flex-end; */
+}
 .add-cart-button:hover {
   background-color: #ff6600;
   /* Darker color on hover */
