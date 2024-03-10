@@ -24,7 +24,6 @@ const Register = () => {
 
   const [formData, setFormData] = useState({});
   const [imageFile, setImageFile] = useState(null);
- 
 
   const history = useNavigate();
 
@@ -154,47 +153,46 @@ const Register = () => {
               }) => (
                 <Form className="d-flex flex-column justify-content-start">
                   <Row className="d-flex flex-xl-row flex-xxl-row flex-lg-row flex-md-column flex-sm-column flex-column justify-content-between align-items-center">
-                  <div className="text-center mb-4">
-                    <label htmlFor="file">
-                      <div
-                        style={{
-                          position: "relative",
-                          display: "inline-block",
-                        }}
-                      >
-                        <img
-                          src={uploadedImage ?? defaultImage}
-                          alt="Uploaded"
-                          width={80}
-                          height={80}
-                          style={{ borderRadius: "50%" }}
-                        />
-                        <FaPlus
+                    <div className="text-center mb-4">
+                      <label htmlFor="file">
+                        <div
                           style={{
-                            position: "absolute",
-                            right: 0,
-                            bottom: 0,
-                            cursor: "pointer",
-                            transform: "translate(-50%, -10%)",
+                            position: "relative",
+                            display: "inline-block",
                           }}
+                        >
+                          <img
+                            src={uploadedImage ?? defaultImage}
+                            alt="Uploaded"
+                            width={80}
+                            height={80}
+                            style={{ borderRadius: "50%" }}
+                          />
+                          <FaPlus
+                            style={{
+                              position: "absolute",
+                              right: 0,
+                              bottom: 0,
+                              cursor: "pointer",
+                              transform: "translate(-50%, -10%)",
+                            }}
+                          />
+                        </div>
+                        <input
+                          type="file"
+                          name="image"
+                          id="file"
+                          className="d-none"
+                          onChange={handleFileChange}
+                          ref={fileInputRef}
                         />
-                      </div>
-                      <input
-                        type="file"
-                        name="image"
-                        id="file"
-                        className="d-none"
-                        onChange={handleFileChange}
-                        ref={fileInputRef}
-                      />
-                    </label>
-                    {touched.image && errors.image ? (
-                      <p className="text-danger">{errors.image}</p>
-                    ) : (
-                      <p style={{ width: "100px", height: "10px" }}></p>
-                    )}
-                   
-                  </div>
+                      </label>
+                      {touched.image && errors.image ? (
+                        <p className="text-danger">{errors.image}</p>
+                      ) : (
+                        <p style={{ width: "100px", height: "10px" }}></p>
+                      )}
+                    </div>
 
                     <Col>
                       <Row className="d-flex  flex-row justify align-items-start">
@@ -441,10 +439,10 @@ const Register = () => {
                             <option value="" disabled selected>
                               ----select Location----
                             </option>
-                            <option value={"North"}>North</option>
-                            <option value={"West"}>West</option>
-                            <option value={"South"}>South</option>
-                            <option value={"East"}>East</option>
+                            <option value="yellow">Housewife</option>
+                            <option value="red">Single</option>
+                            <option value="green">Dietitian</option>
+                            <option value="blue">Student</option>
                           </Form.Select>
                         </Col>
                       </Row>
@@ -467,7 +465,7 @@ const Register = () => {
                       confirmPassword === "" ||
                       location === "" ||
                       name === "" ||
-                      imageFile===""||
+                      imageFile === "" ||
                       (touched.email && errors.email) ||
                       (touched.name && errors.name) ||
                       (touched.password && errors.password) ||
