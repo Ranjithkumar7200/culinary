@@ -3,13 +3,22 @@ import Navbar from '../../components/navbar/navbar';
 import NotificationsCards from '../notfications/notficationsCards'; // Correct path
 
 
+
 import { adminPanalApiServices } from '../../services/allApiServeces';
-import food1 from "../../imges/food1.jpeg";
-import food2 from "../../imges/food2.jpg";
-import food3 from "../../imges/food3.jpeg";
-import food4 from "../../imges/food4.jpg";
-import food5 from "../../imges/food5.jpg";
-import food6 from "../../imges/food6.jpg";
+
+import Loader from "../loader/Loader";
+import TokenService from "../../services/TokenServices";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import { useGetAllUserByIdQuery } from "../../redux/api/UserApi";
+import { toast } from "react-toastify";
+import {
+  useEditLikeMutation,
+  useGetAllPostsQuery,
+  useGetConnectionMutation,
+  useUnLikeMutation,
+} from "../../redux/api/HomeApi";
 
 import prabhas from "../../imges/praba.jpeg";
 
@@ -18,70 +27,50 @@ import "../dashboard/common.css"
 import FadeIn from 'react-fade-in/lib/FadeIn';
 
 const CreatePost = () => {
-    const [notifications, setNotifications] = useState([]);
-    const postsData = [
-        {
-          id: 1,
-          img: food1,
-          userName: "sathish57",
-          name: "Biriyani",
-          location: "City 1",
-          foodStyle: "Mediterranean",
-          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        },
-        {
-          id: 2,
-          img: food2,
-          userName: "Dosaa",
-          name: "Mediterranean Dish 2",
-          location: "City 2",
-          foodStyle: "Mediterranean",
-          content:
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: 3,
-          img: food3,
-          userName: "ranjiths88",
-          name: "Upma",
-          location: "City 2",
-          foodStyle: "Mediterranean",
-          content:
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: 4,
-          img: food4,
-          userName: "rohith_roy",
-          name: "Chicken",
-          location: "City 2",
-          foodStyle: "Mediterranean",
-          content:
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: 5,
-          img: food5,
-          userName: "firzzzzzzzz",
-          name: "Rayala sima chicken",
-          location: "City 2",
-          foodStyle: "Mediterranean",
-          content:
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        {
-          id: 6,
-          img: food6,
-          userName: "somthing",
-          name: "kodikuraa",
-          location: "City 2",
-          foodStyle: "Mediterranean",
-          content:
-            "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        },
-        // Add more posts as needed
-      ];
+  const id = TokenService.getUserIdFromToken();
+  const navigate = useNavigate();
 
+  const { data: posts, isLoading } = useGetAllPostsQuery(id);
+  const { data: user } = useGetAllUserByIdQuery(id);
+    const [notifications, setNotifications] = useState([]);
+    const [postsData, setPostsData] = useState([]);
+    const [userData, setUserData] = useState([]);
+    useEffect(() => {
+      if (posts && posts.data) {
+        function shuffleArray(array) {
+          // Make a copy of the array
+          const newArray = array.slice();
+          // Shuffle the copied array
+          for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+          }
+          return newArray;
+        }
+  
+        // Create a shuffled copy of posts.data
+        let reArrangedArray = shuffleArray(posts.data);
+  
+        // Set the shuffled array to the state
+        setPostsData(reArrangedArray);
+        console.log(posts.data, "from");
+        console.log(userData);
+      }
+    }, [posts]);
+  
+  
+  
+    useEffect(() => {
+      if (user && user.data) {
+  
+  
+        setUserData(user.data[0]);
+      }
+    }, [posts, user]);
+  
+  
+  
+  
    
 
     return (
@@ -100,77 +89,68 @@ const CreatePost = () => {
 
                 </div>
 
-                <div className='userHomeContainer'>
-                    <div className="userSuggestedContainer">
-                        <div className='userContainerInSuggestion'>
-
-                            <div className='userSuggestionInnerLeftContainer'>
-
-                                <div className='userSuggetionContiainerInSuggetion'>
-                                    <img className="userImgInPostCard " src={prabhas} alt='user' />
-                                </div>
-
-                                <div className='usersugehtionNamecontainer'>
-                                    <p className='userSuggetionName'>sathish57cccccccccc</p>
-                                    <p>sathish57</p>
-                                </div>
-
-                            </div>
-
-                            <div>
-                                <a href="profile_link" class="profile-link">View Profile</a>
-
-
-                            </div>
-
-
-                        </div>
-                    </div>
-
-
-
-                    <div className='userSuggestedContainer'>
-                        <div className='seeallContainer'>
-                            <h5>Suggested for you See All</h5>
-                            <a href='' className='seeAllUserSuggestion'>See all</a>
-                        </div>
-
-                        {postsData.map((post) => (
-
-
-
-                            <FadeIn className='userContainerInSuggestion'>
-
-                                <div className='userSuggestionInnerLeftContainer'>
-
-                                    <div className='userSuggetionContiainerInSuggetion'>
-                                        <img className="userImgInPostCard " src={prabhas} alt='user' />
-                                    </div>
-
-                                    <div className='usersugehtionNamecontainer'>
-                                        <p className='userSuggetionName'>{post.userName}</p>
-                                        <p className='SuggestedForYou'>Suggested for you</p>
-                                    </div>
-
-                                </div>
-
-                                <div >
-                                    <a href="profile_link" class="profile-link">Invite</a>
-
-
-                                </div>
-
-
-                            </FadeIn>
-
-
-                        ))
-
-                        }
-
-                    </div>
-                    
+        <div className="userHomeContainer">
+          <div className="userSuggestedContainer">
+            <div className="userContainerInSuggestion">
+              <div className="userSuggestionInnerLeftContainer">
+                <div className="userSuggetionContiainerInSuggetion">
+                  <img
+                    className="userImgInPostCard "
+                    src={userData.image}
+                    alt="userImg"
+                  />
                 </div>
+                <div className="usersugehtionNamecontainer">
+                  <p className="userSuggetionName">
+                    {userData.name ?? "Loading..."}
+                  </p>
+                  <p>{`@${userData.name ?? "Loading..."}`}</p>
+                </div>
+              </div>
+              <div className="pointer" onClick={() => navigate("/profile")}>
+                <p className="profile-link">View Profile</p>
+              </div>
+            </div>
+          </div>
+          <div className="userSuggestedContainer">
+            <div className="seeallContainer">
+              <h5>Suggested for you See All</h5>
+              <p className="seeAllUserSuggestion">See all</p>
+            </div>
+            {postsData &&
+              postsData.map((post) => (
+
+                post.postedBy !== userData._id && (
+
+                <FadeIn className="userContainerInSuggestion" key={post._id}>
+                    
+                    <div className="userSuggestionInnerLeftContainer">
+                      <div className="userSuggetionContiainerInSuggetion">
+                        <img
+                          className="userImgInPostCard "
+                          alt="..."
+                          src={post.postedByProfileImage}
+                        />
+                      </div>
+                      <div className="usersugehtionNamecontainer">
+                        <p className="userSuggetionName">
+                          {post.postedByName}
+                        </p>
+                        <p className="SuggestedForYou">Suggested for you</p>
+                      </div>
+                    </div>
+                    <div>
+                      <a href="profile_link" className="profile-link">
+                        Invite
+                      </a>
+                    </div>
+                  
+                </FadeIn>
+                  )
+
+              ))}
+          </div>
+        </div>
             </div>
         </div>
     );

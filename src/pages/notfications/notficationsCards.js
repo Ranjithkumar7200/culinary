@@ -40,38 +40,41 @@ function NotificationsCards() {
     };
 
     return (
-        <div >
-            {sendedNotifications && sendedNotifications.map((notificationData, index) => {
-               let messageWords;
-               if (notificationData.msg.includes(',')) {
-                   messageWords = notificationData.msg.split(',');
-               } else {
-                   messageWords = notificationData.msg.split(' ');
-               }
-                const username= messageWords;
-                const remainingText = messageWords.slice(1).join(' '); 
-                return (
-                    <Card key={index} className="cardbod" >
-                        <Card.Body className="cardbody " >
-                            <div className="leftcontainer" > </div>
-                            {/* <div className="logo"><FiSend /></div> */}
-                            <div className="cardHead" >
-                                <div className="userName">
-                                    <span className="name">{messageWords[0]} </span> 
-                                   
+        <div>
+            {sendedNotifications.length > 0 ? (
+                sendedNotifications.map((notificationData, index) => {
+                    let messageWords;
+                    if (notificationData.msg.includes(',')) {
+                        messageWords = notificationData.msg.split(',');
+                    } else {
+                        messageWords = notificationData.msg.split(' ');
+                    }
+                    const username= messageWords;
+                    const remainingText = messageWords.slice(1).join(' '); 
+                    return (
+                        <Card key={index} className="cardbod">
+                            <Card.Body className="cardbody ">
+                                <div className="leftcontainer" style={{ backgroundColor: colors[index % colors.length]}}> </div>
+                                <div className="logo"><FiSend /></div>
+                                <div className="cardHead">
+                                    <div className="userName">
+                                        <span className="name">{messageWords[0]}</span> 
+                                        <span className="preferencetype">{remainingText}</span> 
+                                    </div>
+                                    <p className="type"> Request Sended</p>
+                                    <div className="HeadButtons">
+                                        <p className="type1"> Request Sended</p>
+                                        <Button className="buttonhead Accept" onClick={() => acceptRequest(notificationData.user_id, notificationData.sent_by_user_id ,"Accept",username)}>Accept</Button>
+                                        <Button className="buttonhead">Ignore</Button>
+                                    </div>
                                 </div>
-                                <span className="preferencetype">{remainingText}</span> 
-                                <p className="type"> Request Sended  </p>
-                                <div className="HeadButtons">
-                                    <p className="type1"> Request Sended</p>
-                                    <Button className="buttonhead Accept" onClick={() => acceptRequest(notificationData.user_id, notificationData.sent_by_user_id ,"Accept",username)}>Accept</Button>
-                                    <Button className="buttonhead">Ignore</Button>
-                                </div>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                );
-            })}
+                            </Card.Body>
+                        </Card>
+                    );
+                })
+            ) : (
+                <p>No notifications</p>
+            )}
         </div>
     );
 }
