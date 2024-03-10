@@ -54,6 +54,13 @@ export class adminPanalApiServices {
         return axios.put(userUrl, bodyData);
     };
 
+    static getCommunityDetails = () => {
+
+        const userUrl = `${this.baseURL}/api/getcommunityposts?user_id=${userId}`;
+
+        return axios.get(userUrl);
+    };
+
 
 
 
