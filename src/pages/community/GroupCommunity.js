@@ -17,6 +17,8 @@ function GroupCommunity() {
   const [communityDetails, setCommunityDetails] = useState([]);
   const { data: communityData } = useGetCommunityQuery(id);
 
+  const [communityPost, setCommunityPost] = useState([])
+
   useEffect(() => {
     const timer = setInterval(() => {
       if (hours === 0 && minutes === 0 && seconds === 0) {
@@ -46,11 +48,13 @@ function GroupCommunity() {
 
     const fetchData = async () => {
 
+
       let communityDetails = await adminPanalApiServices.getCommunityDetails()
+
 
       setCommunityDetails(communityDetails.data.communityDetails)
 
-      console.log(communityDetails.data.communityDetails)
+      setCommunityPost(communityDetails.data.communityposts)
 
 
 
@@ -100,47 +104,32 @@ function GroupCommunity() {
 
                 <div className="card-body">
 
-                  <div className="message-card">
-                    <div className="message-header">
-                      <img
-                        src={prabhas}
-                        alt="Profile"
-                        className="profile-pic"
-                      />
-                      <div className="message-info">
-                        <h6>{"@Ranjith"}</h6>
-                        <p>{`${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}</p>
+                  {communityPost && communityPost.map(() => (
+
+                    <div className="message-card">
+                      <div className="message-header">
+                        <img
+                          src={prabhas}
+                          alt="Profile"
+                          className="profile-pic"
+                        />
+                        <div className="message-info">
+                          <h6>{"@Ranjith"}</h6>
+                          <p>{`${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}</p>
+                        </div>
                       </div>
-                    </div>
-                    <img
-                      src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oMiQKCzp4zPtiLdJiCBIWsyf-UfPQUMmAA&usqp=CAU"}
-                      alt="Message"
-                      className="message-image"
-                    />
-                    <p className="message-timestamp">{"00:00"}</p>
-                    <button className="add-cart-button">Add Cart</button>
-                  </div>
-                  
-                  <div className="message-card">
-                    <div className="message-header">
                       <img
-                        src={prabhas}
-                        alt="Profile"
-                        className="profile-pic"
+                        src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oMiQKCzp4zPtiLdJiCBIWsyf-UfPQUMmAA&usqp=CAU"}
+                        alt="Message"
+                        className="message-image"
                       />
-                      <div className="message-info">
-                        <h6>{"@Ranjith"}</h6>
-                        <p>{`${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}</p>
-                      </div>
+                      <p className="message-timestamp">{"00:00"}</p>
+                      <button className="add-cart-button">Add Cart</button>
                     </div>
-                    <img
-                      src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oMiQKCzp4zPtiLdJiCBIWsyf-UfPQUMmAA&usqp=CAU"}
-                      alt="Message"
-                      className="message-image"
-                    />
-                    <p className="message-timestamp">{"00:00"}</p>
-                    <button className="add-cart-button">Add Cart</button>
-                  </div>
+
+
+                  ))}
+
 
                 </div>
 
