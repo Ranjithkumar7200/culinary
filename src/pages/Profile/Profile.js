@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '../../components/navbar/navbar';
+import { useNavigate } from "react-router-dom";
+import {
+    useEditLikeMutation,
+    useGetAllPostsQuery,
+    useGetConnectionMutation,
+    useUnLikeMutation,
+  } from "../../redux/api/HomeApi";
 
 
 import "./Profile.css";
@@ -9,10 +16,13 @@ import Comunityposts from '../Profile/comunityposts';
 import Saveposts from '../Profile/saveposts'
 import "../dashboard/common.css";
 import { adminPanalApiServices } from '../../services/allApiServeces';
+import TokenService from "../../services/TokenServices";
+import { useGetAllUserByIdQuery } from "../../redux/api/UserApi";
 
 // Modal.setAppElement('#root');
 
 const Profile = ({ filteredPostsLength }) => {
+    const id = TokenService.getUserIdFromToken();
     const [formData, setFormData] = useState({
         nameInput: '',
         dietInput: '',
@@ -20,7 +30,9 @@ const Profile = ({ filteredPostsLength }) => {
         rateInput: ''
     });
     const [redirect, setRedirect] = useState(false);
-
+    const { data: posts, isLoading } = useGetAllPostsQuery(id);
+  const { data: user } = useGetAllUserByIdQuery(id);
+  
 
 
     const [showPosts, setShowPosts] = useState(false); // Changed to false to display only community posts
@@ -33,6 +45,8 @@ const Profile = ({ filteredPostsLength }) => {
     const [showModal, setShowModal] = useState(false);
     const [showGruop, setShowGroup] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const [profileData, setProfileData] = useState([]);
+    const [userData, setUserData] = useState([]);
     const [selectedTab, setSelectedTab] = useState('posts');
 
     const [postsData, setPostData] = useState([])
@@ -40,7 +54,7 @@ const Profile = ({ filteredPostsLength }) => {
     const [community, setcommunityData] = useState([])
 
     const [savePost, setSavePost] = useState([])
-   
+
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
@@ -154,12 +168,47 @@ const Profile = ({ filteredPostsLength }) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+    const navigate = useNavigate();
     const handleLogout = () => {
+        navigate("/register");
         localStorage.removeItem('user');
-       
-    };
+        
 
-   
+    };
+    useEffect(() => {
+        if (posts && posts.data) {
+          function shuffleArray(array) {
+            // Make a copy of the array
+            const newArray = array.slice();
+            // Shuffle the copied array
+            for (let i = newArray.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+          }
+    
+          // Create a shuffled copy of posts.data
+          let reArrangedArray = shuffleArray(posts.data);
+    
+          // Set the shuffled array to the state
+          setProfileData(reArrangedArray);
+          console.log(posts.data, "from");
+          console.log(userData);
+        }
+      }, [posts]);
+      
+    useEffect(() => {
+        if (user && user.data) {
+    
+    
+          setUserData(user.data[0]);
+        }
+      }, [posts, user]);
+    
+    
+
+
 
     return (
         <div className=' homeContiner'>
@@ -170,13 +219,14 @@ const Profile = ({ filteredPostsLength }) => {
             {userDetails &&
 
                 <div className='homeRight'>
-                    
+
                     <div className="container-fluid">
                         {isDesktop ? (
                             <div className="rowpost">
                                 <div className="image">
                                     <img
-                                        src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg"
+                                        // src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg"
+                                        src={userData.image}
                                         alt="Profile"
                                         className="profile_img"
                                     />
@@ -189,7 +239,7 @@ const Profile = ({ filteredPostsLength }) => {
                                             <button variant="primary" className="profile_button mx-2" onClick={handleShow}>
                                                 Edit Profile
                                             </button>
-                                            <button variant="primary" className="profile_button mx-2" onClick={handleLogout}>
+                                            <button variant="primary" className="profile_button mx-2" onClick={() => {  handleLogout(); }}>
                                                 Log out
                                             </button>
 
@@ -300,7 +350,8 @@ const Profile = ({ filteredPostsLength }) => {
                                     <div className="user-name-container">
                                         <div className="imgContainer">
                                             <img
-                                                src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg"
+                                                // src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg"
+                                                src={userData.image}
                                                 alt="Profile"
                                                 className="profile_img"
                                             /></div>
