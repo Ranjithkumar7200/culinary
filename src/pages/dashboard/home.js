@@ -10,7 +10,7 @@ import {
 } from "../../redux/api/HomeApi";
 import Loader from "../loader/Loader";
 import TokenService from "../../services/TokenServices";
-import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+import { MdCircle, MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import { useGetAllUserByIdQuery } from "../../redux/api/UserApi";
@@ -281,9 +281,10 @@ const Home = () => {
 
                           <p>{post.postedByName}</p>
                         </div>
-                        <span className="material-symbols-outlined">
+                        {/* <span className="material-symbols-outlined">
                           more_horiz
-                        </span>
+                        </span> */}
+                        <MdCircle color={`${post.preferences ?? "red"}`} />
                       </div>
                       <div className="userPostContent">
                         <div className="image-container">

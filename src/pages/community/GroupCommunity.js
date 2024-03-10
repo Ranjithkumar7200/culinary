@@ -107,7 +107,9 @@ function GroupCommunity() {
                   {communityPost && communityPost.map(() => (
 
                     <div className="message-card">
+
                       <div className="message-header">
+                        
                         <img
                           src={prabhas}
                           alt="Profile"
