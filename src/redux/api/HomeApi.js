@@ -16,6 +16,16 @@ export const HomeApi = createApi({
       }),
       providesTags: ["ALLPOSTS"],
     }),
+    filterSearch: build.query({
+      query: ({userName,location,foodType}) => ({
+        url: `api/getusersmaxlikedposts?name=${userName}&location=${location}&foodType=${foodType}&preferences=`,
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      }),
+      providesTags: ["ALLPOSTS"],
+    }),
     // getAllUserById: build.query({
     //   query: (id) => ({
     //     url: `api/getposts?user_id=${id}`,
@@ -82,6 +92,7 @@ export const HomeApi = createApi({
       }),
       invalidatesTags: ["ALLPOSTS"],
     }),
+   
     // deleteAllemployee: build.mutation({
     //   query: (id) => ({
     //     url: `/allemployee/delete/${id}`,
@@ -99,5 +110,6 @@ export const {
     useGetAllPostsQuery,
     useEditLikeMutation,
     useUnLikeMutation,
-    useGetConnectionMutation
+    useGetConnectionMutation,
+    useFilterSearchQuery
 } = HomeApi;
