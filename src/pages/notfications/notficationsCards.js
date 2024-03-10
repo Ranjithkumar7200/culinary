@@ -61,7 +61,7 @@ function NotificationsCards() {
                                    
                                 </div>
                                 <span className="preferencetype">{remainingText}</span> 
-                                <p className="type"> Request Sended  <FiSend /> </p>
+                                <p className="type"> Request Sended  </p>
                                 <div className="HeadButtons">
                                     <p className="type1"> Request Sended</p>
                                     <Button className="buttonhead Accept" onClick={() => acceptRequest(notificationData.user_id, notificationData.sent_by_user_id ,"Accept",username)}>Accept</Button>

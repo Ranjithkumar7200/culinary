@@ -345,7 +345,7 @@
   .homePOstFeedContainer {
     width: 100%;
     padding: 1px 4px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     /* padding-bottom: 20px !important; */
   }
 
