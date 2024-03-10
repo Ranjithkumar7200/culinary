@@ -5,15 +5,15 @@
   display: flex;
   align-items: center;
   margin: 0px;
-  border: 1px solid red;
 
 }
-.posthomeRightContainer{
+
+.posthomeRightContainer {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
- 
+
   padding: 10px;
   /* margin: 0px 10px; */
   /* overflow: auto; */
@@ -52,12 +52,13 @@
   margin: 5px;
   width: 90%;
   height: 100%;
-  
-  border: 2px solid #bababa ;
+
+  border: 2px solid #bababa;
 }
+
 .cCBackButtonContianer {
   border: 1px solid blue;
- 
+
   width: 100%;
 }
 
@@ -71,6 +72,7 @@
   background-color: white;
   border: none;
 }
+
 .cCButtonBack:hover {
   background-color: rgb(234, 234, 234);
 }
@@ -90,7 +92,7 @@
   padding: 4px;
   margin: 4px;
   border-radius: 3px;
-  
+
 }
 
 .cCSearchSelect {
@@ -101,39 +103,44 @@
   margin: 4px;
   border-radius: 3px;
 }
- .SearchContainer{
-   width: 100%;
-   height: 100%;
-   display: flex;
+
+.SearchContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
   justify-content: center;
   flex-direction: column;
-  border: 1px solid rgb(24, 214, 125) ;
+  border: 1px solid rgb(24, 214, 125);
   overflow: auto;
   padding-top: 130px;
   cursor: pointer;
   max-height: calc(100vh - 110px);
   /* margin-top: 30px; */
 }
- .Suggestioncenter{
+
+.Suggestioncenter {
   border: 1px solid red;
-  
-  
 
- }
- .user{
-   width: 100%;
- }
- .cCContainerForm{
-   width: 100%;
-   border: red solid  1px;
-   padding: 0%;
- }
 
- .communityFIlterContainer {
-border: 1px soild blue;
-/* padding: 5px; */
+
 }
-.StatusBtn{
+
+.user {
+  width: 100%;
+}
+
+.cCContainerForm {
+  width: 100%;
+  border: red solid 1px;
+  padding: 0%;
+}
+
+.communityFIlterContainer {
+  border: 1px soild blue;
+  /* padding: 5px; */
+}
+
+.StatusBtn {
   color: #007bff;
   text-decoration: none;
   font-size: 13px;
@@ -146,161 +153,163 @@ border: 1px soild blue;
   margin-left: 5px;
 
 }
-.Cardcontainer{
+
+.Cardcontainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.formButton{
+
+.formButton {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 30px;
-   
+
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.card {
-  flex: 1 1 auto;
-  margin: 10px;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ffc107;
-  font-size: 1.2rem;
-  padding: 10px;
-}
-
-.card-body {
+.card-header{
   width: 100%;
   border: 1px solid red;
-  overflow: auto;
-  background-color: #fff;
-  max-height: calc(100vh - 100px);
-  /* width: fit-content; */
+}
+
+
+/* lkdkldkldmklkmlkmlkmldmklmklkmllllllxkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk */
+
+.card-body {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 25px;
 }
 
 .message-card {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ccc;
-  margin: 10px;
+  width: 400px;
+  height: auto;
+  background-color: #ffffcc;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .message-header {
   display: flex;
   align-items: center;
-  padding: 10px;
 }
 
 .profile-pic {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 15px;
 }
 
-.message-info {
-  display: flex;
-  flex-direction: column;
+.message-info h6 {
+  margin: 0;
 }
 
-.message-timestamp {
+.message-info p {
+  margin: 5px 0;
+}
+
+.location {
+  margin: 0;
+  font-weight: bold;
+  color: #333;
+  /* Darken the location text */
+}
+
+.message-image {
+  width: 50%;
+  border-radius: 10px;
   margin-top: 10px;
+}
+
+.dish-name {
+  margin-top: 20px;
+  /* Increased margin-top */
+  margin-bottom: 10px;
+  /* Increased margin-bottom */
+  font-weight: bold;
+}
+
+.price {
+  margin: 0;
+  font-weight: bold;
+}
+
+.description {
+  margin-top: 15px;
+  /* Increased margin-top */
+  margin-bottom: 5px;
+}
+
+.descr {
+  margin: 0;
 }
 
 .add-cart-button {
-  margin-top: 10px;
-  background-color: #ffc107;
+  background-color: #ff9900;
   color: #fff;
   border: none;
-  padding: 5px 10px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  /* Increased padding */
+  margin-top: 15px;
+  /* Increased margin-top */
   cursor: pointer;
-  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.pointer {
+.add-cart-button:hover {
+  background-color: #ff6600;
+  /* Darker color on hover */
+}
+
+.cart-container {
+  width: 500px;
+  position: fixed;
+  bottom: 10px;
+  left: 39%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
 }
 
-
-/* For small screens */
-@media (max-width: 576px) {
-  .card {
-    margin: 5px;
-  }
-
-  .card-header {
-    font-size: 1rem;
-  }
-
-  .message-card {
-    margin: 5px;
-  }
-
-  .profile-pic {
-    width: 20px;
-    height: 20px;
-  }
-
-  .add-cart-button {
-    padding: 3px 5px;
+@media (max-width: 768px) {
+  .cart-container {
+    bottom: 50px;
+    width: calc(100% - 40px); /* Adjust width for smaller screens */
+    left: 50%;
+    transform: translateX(-50%);
+    right: auto; /* Remove right positioning */
   }
 }
 
-/* For medium screens */
-@media (min-width: 577px) and (max-width: 768px) {
-  .card {
-    margin: 10px;
-  }
 
-  .card-header {
-    font-size: 1.1rem;
-  }
-
-  .message-card {
-    margin: 7px;
-  }
-
-  .profile-pic {
-    width: 25px;
-    height: 25px;
-  }
-
-  .add-cart-button {
-    padding: 5px 8px;
-  }
+.cart-container h5 {
+  /* cursor: pointer; */
+  margin: 0px;
 }
 
-/* For large screens */
-@media (min-width: 769px) {
-  .card {
-    margin: 15px;
-  }
+.cart-container h5:hover {
+  text-decoration: underline; /* Underline text on hover */
 
-  .card-header {
-    font-size: 1.3rem;
-  }
+}
 
-  .message-card {
-    margin: 10px;
-  }
 
-  .profile-pic {
-    width: 30px;
-    height: 30px;
-  }
-
-  .add-cart-button {
-    padding: 7px 10px;
-  }
+.cart-container p {
+  margin: 0px;
+  
 }

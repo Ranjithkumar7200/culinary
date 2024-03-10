@@ -9,62 +9,24 @@ import FadeIn from "react-fade-in/lib/FadeIn";
 import { adminPanalApiServices } from "../../services/allApiServeces";
 
 function GroupCommunity() {
+
   const id = TokenService.getUserIdFromToken();
   const [showCreateForm, setShowCreateForm] = useState(false);
-  const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(0);
-  const [hours, setHours] = useState(2);
   const [communityDetails, setCommunityDetails] = useState([]);
-  const { data: communityData } = useGetCommunityQuery(id);
+  const [communityPosts, setCommunityPosts] = useState([]);
 
-  const [communityPost, setCommunityPost] = useState([])
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      if (hours === 0 && minutes === 0 && seconds === 0) {
-        clearInterval(timer);
-        // Timer expired, you can add your logic here
-      } else {
-        if (seconds === 0) {
-          if (minutes === 0) {
-            setHours(prevHours => prevHours - 1);
-            setMinutes(59);
-          } else {
-            setMinutes(prevMinutes => prevMinutes - 1);
-          }
-          setSeconds(59);
-        } else {
-          setSeconds(prevSeconds => prevSeconds - 1);
-        }
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [seconds, minutes, hours]);
-
+  const [cartItems, setCartItems] = useState([]);
+  const [showCart, setShowCart] = useState(false); // State to control visibility of the cart container
 
   useEffect(() => {
-
-
     const fetchData = async () => {
-
-
-      let communityDetails = await adminPanalApiServices.getCommunityDetails()
-
-
-      setCommunityDetails(communityDetails.data.communityDetails)
-
-      setCommunityPost(communityDetails.data.communityposts)
-
-
-
-    }
-
-    fetchData()
-
+      let communityDetails = await adminPanalApiServices.getCommunityDetails();
+      setCommunityDetails(communityDetails.data.communityDetails);
+      setCommunityPosts(communityDetails.data.communityposts);
+      console.log(communityDetails.data.communityposts)
+    };
+    fetchData();
   }, []);
-
-
 
   const showCreateFormHandler = () => {
     setShowCreateForm(true);
@@ -74,24 +36,64 @@ function GroupCommunity() {
     setShowCreateForm(false);
   };
 
+  // Function to calculate remaining time in milliseconds
+  const calculateRemainingTime = (timeRemaining) => {
+    if (timeRemaining === 0) {
+      return timeRemaining
 
+    } else {
+      const [hours, minutes, seconds] = timeRemaining.split(":").map(Number);
+      return hours * 3600000 + minutes * 60000 + seconds * 1000;
+
+    }
+
+  };
+
+
+
+
+  const addToCart = async (postData) => {
+    console.log(postData)
+    const updatedCartItems = [...cartItems, postData];
+    setCartItems(updatedCartItems);
+    setShowCart(true);
+
+    let userId = JSON.parse(localStorage.getItem("user")).userId
+
+    // console.log(userId)
+
+
+    let BodyData = {
+      //add update same api
+      user_id: userId,
+      orderedFromUserId: postData.postedBy,
+      orders: [
+        {
+          item_img: postData.image,
+          item_name: postData.dishName,
+          quantity: 1,
+          price: postData.price
+
+        }
+      ]
+    }
+
+
+    await adminPanalApiServices.addCartDetails(BodyData)
+
+  };
 
   return (
     <>
       <div className="container">
         {!showCreateForm ? (
           <>
-            <FadeIn >
+            <FadeIn>
               <div className="card">
-
                 <div className="card-header">
-
                   {communityDetails && communityDetails.length > 0 && (
                     <h5>{communityDetails[0].communityName}</h5>
                   )}
-
-
-
                   <h5>
                     <FaUserPlus
                       className="pointer"
@@ -100,42 +102,50 @@ function GroupCommunity() {
                     />
                   </h5>
                 </div>
-
-
                 <div className="card-body">
 
-                  {communityPost && communityPost.map(() => (
-
-                    <div className="message-card">
-
-                      <div className="message-header">
-                        
-                        <img
-                          src={prabhas}
-                          alt="Profile"
-                          className="profile-pic"
-                        />
-                        <div className="message-info">
-                          <h6>{"@Ranjith"}</h6>
-                          <p>{`${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`}</p>
-                        </div>
-                      </div>
-                      <img
-                        src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oMiQKCzp4zPtiLdJiCBIWsyf-UfPQUMmAA&usqp=CAU"}
-                        alt="Message"
-                        className="message-image"
-                      />
-                      <p className="message-timestamp">{"00:00"}</p>
-                      <button className="add-cart-button">Add Cart</button>
+                  {showCart && (
+                    <div className="cart-container">
+                      <p>{cartItems.length} Item Added</p>
+                      <h5>View Cart</h5>
                     </div>
+                  )}
 
+                  {communityPosts &&
+                    communityPosts.map((postData) => (
 
-                  ))}
+                      <div key={postData._id} className="message-card">
+                        <div className="message-header">
+                          <img
+                            src={postData.image}
+                            alt="Profile"
+                            className="profile-pic"
+                          />
+                          <div className="message-info">
+                            <h6>{postData.name}</h6>
+                            {/* <p>{formattedTime}</p> */}
+                            <p className="location">Location: {postData.location}</p>
+                          </div>
+                        </div>
+                        <img
+                          src={postData.attachments[0].img_url}
+                          alt="Message"
+                          className="message-image"
+                        />
+                        <p className="dish-name">{postData.dishName}</p>
+                        <p className="description">Price: &nbsp;{postData.price ? ` ${postData.price} Rs` : 'Free'}</p>
+                        <p className="description">Description: &nbsp;{postData.descr}</p>
+                        <button
+                          className="add-cart-button"
+                          // disabled={disableButton}
+                          onClick={() => addToCart(postData)} // Call addToCart function onClick
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
 
-
+                    ))}
                 </div>
-
-
               </div>
             </FadeIn>
           </>

@@ -20,11 +20,11 @@ export class adminPanalApiServices {
     };
     static getnotification = () => {
 
-       
+
 
         let userUrl = `${this.baseURL}/api/getnotifications?user_id=${userId}`;
 
-        return axios.get(userUrl,{});
+        return axios.get(userUrl, {});
     };
     static acceptUser = (Touser, type, userName) => {
         let userUrl = `${this.baseURL}/api/userconnections?sentBy=${userId}&sentTo=${Touser}&type=${type}&name=${userName}`;
@@ -71,6 +71,16 @@ export class adminPanalApiServices {
 
         return axios.get(userUrl);
     };
+
+
+
+    static addCartDetails = (BodyData) => {
+
+        const userUrl = `${this.baseURL}/api/addcart`;
+
+        return axios.post(userUrl, BodyData);
+    };
+
 
 
 

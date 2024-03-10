@@ -70,9 +70,9 @@ const Community = () => {
 
       let communityDetails = await adminPanalApiServices.getCommunityDetails()
 
-      // setCommunityDetails(communityDetails.data.communityDetails)
+      setCommunityDetails(communityDetails.data.communityDetails)
 
-      console.log(communityDetails.data.communityDetails)
+      // console.log(communityDetails.data.communityDetails)
 
       setIsLoader(false)
 

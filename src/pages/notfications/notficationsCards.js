@@ -20,7 +20,7 @@ function NotificationsCards() {
             try {
                 const userDetailsResponse = await adminPanalApiServices.getnotification();
                 setSendedNotifications(userDetailsResponse.data.data); 
-                console.log("User details:", userDetailsResponse.data);
+                console.log("User details:", userDetailsResponse.data.data);
             } catch (error) {
                 console.error("Error fetching user profile:", error);
             }
