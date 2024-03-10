@@ -351,7 +351,7 @@ const Profile = ({ filteredPostsLength }) => {
 
                                                             <div className='editBtnContainer'>
                                                                 <button className='editSubmitBtn' type='submit'>Save</button>
-                                                                <button className='editCloseBtn' onClick={closeModal}> Close </button>
+                                                                <button className='editCloseBtn' onClick={handleClose}> Close </button>
                                                             </div>
                                                         </div>
                                                         <div className="editleft">
