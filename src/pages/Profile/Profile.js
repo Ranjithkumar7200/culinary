@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '../../components/navbar/navbar';
+
+
 import "./Profile.css";
 import { Button, Form, Modal } from 'react-bootstrap';
 import Posts from '../Profile/posts';
@@ -17,6 +19,9 @@ const Profile = ({ filteredPostsLength }) => {
         descriptionInput: '',
         rateInput: ''
     });
+    const [redirect, setRedirect] = useState(false);
+
+
 
     const [showPosts, setShowPosts] = useState(false); // Changed to false to display only community posts
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -30,11 +35,12 @@ const Profile = ({ filteredPostsLength }) => {
     const [inputValue, setInputValue] = useState('');
     const [selectedTab, setSelectedTab] = useState('posts');
 
-    const [ postsData , setPostData] = useState([])
+    const [postsData, setPostData] = useState([])
 
-    const [ community ,  setcommunityData] =  useState([])
+    const [community, setcommunityData] = useState([])
 
-    const [ savePost , setSavePost] =  useState([])
+    const [savePost, setSavePost] = useState([])
+   
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
@@ -63,7 +69,7 @@ const Profile = ({ filteredPostsLength }) => {
             let userDetails = await adminPanalApiServices.getUserProfile()
 
             setUserDetails(userDetails.data.data[0])
-             
+
             console.log(userDetails.data.data[0].saved_posts_data)
             setPostData(userDetails.data.data[0].posts.posts)
             setcommunityData(userDetails.data.data[0].posts.community)
@@ -148,6 +154,12 @@ const Profile = ({ filteredPostsLength }) => {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+       
+    };
+
+   
 
     return (
         <div className=' homeContiner'>
@@ -158,6 +170,7 @@ const Profile = ({ filteredPostsLength }) => {
             {userDetails &&
 
                 <div className='homeRight'>
+                    
                     <div className="container-fluid">
                         {isDesktop ? (
                             <div className="rowpost">
@@ -175,6 +188,9 @@ const Profile = ({ filteredPostsLength }) => {
                                         <div className="">
                                             <button variant="primary" className="profile_button mx-2" onClick={handleShow}>
                                                 Edit Profile
+                                            </button>
+                                            <button variant="primary" className="profile_button mx-2" onClick={handleLogout}>
+                                                Log out
                                             </button>
 
 
@@ -335,7 +351,7 @@ const Profile = ({ filteredPostsLength }) => {
 
                                                             <div className='editBtnContainer'>
                                                                 <button className='editSubmitBtn' type='submit'>Save</button>
-                                                                <button className='editCloseBtn' onClick={closeModal}> Close </button>
+                                                                <button className='editCloseBtn' onClick={handleClose}> Close </button>
                                                             </div>
                                                         </div>
                                                         <div className="editleft">
@@ -433,9 +449,9 @@ const Profile = ({ filteredPostsLength }) => {
                                 </div>
                             </div>
 
-            
+
                             {selectedTab === 'posts' && <Posts postInfo={postsData} />}
-                            {selectedTab === 'community' && <Posts postInfo={community} /> }
+                            {selectedTab === 'community' && <Posts postInfo={community} />}
                             {selectedTab === 'saved' && <Posts postInfo={community} />}
                         </div>
                     </div>
