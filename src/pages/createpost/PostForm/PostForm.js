@@ -69,6 +69,7 @@ const PostForm = ({ postType }) => {
 
 
     const handleFormSubmit = async (event) => {
+
         event.preventDefault();
         let userId = JSON.parse(localStorage.getItem("user")).userId
         let finalData = new FormData();
@@ -198,50 +199,50 @@ const PostForm = ({ postType }) => {
         <div className='home_post_form_main_container'>
             <form className='home_post_form_card' onSubmit={handleFormSubmit}>
                 <h1 className='home_post_main_title'>{formTitle} Post Form</h1>
-               
-                    <label className="form-label m-3">Upload Image<span className="starIcon">*</span> </label>
-                    <div className="dragAndDropContainer">
-                        <div className="file-inner-container" onDrop={handleOnDrop} onDragOver={handleDragOver}>
-                            <div className="folderContainer">
-                                {uploadedImage ? (
-                                    <div className="imgSecondStyles">
-                                        <div className="courseUploadImgContainer">
-                                            <img src={uploadedImage} alt="Uploaded" />
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="UploadImgInCourse" >
-                                        <div className="UploadToCloudCont">
-                                            <img
-                                                src="https://img.icons8.com/ios/50/upload-to-cloud--v1.png"
-                                                alt="upload to cloud"
-                                                className="upload-logo"
-                                            />
-                                            <p className="UploadToCloudContPara">
-                                                Drag course logo here
-                                            </p>
-                                        </div>
-                                        <p className="UploadToCloudContPara">or</p>
-                                    </div>
-                                )}
 
-                                <div className="dragButtonContainerCourse">
-                                    <input
-                                        type="file"
-                                        ref={fileInputRef}
-                                        style={{ display: "none" }}
-                                        onChange={(e) => handleFileChange(e)}
-                                    />
-                                    <button type='button' onClick={onClickUpload} className="browse-btn">
-                                        <span className="material-symbols-outlined">
-                                            add
-                                        </span>
-                                    </button>
+                <label className="form-label m-3">Upload Image<span className="starIcon">*</span> </label>
+                <div className="dragAndDropContainer">
+                    <div className="file-inner-container" onDrop={handleOnDrop} onDragOver={handleDragOver}>
+                        <div className="folderContainer">
+                            {uploadedImage ? (
+                                <div className="imgSecondStyles">
+                                    <div className="courseUploadImgContainer">
+                                        <img src={uploadedImage} alt="Uploaded" />
+                                    </div>
                                 </div>
+                            ) : (
+                                <div className="UploadImgInCourse" >
+                                    <div className="UploadToCloudCont">
+                                        <img
+                                            src="https://img.icons8.com/ios/50/upload-to-cloud--v1.png"
+                                            alt="upload to cloud"
+                                            className="upload-logo"
+                                        />
+                                        <p className="UploadToCloudContPara">
+                                            Drag course logo here
+                                        </p>
+                                    </div>
+                                    <p className="UploadToCloudContPara">or</p>
+                                </div>
+                            )}
+
+                            <div className="dragButtonContainerCourse">
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    style={{ display: "none" }}
+                                    onChange={(e) => handleFileChange(e)}
+                                />
+                                <button type='button' onClick={onClickUpload} className="browse-btn">
+                                    <span className="material-symbols-outlined">
+                                        add
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>
-                    <div className="inputcontainer">
+                </div>
+                <div className="inputcontainer">
                     <div className='home_post_label_input_card'>
                         <label htmlFor='name' className='home_post_name_label '>Name of Dish</label>
                         <input name='nameInput' id='name' type='text' placeholder='Name' className='home_post_name_input' onChange={handleChange} />
@@ -279,11 +280,11 @@ const PostForm = ({ postType }) => {
                     <div className='home_post_submit_button_card'>
                         <button className='home_post_submit_button' type='submit'>Submit</button>
                     </div>
-                    </div>
-                    
+                </div>
 
-                    
-                
+
+
+
             </form>
         </div>
     );
