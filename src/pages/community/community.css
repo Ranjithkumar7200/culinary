@@ -12,7 +12,14 @@
   border-top-right-radius: 10px !important;
   border-top-left-radius: 10px !important;
 
+  border: 1px solid red;
 
+  /* display: flex; */
+  /* justify-content: center; */
+  /* border: 1px solid rgb(239, 244, 239); */
+  /* padding: 10px; */
+  /* padding-bottom: 30px !important; */
+  overflow: auto;
 
 }
 
@@ -194,6 +201,7 @@
   padding: 10px;
   border-top-right-radius: 10px !important;
   border-top-left-radius: 10px !important;
+
 }
 
 .CommunityHeader {
@@ -224,6 +232,7 @@
   flex-direction: column;
   position: relative;
   padding-bottom: 25px;
+  overflow: auto;
 
 
 }
@@ -344,15 +353,16 @@
 }
 
 @media (max-width: 768px) {
-  .communityInnerContainer{
+  .communityInnerContainer {
     margin: 0px;
   }
 
-  .communityContainer{
-    margin-top:40px;
- 
+  .communityContainer {
+    margin-top: 40px;
+
     padding: 0px;
   }
+
   .cart-container {
     bottom: 50px;
     width: calc(100% - 40px);

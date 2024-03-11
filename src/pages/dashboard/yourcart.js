@@ -87,8 +87,8 @@ function YourCart() {
   }, [getCartDetails]);
 
   return (
-    <Container fluid style={{ overflow: "" }}>
-      <Row className="d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-row flex-sm-column justify-content-between align-items-start">
+    <Container  fluid style={{ overflow: "" }}>
+      <Row className=" d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-row flex-sm-column justify-content-between align-items-start">
         <Col style={{ overflowY: "scroll" }}>
           <Col lg={2} xxl={2} xl={2} md={12} xs={12}>
             <Navbar />
@@ -96,7 +96,7 @@ function YourCart() {
         </Col>
 
         <Col
-          className="my-2"
+          className="my-2 "
           lg={6}
           xxl={6}
           xl={6}
@@ -104,9 +104,10 @@ function YourCart() {
           xs={12}
           sm={12}
           style={{ maxHeight: "100vh", overflowY: "scroll" }}
+ 
         >
-          <Col className="boxShadow rounded p-xxl-5 p-xl-5 p-lg-5 p-md-2 p-sm-2 p-4 mx-2">
-            <Col>
+          <Col className="  boxShadow rounded p-xxl-5 p-xl-5 p-lg-5 p-md-2 p-sm-2 p-4 mx-2">
+            <Col >
               <h5>Select delivery Address</h5>
               <p>You have a saved address in this location</p>
             </Col>

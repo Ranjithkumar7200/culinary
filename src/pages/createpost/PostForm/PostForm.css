@@ -104,6 +104,8 @@
   border-style: solid;
   border-width: 2px;
   border-radius: 5px;
+
+
 }
 
 .home_post_submit_button_card {
@@ -273,7 +275,7 @@
   
 
   .home_post_text_area {
-    width: 100%;
+    width:100% !important;
   }
   .multiselect-container {
     width: 100% !important;

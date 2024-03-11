@@ -331,7 +331,14 @@
   color: #6c6c6c;
 }
 
+.conatienrCart{
+  border: 1px solid red !important;
+}
+
 @media (max-width: 767px) {
+  .conatienrCart{
+    border: 1px solid red !important;
+  }
   .userHomeContainer {
     display: none;
   }

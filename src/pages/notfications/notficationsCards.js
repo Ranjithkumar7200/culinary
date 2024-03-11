@@ -69,8 +69,8 @@ function NotificationsCards() {
                                         <p>{remainingText}</p>
                                     </div>
 
-                                    {notificationData.isView ? (
-                                        null
+                                    {notificationData.isView ==="true" ? (
+                                      null
                                     ) : (
 
                                         <div className="HeadButtons">
