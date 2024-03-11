@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { FaUserPlus } from "react-icons/fa";
 import prabhas from "../../imges/praba.jpeg";
-import CreateCommunityForm from "./createcommunity";
+
+import CreateCommunityForm from "./search";
+
 import { useGetCommunityQuery } from "../../redux/api/CommunityApi";
 import TokenService from "../../services/TokenServices";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
+
 import { adminPanalApiServices } from "../../services/allApiServeces";
+
+import "./community.css"
 
 function GroupCommunity() {
 
@@ -85,22 +90,21 @@ function GroupCommunity() {
 
   return (
     <>
-      <div className="container">
+      <div className="communityInnerContainer">
         {!showCreateForm ? (
           <>
             <FadeIn>
-              <div className="card">
+          
                 <div className="card-header">
                   {communityDetails && communityDetails.length > 0 && (
-                    <h5>{communityDetails[0].communityName}</h5>
+                    <h5 className="CommunityHeader">{communityDetails[0].communityName}</h5>
                   )}
-                  <h5>
+                 
                     <FaUserPlus
-                      className="pointer"
-                      color="white"
+                      className="communityAddIcon"
                       onClick={showCreateFormHandler}
                     />
-                  </h5>
+       
                 </div>
                 <div className="card-body">
 
@@ -149,7 +153,7 @@ function GroupCommunity() {
 
                     ))}
                 </div>
-              </div>
+           
             </FadeIn>
           </>
         ) : (

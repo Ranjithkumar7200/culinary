@@ -19,7 +19,7 @@
   height: 100%;
   width: 50%;
   /* border: 2px solid blue; */
-  /* display: flex; */
+  display: flex;
   /* flex-direction: column; */
   flex-wrap: wrap;
   justify-content: center;
@@ -295,6 +295,7 @@
   /* border: 2px solid red; */
   margin: 1px 8px;
   padding: 3px;
+  cursor: pointer;
 }
 
 .profile-link:hover {

@@ -72,6 +72,13 @@ export class adminPanalApiServices {
         return axios.get(userUrl);
     };
 
+    static updateNotification = (notifyId) => {
+
+        const userUrl = ` https://culinary-ijbc.vercel.app/api/updatenotifications?notification_id=${notifyId}`;
+
+        return axios.put(userUrl)
+    }
+
 
 
     static addCartDetails = (BodyData) => {

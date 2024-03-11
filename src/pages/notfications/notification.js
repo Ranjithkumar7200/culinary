@@ -26,68 +26,73 @@ import "./notification.css"
 import "../dashboard/common.css"
 import FadeIn from 'react-fade-in/lib/FadeIn';
 
-const CreatePost = () => {
+const Notification = () => {
   const id = TokenService.getUserIdFromToken();
   const navigate = useNavigate();
 
   const { data: posts, isLoading } = useGetAllPostsQuery(id);
   const { data: user } = useGetAllUserByIdQuery(id);
-    const [notifications, setNotifications] = useState([]);
-    const [postsData, setPostsData] = useState([]);
-    const [userData, setUserData] = useState([]);
-    useEffect(() => {
-      if (posts && posts.data) {
-        function shuffleArray(array) {
-          // Make a copy of the array
-          const newArray = array.slice();
-          // Shuffle the copied array
-          for (let i = newArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-          }
-          return newArray;
+  const [notifications, setNotifications] = useState([]);
+  const [postsData, setPostsData] = useState([]);
+  const [userData, setUserData] = useState([]);
+  useEffect(() => {
+    if (posts && posts.data) {
+      function shuffleArray(array) {
+        // Make a copy of the array
+        const newArray = array.slice();
+        // Shuffle the copied array
+        for (let i = newArray.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
         }
-  
-        // Create a shuffled copy of posts.data
-        let reArrangedArray = shuffleArray(posts.data);
-  
-        // Set the shuffled array to the state
-        setPostsData(reArrangedArray);
-        console.log(posts.data, "from");
-        console.log(userData);
+        return newArray;
       }
-    }, [posts]);
-  
-  
-  
-    useEffect(() => {
-      if (user && user.data) {
-  
-  
-        setUserData(user.data[0]);
-      }
-    }, [posts, user]);
-  
-  
-  
-  
-   
 
-    return (
-        <div className='homeContiner'>
-            <Navbar />
-            <div className='homeRightContainer'>
-                <div class="homePOstFeedContainer  communityContainer ">
-                
-                <div className="header">
-                <h1 className="head">Notifications</h1></div>
+      // Create a shuffled copy of posts.data
+      let reArrangedArray = shuffleArray(posts.data);
 
-                     <NotificationsCards
-                       
-                    />
+      // Set the shuffled array to the state
+      setPostsData(reArrangedArray);
+      console.log(posts.data, "from");
+      console.log(userData);
+    }
+  }, [posts]);
 
 
-                </div>
+
+  useEffect(() => {
+    if (user && user.data) {
+
+
+      setUserData(user.data[0]);
+    }
+  }, [posts, user]);
+
+
+
+
+
+
+  return (
+    <div className='homeContiner'>
+      <Navbar />
+      <div className='homeRightContainer'>
+
+        <div class="notificationContainer">
+          <div className='notificationInnerContainer'>
+            <div className="notificationHeader">
+              <h5>Notifications</h5>
+            </div>
+
+            <NotificationsCards
+
+            />
+
+
+          </div>
+
+        </div>
+
 
         <div className="userHomeContainer">
           <div className="userSuggestedContainer">
@@ -122,8 +127,8 @@ const CreatePost = () => {
 
                 post.postedBy !== userData._id && (
 
-                <FadeIn className="userContainerInSuggestion" key={post._id}>
-                    
+                  <FadeIn className="userContainerInSuggestion" key={post._id}>
+
                     <div className="userSuggestionInnerLeftContainer">
                       <div className="userSuggetionContiainerInSuggetion">
                         <img
@@ -144,16 +149,16 @@ const CreatePost = () => {
                         Invite
                       </a>
                     </div>
-                  
-                </FadeIn>
-                  )
+
+                  </FadeIn>
+                )
 
               ))}
           </div>
         </div>
-            </div>
-        </div>
-    );
+      </div>
+    </div>
+  );
 };
 
-export default CreatePost;
+export default Notification;

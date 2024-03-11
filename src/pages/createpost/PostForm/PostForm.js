@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import './PostForm.css';
+
 import dietTypes from '../../../constants/dietTypes';
 import postTypes from '../../../constants/postTypes';
 import { adminPanalApiServices } from '../../../services/allApiServeces';
@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../../loader/Loader';
 
 import 'react-toastify/dist/ReactToastify.css';
+
+import './PostForm.css';
 
 const PostForm = ({ postType }) => {
 
