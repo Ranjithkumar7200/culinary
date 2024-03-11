@@ -30,7 +30,7 @@ const Home = () => {
   const { data: posts, isLoading } = useGetAllPostsQuery(id);
 
   const { data: user } = useGetAllUserByIdQuery(id);
-  
+
   const [getConnectionMutation] = useGetConnectionMutation();
   const [postId, setPostId] = useState("");
   const [EditLike] = useEditLikeMutation();
@@ -82,21 +82,21 @@ const Home = () => {
   useEffect(() => {
 
     const uniquePosts = new Set();
-  
+
     postsData.forEach(person => {
       uniquePosts.add(person);
     });
 
     const uniquePostsArray = Array.from(uniquePosts);
-  
+
 
     const selected = uniquePostsArray.slice(0, Math.min(15, uniquePostsArray.length));
-    console.log(selected ,"sel")
-  
+    console.log(selected, "sel")
+
     setSelectedPosts(selected);
 
-  }, [postsData]); 
-  
+  }, [postsData]);
+
 
 
 
@@ -224,36 +224,36 @@ const Home = () => {
 
   }
 
-const handleInviteSide = async(particularPostData) =>{
-  const updatedPostsData = selectedPosts.map((post) => {
-    if (post._id === particularPostData._id) {
-      return {
-        ...post,
-        connection: {
-          request_type: "Received"
-        }
+  const handleInviteSide = async (particularPostData) => {
+    const updatedPostsData = selectedPosts.map((post) => {
+      if (post._id === particularPostData._id) {
+        return {
+          ...post,
+          connection: {
+            request_type: "Received"
+          }
 
-      };
+        };
+      }
+      return post;
+    });
+
+    setSelectedPosts(updatedPostsData);
+
+    console.log(particularPostData)
+    // postedBy
+    // 
+
+    let bodyData = {
+      sentBy: userData._id,
+      sentTo: particularPostData.postedBy,
+      type: "Sent",
+      name: userData.name
     }
-    return post;
-  });
 
-  setSelectedPosts(updatedPostsData);
+    await adminPanalApiServices.userInvite(bodyData)
 
-  console.log(particularPostData)
-  // postedBy
-  // 
-
-  let bodyData = {
-    sentBy: userData._id,
-    sentTo: particularPostData.postedBy,
-    type: "Sent",
-    name: userData.name
   }
-
-  await adminPanalApiServices.userInvite(bodyData)
-
-}
 
 
 
@@ -387,7 +387,8 @@ const handleInviteSide = async(particularPostData) =>{
                               className="invite-btn"
                             //  onClick={() => handleInvite(post)}
                             >
-                              {post.connection.request_type === "Received" || "Sent" ? "Pending" : "Member"}
+                              {post.connection.request_type === "Following" ? "Member" : "Pending"}
+
 
                             </button>
                           ) : (

@@ -8,6 +8,8 @@ import { useGetCommunityQuery } from "../../redux/api/CommunityApi";
 import TokenService from "../../services/TokenServices";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
+import { useNavigate } from "react-router-dom";
+
 
 import { adminPanalApiServices } from "../../services/allApiServeces";
 
@@ -22,6 +24,8 @@ function GroupCommunity() {
 
   const [cartItems, setCartItems] = useState([]);
   const [showCart, setShowCart] = useState(false); // State to control visibility of the cart container
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -88,6 +92,13 @@ function GroupCommunity() {
 
   };
 
+
+  const handlNavigate = () =>{
+
+    
+    navigate("/cart")
+  }
+
   return (
     <>
       <div className="communityInnerContainer">
@@ -111,7 +122,7 @@ function GroupCommunity() {
                   {showCart && (
                     <div className="cart-container">
                       <p>{cartItems.length} Item Added</p>
-                      <h5>View Cart</h5>
+                      <h5 onClick={handlNavigate}>View Cart</h5>
                     </div>
                   )}
 

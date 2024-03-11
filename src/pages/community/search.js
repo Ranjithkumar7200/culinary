@@ -49,6 +49,7 @@ const Home = ({ onBack }) => {
   const { data: filter } = useFilterSearchQuery({ userName: nameFilter, location: locationFilter, foodType: foodStyleFilter });
 
   const navigate = useNavigate();
+  
   const [formData, setFormData] = useState({
     communityName: "",
     location: "location1", // default value for location
