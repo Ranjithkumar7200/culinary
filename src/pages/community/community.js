@@ -72,7 +72,7 @@ const Community = () => {
 
       setCommunityDetails(communityDetails.data.communityDetails)
 
-      // console.log(communityDetails.data.communityDetails)
+      console.log(communityDetails.data.communityDetails)
 
       setIsLoader(false)
 
@@ -213,13 +213,7 @@ const Community = () => {
             )}
 
 
-            {/* {showGruop ? (
-    <GroupCommunity  />
-  ) : (
-    <div className="createCommunityButtonContainer">
-      <button onClick={handleShow}>Create Community</button>
-    </div>
-  )} */}
+           
 
           </div>
 

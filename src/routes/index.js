@@ -88,7 +88,7 @@ export default function Router() {
           path: "create",
           element: (
             <AuthGuard>
-              <Create />
+              <CreatePost />
             </AuthGuard>
           ),
           children: [
@@ -164,7 +164,7 @@ const DashboardLayout = Loadable(lazy(() => import("../pages/dashboard/home")));
 
 const Community = Loadable(lazy(() => import("../pages/community/community")));
 
-const Create = Loadable(lazy(() => import("../pages/createpost/create")));
+const CreatePost = Loadable(lazy(() => import("../pages/createpost/create")));
 
 // const Profile = Loadable(lazy(() => import("../pages/dashboard/profile")));
 

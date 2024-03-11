@@ -19,13 +19,18 @@ import { toast } from "react-toastify";
 import { adminPanalApiServices } from "../../services/allApiServeces"
 import FadeIn from "react-fade-in/lib/FadeIn";
 
+
+
+
 const Home = () => {
   const [showMore, setShowMore] = useState(false);
 
   const id = TokenService.getUserIdFromToken();
 
   const { data: posts, isLoading } = useGetAllPostsQuery(id);
+
   const { data: user } = useGetAllUserByIdQuery(id);
+  
   const [getConnectionMutation] = useGetConnectionMutation();
   const [postId, setPostId] = useState("");
   const [EditLike] = useEditLikeMutation();
@@ -35,6 +40,8 @@ const Home = () => {
   const [userData, setUserData] = useState([]);
 
   const [moreIdlist, setMoreIdList] = useState([])
+
+  const [selectedPosts, setSelectedPosts] = useState([]);
 
   const navigate = useNavigate();
 
@@ -70,6 +77,26 @@ const Home = () => {
       setUserData(user.data[0]);
     }
   }, [posts, user]);
+
+
+  useEffect(() => {
+
+    const uniquePosts = new Set();
+  
+    postsData.forEach(person => {
+      uniquePosts.add(person);
+    });
+
+    const uniquePostsArray = Array.from(uniquePosts);
+  
+
+    const selected = uniquePostsArray.slice(0, Math.min(15, uniquePostsArray.length));
+    console.log(selected ,"sel")
+  
+    setSelectedPosts(selected);
+
+  }, [postsData]); 
+  
 
 
 
@@ -137,11 +164,6 @@ const Home = () => {
 
   const handleLike = async (particularPostData) => {
 
-
-
-
-
-
     console.log(particularPostData)
     const updatedPostsData = postsData.map((post) => {
       if (post._id === particularPostData._id) {
@@ -201,6 +223,38 @@ const Home = () => {
     await adminPanalApiServices.userInvite(bodyData)
 
   }
+
+const handleInviteSide = async(particularPostData) =>{
+  const updatedPostsData = selectedPosts.map((post) => {
+    if (post._id === particularPostData._id) {
+      return {
+        ...post,
+        connection: {
+          request_type: "Received"
+        }
+
+      };
+    }
+    return post;
+  });
+
+  setSelectedPosts(updatedPostsData);
+
+  console.log(particularPostData)
+  // postedBy
+  // 
+
+  let bodyData = {
+    sentBy: userData._id,
+    sentTo: particularPostData.postedBy,
+    type: "Sent",
+    name: userData.name
+  }
+
+  await adminPanalApiServices.userInvite(bodyData)
+
+}
+
 
 
   const handleSave = async (particularPostData) => {
@@ -268,7 +322,7 @@ const Home = () => {
                 postsData.map((post) => (
                   post.attachments.length > 0 && (
                     <FadeIn key={post._id} className="userPostCard">
-                      
+
                       <div className="userContainerHead">
                         <div className="userImgNameContainer">
 
@@ -389,7 +443,7 @@ const Home = () => {
                           {/* )} */}
                         </p>
                       </div>
-                   
+
                     </FadeIn>
                   )
                 ))}
@@ -424,13 +478,13 @@ const Home = () => {
               <h5>Suggested for you See All</h5>
               <p className="seeAllUserSuggestion">See all</p>
             </div>
-            {postsData &&
-              postsData.map((post) => (
+            {selectedPosts &&
+              selectedPosts.map((post) => (
 
                 post.postedBy !== userData._id && (
 
-                <FadeIn className="userContainerInSuggestion" key={post._id}>
-                    
+                  <FadeIn className="userContainerInSuggestion" key={post._id}>
+
                     <div className="userSuggestionInnerLeftContainer">
                       <div className="userSuggetionContiainerInSuggetion">
                         <img
@@ -447,13 +501,23 @@ const Home = () => {
                       </div>
                     </div>
                     <div>
-                      <a href="profile_link" className="profile-link">
-                        Invite
-                      </a>
+
+                      {post.connection ? (
+                        <p className="profile-link" >
+                          {post.connection.request_type === "Received" || "Sent" ? "Pending" : "Member"}
+                        </p>
+                      ) : (
+                        <p href="/home" className="profile-link" onClick={() => handleInviteSide(post)}>
+                          Invite
+                        </p>
+                      )
+                      }
+
+
                     </div>
-                  
-                </FadeIn>
-                  )
+
+                  </FadeIn>
+                )
 
               ))}
           </div>

@@ -1,9 +1,55 @@
+.notificationContainer {
+
+  /* border: 1px solid red; */
+  height: 100%;
+  width: 50%;
+  /* border: 2px solid blue; */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /* justify-content: center;
+  align-items: center; */
+  padding: 5px;
+}
+
+.notificationInnerContainer {
+  border: 1px solid rgb(154, 149, 149);
+  height: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.notificationHeader {
+  height:auto;
+  width: 100%;
+  /* border: 1px solid red; */
+  padding: 10px;
+  background-color: yellow;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+}
+
+.notificationHeader h5 {
+  height: auto;
+  /* border: 1px solid red; */
+  margin: 0px;
+  padding: 0px;
+  font-size: 25px;
+  font-family: sans-serif;
+  text-transform: capitalize;
+  font-weight: 600;
+  /* border-radius: 10px; */
+
+}
+
+
 .cardHead {
   /* display: flex; */
 
   align-items: center;
   width: 100%;
-padding: 10px;
+  padding: 10px;
   /* border: red solid  3px; */
 }
 
@@ -107,7 +153,7 @@ padding: 10px;
 
 .name {
   font-family: Arial, sans-serif;
-  font-size: 10px;
+  font-size: 17px;
   color: #150c0c;
   width: 30%;
   margin-bottom: 0;
@@ -117,6 +163,21 @@ padding: 10px;
   font-weight: bold;
   /* border: 1px solid red; */
 }
+.notificationMsgContainer{
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+
+}
+.notificationMsgContainer p{
+ padding: 0px;
+ margin: 0px;
+  
+}
+
+
 .preferencetype {
   font-size: 14px !important;
 }
@@ -138,46 +199,48 @@ padding: 10px;
   font-size: 10px;
   color: #150c0c;
 }
-@media (min-width: 768px) {
-  .cardbody {
-    /* width: 500px; */
-    width: 95%;
 
-    /* border: 1px solid red; */
-    padding-left: 20px;
-    padding-right: 20px;
-    padding: 10px;
+.nooNotficationContainer{
+  /* border: 1px solid red; */
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nooNotficationContainer p{
+  font-weight: bold;
+  
+}
+
+
+@media (max-width: 767px) {
+  .notificationContainer{
+    width: 100%;
   }
-  .name {
-    font-size: 17px !important;
+  .preferencetype {
+    font-size: 8px !important;
   }
+
   .logo {
-    width: 30%;
+    width: 20%;
   }
+
+  .type {
+    display: none;
+  }
+
   .type1 {
     display: none;
   }
 }
-@media (max-width: 767px) {
-  .preferencetype {
-    font-size: 8px !important;
-  }
-  .logo {
-    width: 20%;
-  }
-  .type {
-    display: none;
-  }
-  .type1{
-    display: none;
-      }
-}
+
 .logo {
   /* border:  #f0eff6 solid 1px; */
   /* display: flex; */
   justify-content: center;
   align-items: center;
 }
+
 .leftcontainer {
   width: 10px;
   height: 90%;
@@ -186,6 +249,7 @@ padding: 10px;
   transform: translateY(-50%);
   left: 0;
 }
+
 .cardbod {
   margin: 5px;
   width: 98%;

@@ -246,7 +246,7 @@
   .home_post_form_main_container {
     padding-left: 0px;
     padding-right: 0px;
-    border: #007bff solid 1px;
+    /* border: #007bff solid 1px; */
   }
 
   .file-inner-container {

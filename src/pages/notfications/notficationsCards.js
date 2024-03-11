@@ -13,13 +13,13 @@ function NotificationsCards() {
     const colors = ["red", "orange", "green"];
 
     // Define acceptUser function inside the component
-   
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const userDetailsResponse = await adminPanalApiServices.getnotification();
-                setSendedNotifications(userDetailsResponse.data.data); 
+                setSendedNotifications(userDetailsResponse.data.data);
                 console.log("User details:", userDetailsResponse.data.data);
             } catch (error) {
                 console.error("Error fetching user profile:", error);
@@ -28,11 +28,16 @@ function NotificationsCards() {
         fetchData();
     }, []);
 
-    const acceptRequest = async (userId, touserId, type, userName) => {
+    const acceptRequest = async (notificationData, touserId, type, userName) => {
         try {
-            const response = await adminPanalApiServices.acceptUser( touserId, type, userName); // Use the acceptUser method from adminPanalApiServices
+            const response = await adminPanalApiServices.acceptUser(touserId, type, userName); // Use the acceptUser method from adminPanalApiServices
             console.log("Accept request response:", response);
-            // Handle success or update UI as needed
+
+            await adminPanalApiServices.updateNotification(notificationData._id)
+
+            const userDetailsResponse = await adminPanalApiServices.getnotification();
+            setSendedNotifications(userDetailsResponse.data.data);
+ 
         } catch (error) {
             console.error("Error accepting request:", error);
             // Handle error or show error message to user
@@ -49,31 +54,49 @@ function NotificationsCards() {
                     } else {
                         messageWords = notificationData.msg.split(' ');
                     }
-                    const username= messageWords;
-                    const remainingText = messageWords.slice(1).join(' '); 
+                    const username = messageWords;
+                    const remainingText = messageWords.slice(1).join(' ');
                     return (
                         <Card key={index} className="cardbod">
-                            <Card.Body className="cardbody ">
-                                <div className="leftcontainer" style={{ backgroundColor: colors[index % colors.length]}}> </div>
-                                <div className="logo"><FiSend /></div>
+                            <Card.Body className="cardbody " style={{ borderLeft: `5px solid ${colors[index % colors.length]}` }}>
+
                                 <div className="cardHead">
                                     <div className="userName">
-                                        <span className="name">{messageWords[0]}</span> 
-                                        <span className="preferencetype">{remainingText}</span> 
+                                        <h5 >{messageWords[0]}</h5>
+                                        {/* <span className="preferencetype">{remainingText}</span>  */}
                                     </div>
-                                    <p className="type"> Request Sended</p>
-                                    <div className="HeadButtons">
-                                        <p className="type1"> Request Sended</p>
-                                        <Button className="buttonhead Accept" onClick={() => acceptRequest(notificationData.user_id, notificationData.sent_by_user_id ,"Accept",username)}>Accept</Button>
-                                        <Button className="buttonhead">Ignore</Button>
+                                    <div className='notificationMsgContainer'>
+                                        <p>{remainingText}</p>
                                     </div>
+
+                                    {notificationData.isView ? (
+                                        null
+                                    ) : (
+
+                                        <div className="HeadButtons">
+                                            {/* <p className="type1"> Request Sended</p> */}
+                                            <Button className="buttonhead Accept" onClick={() => acceptRequest(notificationData, notificationData.sent_by_user_id, "Accept", username)}>Accept</Button>
+                                            <Button className="buttonhead" onClick={() => acceptRequest(notificationData, notificationData.sent_by_user_id, "Ignore", username)}>Ignore</Button>
+                                        </div>
+
+
+                                    )
+
+
+                                    }
+
+
                                 </div>
                             </Card.Body>
                         </Card>
                     );
                 })
             ) : (
-                <p>No notifications</p>
+                <div className='nooNotficationContainer'>
+
+
+                    <p>No notifications</p>
+                </div>
             )}
         </div>
     );
