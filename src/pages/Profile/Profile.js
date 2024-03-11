@@ -37,6 +37,8 @@ const Profile = ({ filteredPostsLength }) => {
 
   const [community, setcommunityData] = useState([]);
 
+  // const [savedPost , setSavedPost] = useState([])
+
   const [savePost, setSavePost] = useState([]);
   const history = useNavigate();
 
@@ -569,7 +571,7 @@ const Profile = ({ filteredPostsLength }) => {
 
               {selectedTab === "posts" && <Posts postInfo={postsData} />}
               {selectedTab === "community" && <Posts postInfo={community} />}
-              {selectedTab === "saved" && <Posts postInfo={community} />}
+              {selectedTab === "saved" && <Posts postInfo={savePost} />}
             </div>
           </div>
         </div>
