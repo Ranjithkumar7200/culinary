@@ -87,7 +87,7 @@ function YourCart() {
   }, [getCartDetails]);
 
   return (
-    <Container  fluid style={{ overflow: "" }}>
+    <Container fluid className="mt-mobile">
       <Row className=" d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-row flex-sm-column justify-content-between align-items-start">
         <Col style={{ overflowY: "scroll" }}>
           <Col lg={2} xxl={2} xl={2} md={12} xs={12}>
