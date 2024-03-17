@@ -437,7 +437,7 @@ const Register = () => {
                             onBlur={handleBlur}
                           >
                             <option value="" disabled selected>
-                              ----select Location----
+                              ----select Preference----
                             </option>
                             <option value="yellow">Housewife</option>
                             <option value="red">Single</option>

@@ -451,6 +451,7 @@ const Home = () => {
             </>
           )}
         </div>
+        
         <div className="userHomeContainer">
           <div className="userSuggestedContainer">
             <div className="userContainerInSuggestion">
@@ -523,6 +524,7 @@ const Home = () => {
               ))}
           </div>
         </div>
+        
       </div>
     </div >
   );
