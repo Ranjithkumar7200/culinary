@@ -571,7 +571,8 @@ const Profile = ({ filteredPostsLength }) => {
 
               {selectedTab === "posts" && <Posts postInfo={postsData} />}
               {selectedTab === "community" && <Posts postInfo={community} />}
-              {selectedTab === "saved" && <Posts postInfo={savePost} />}
+              {selectedTab === "saved" && <Posts postInfo={savePost}></Posts>}
+
             </div>
           </div>
         </div>

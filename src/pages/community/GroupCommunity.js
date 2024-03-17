@@ -93,9 +93,9 @@ function GroupCommunity() {
   };
 
 
-  const handlNavigate = () =>{
+  const handlNavigate = () => {
 
-    
+
     navigate("/cart")
   }
 
@@ -105,66 +105,73 @@ function GroupCommunity() {
         {!showCreateForm ? (
           <>
             <FadeIn>
-          
-                <div className="card-header">
-                  {communityDetails && communityDetails.length > 0 && (
-                    <h5 className="CommunityHeader">{communityDetails[0].communityName}</h5>
-                  )}
-                 
-                    <FaUserPlus
-                      className="communityAddIcon"
-                      onClick={showCreateFormHandler}
-                    />
-       
-                </div>
-                <div className="card-body">
 
-                  {showCart && (
-                    <div className="cart-container">
-                      <p>{cartItems.length} Item Added</p>
-                      <h5 onClick={handlNavigate}>View Cart</h5>
-                    </div>
-                  )}
+              <div className="card-header">
+                {communityDetails && communityDetails.length > 0 && (
+                  <h5 className="CommunityHeader">{communityDetails[0].communityName}</h5>
+                )}
 
-                  {communityPosts &&
-                    communityPosts.map((postData) => (
+                <FaUserPlus
+                  className="communityAddIcon"
+                  onClick={showCreateFormHandler}
+                />
 
-                      <div key={postData._id} className="message-card">
-                        <div className="message-header">
-                          <img
-                            src={postData.image}
-                            alt="Profile"
-                            className="profile-pic"
-                          />
-                          <div className="message-info">
-                            <h6>{postData.name}</h6>
-                            {/* <p>{formattedTime}</p> */}
-                            <p className="location">Location: {postData.location}</p>
-                          </div>
-                        </div>
+              </div>
+              <div className="card-body">
+
+                {showCart && (
+                  <div className="cart-container">
+                    <p>{cartItems.length} Item Added</p>
+                    <h5 onClick={handlNavigate}>View Cart</h5>
+                  </div>
+                )}
+
+                {communityPosts &&
+                  communityPosts.map((postData) => (
+
+                    <div key={postData._id} className="message-card">
+                      <div className="message-header">
                         <img
-                          src={postData.attachments[0].img_url}
-                          alt="Message"
-                          className="message-image"
+                          src={postData.image}
+                          alt="Profile"
+                          className="profile-pic"
                         />
-                        <p className="dish-name">{postData.dishName}</p>
-                        <p className="description">Price: &nbsp;{postData.price ? ` ${postData.price} Rs` : 'Free'}</p>
-                        <p className="description">Description: &nbsp;{postData.descr}</p>
-                        <div className="buttonContainerCommunity">
-                          <button
-                            className="add-cart-button"
-                            // disabled={disableButton}
-                            onClick={() => addToCart(postData)} // Call addToCart function onClick
-                          >
-                            Add to Cart
-                          </button>
+                        <div className="message-info">
+                          <h6>{postData.name}</h6>
+                          {/* <p>{formattedTime}</p> */}
+                          <p className="location">Location: {postData.location}</p>
                         </div>
-
+                      </div>
+                      <img
+                        src={postData.attachments[0].img_url}
+                        alt="Message"
+                        className="message-image"
+                      />
+                      <p className="dish-name">{postData.dishName}</p>
+                      <p className="description">Price: &nbsp;{postData.price ? ` ${postData.price} Rs` : 'Free'}</p>
+                      <p className="description">Description: &nbsp;{postData.descr}</p>
+                      <div className="buttonContainerCommunity">
+                        <button
+                          className="add-cart-button"
+                          // disabled={disableButton}
+                          onClick={() => addToCart(postData)} // Call addToCart function onClick
+                        >
+                          Add to Cart
+                        </button>
                       </div>
 
-                    ))}
-                </div>
-           
+                    </div>
+
+                  ))}
+
+
+              </div>
+              {!showCart && <div className="inputElmntInCommunity">
+                <input />
+
+              </div>}
+
+
             </FadeIn>
           </>
         ) : (

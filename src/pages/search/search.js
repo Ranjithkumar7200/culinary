@@ -52,6 +52,10 @@ const Home = () => {
     location: "location1", // default value for location
     type: "type1", // default value for type
   });
+
+  const [selectedPosts, setSelectedPosts] = useState([]);
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -78,10 +82,28 @@ const Home = () => {
 
       // Set the shuffled array to the state
       setPostsData(reArrangedArray);
-      console.log(posts.data, "from");
-      console.log(userData);
+      // console.log(posts.data, "from");
+      // console.log(userData);
     }
   }, [posts]);
+
+  useEffect(() => {
+
+    const uniquePosts = new Set();
+
+    postsData.forEach(person => {
+      uniquePosts.add(person);
+    });
+
+    const uniquePostsArray = Array.from(uniquePosts);
+
+
+    const selected = uniquePostsArray.slice(0, Math.min(7, uniquePostsArray.length));
+    // console.log(selected, "sel")
+
+    setSelectedPosts(selected);
+
+  }, [postsData]);
 
   useEffect(() => {
     if (user && user.data) {
@@ -104,7 +126,7 @@ const Home = () => {
         userName: userName,
       });
       if (response?.data) {
-        console.log(response?.data?.message);
+        // console.log(response?.data?.message);
         toast.success(response?.data?.message, { autoClose: 1000 });
       } else {
         toast.error(response?.error?.data?.message, { autoClose: 1000 });
@@ -157,7 +179,7 @@ const Home = () => {
 
     setPostsData(updatedPostsData);
 
-    console.log(particularPostData);
+    // console.log(particularPostData);
     // postedBy
     //
 
@@ -183,7 +205,7 @@ const Home = () => {
     });
 
     setPostsData(updatedPostsData);
-    console.log(particularPostData);
+    // console.log(particularPostData);
 
     if (particularPostData.isSaved) {
       let bodyData = {
@@ -203,7 +225,7 @@ const Home = () => {
   };
 
   const toggleShowMore = (particularPostData) => {
-    console.log("how more");
+    // console.log("how more");
     // setShowMore(!showMore);
     // setMoreIdList(prv=>[...,particularPostData._id])
     setMoreIdList((prev) => [...prev, particularPostData._id]);
@@ -232,13 +254,13 @@ const Home = () => {
   // Filtered posts based on user input
   const filteredPosts =
     filterData && filterData.length > 0 ? filterData : postsData;
-  console.log("====================================");
-  console.log(filteredPosts);
-  console.log("====================================");
+  // console.log("====================================");
+  // console.log(filteredPosts);
+  // console.log("====================================");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
+    // console.log("Form Data:", formData);
   };
 
   const handleKeyPress = (e) => {
@@ -465,8 +487,8 @@ const Home = () => {
               <h5>Suggested for you See All</h5>
               <p className="seeAllUserSuggestion">See all</p>
             </div>
-            {postsData &&
-              postsData.map(
+            {selectedPosts &&
+              selectedPosts.map(
                 (post) =>
                   post.postedBy !== userData._id && (
                     <FadeIn

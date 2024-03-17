@@ -90,7 +90,7 @@ const Home = () => {
     const uniquePostsArray = Array.from(uniquePosts);
 
 
-    const selected = uniquePostsArray.slice(0, Math.min(15, uniquePostsArray.length));
+    const selected = uniquePostsArray.slice(0, Math.min(7, uniquePostsArray.length));
     console.log(selected, "sel")
 
     setSelectedPosts(selected);

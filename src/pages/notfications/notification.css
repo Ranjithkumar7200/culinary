@@ -20,7 +20,7 @@
 }
 
 .notificationHeader {
-  height:auto;
+  height: auto;
   width: 100%;
   /* border: 1px solid red; */
   padding: 10px;
@@ -114,9 +114,9 @@
 
 .cardbody {
   padding: 0;
-  /* border: red solid  3px; */
+  /* border: 1px solid red !important; */
   width: 100%;
-  /* padding: 10px; */
+  height: auto;
   border-radius: 7px;
   margin: 10px;
   display: flex;
@@ -126,6 +126,13 @@
   justify-content: space-between;
   box-shadow: rgba(175, 172, 172, 0.15) 1.95px 1.95px 2.6px;
   width: 95%;
+}
+
+.cardbod {
+  margin: 5px;
+  width: 98%;
+  border: 1px solid black;
+  height: 130px;
 }
 
 .card {
@@ -163,18 +170,20 @@
   font-weight: bold;
   /* border: 1px solid red; */
 }
-.notificationMsgContainer{
+
+.notificationMsgContainer {
   /* border: 1px solid red; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  
+
 
 }
-.notificationMsgContainer p{
- padding: 0px;
- margin: 0px;
-  
+
+.notificationMsgContainer p {
+  padding: 0px;
+  margin: 0px;
+
 }
 
 
@@ -200,23 +209,40 @@
   color: #150c0c;
 }
 
-.nooNotficationContainer{
+.nooNotficationContainer {
   /* border: 1px solid red; */
   height: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.nooNotficationContainer p{
+
+.nooNotficationContainer p {
   font-weight: bold;
-  
+
 }
 
 
 @media (max-width: 767px) {
-  .notificationContainer{
+
+  .notificationMsgContainer p {
+    font-size: 13px;
+
+  }
+
+  .userName h5 {
+    font-size: 15px;
+  }
+
+  .cardbod {
+ 
+    height:140px;
+  }
+
+  .notificationContainer {
     width: 100%;
   }
+
   .preferencetype {
     font-size: 8px !important;
   }
@@ -248,10 +274,4 @@
   top: 50%;
   transform: translateY(-50%);
   left: 0;
-}
-
-.cardbod {
-  margin: 5px;
-  width: 98%;
-  /* border: 1px solid black; */
 }

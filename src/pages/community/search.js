@@ -263,7 +263,7 @@ const Home = ({ onBack }) => {
                 type="text"
                 name="communityName"
                 className="searchSearchInput"
-                placeholder="Enter community name"
+                placeholder="Enter name"
 
                 onChange={(e) => {
                   setNameFilter(e.target.value);

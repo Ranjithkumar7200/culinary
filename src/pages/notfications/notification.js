@@ -35,6 +35,10 @@ const Notification = () => {
   const [notifications, setNotifications] = useState([]);
   const [postsData, setPostsData] = useState([]);
   const [userData, setUserData] = useState([]);
+
+  const [selectedPosts, setSelectedPosts] = useState([]);
+
+
   useEffect(() => {
     if (posts && posts.data) {
       function shuffleArray(array) {
@@ -57,6 +61,25 @@ const Notification = () => {
       console.log(userData);
     }
   }, [posts]);
+
+
+  useEffect(() => {
+
+    const uniquePosts = new Set();
+
+    postsData.forEach(person => {
+      uniquePosts.add(person);
+    });
+
+    const uniquePostsArray = Array.from(uniquePosts);
+
+
+    const selected = uniquePostsArray.slice(0, Math.min(7, uniquePostsArray.length));
+    console.log(selected, "sel")
+
+    setSelectedPosts(selected);
+
+  }, [postsData]);
 
 
 
@@ -122,8 +145,8 @@ const Notification = () => {
               <h5>Suggested for you See All</h5>
               <p className="seeAllUserSuggestion">See all</p>
             </div>
-            {postsData &&
-              postsData.map((post) => (
+            {selectedPosts &&
+              selectedPosts.map((post) => (
 
                 post.postedBy !== userData._id && (
 

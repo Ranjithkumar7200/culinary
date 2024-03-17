@@ -13,7 +13,7 @@ import { adminPanalApiServices } from '../../services/allApiServeces';
 const Savepost = ({postInfo}) => {
 
 
- 
+ console.log(postInfo,"ll")
 const [locationFilter, setLocationFilter] = useState('');
     const [foodStyleFilter, setFoodStyleFilter] = useState('');
     const [nameFilter, setNameFilter] = useState('');

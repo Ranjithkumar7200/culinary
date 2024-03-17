@@ -158,7 +158,7 @@ const Community = () => {
   }, [postsData]);
 
 
-  // console.log(communityDetails);
+
 
 
   const handleShowGroup = async () => {
@@ -223,67 +223,7 @@ const Community = () => {
     await adminPanalApiServices.userInvite(bodyData)
 
   }
-  //   {
-  //     id: 1,
-  //     img: food1,
-  //     userName: "sathish57",
-  //     name: "Biriyani",
-  //     location: "City 1",
-  //     foodStyle: "Mediterranean",
-  //     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //   },
-  //   {
-  //     id: 2,
-  //     img: food2,
-  //     userName: "Dosaa",
-  //     name: "Mediterranean Dish 2",
-  //     location: "City 2",
-  //     foodStyle: "Mediterranean",
-  //     content:
-  //       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     id: 3,
-  //     img: food3,
-  //     userName: "ranjiths88",
-  //     name: "Upma",
-  //     location: "City 2",
-  //     foodStyle: "Mediterranean",
-  //     content:
-  //       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     id: 4,
-  //     img: food4,
-  //     userName: "rohith_roy",
-  //     name: "Chicken",
-  //     location: "City 2",
-  //     foodStyle: "Mediterranean",
-  //     content:
-  //       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     id: 5,
-  //     img: food5,
-  //     userName: "firzzzzzzzz",
-  //     name: "Rayala sima chicken",
-  //     location: "City 2",
-  //     foodStyle: "Mediterranean",
-  //     content:
-  //       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   {
-  //     id: 6,
-  //     img: food6,
-  //     userName: "somthing",
-  //     name: "kodikuraa",
-  //     location: "City 2",
-  //     foodStyle: "Mediterranean",
-  //     content:
-  //       "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-  //   },
-  //   // Add more posts as needed
-  // ];
+
 
   return (
     <div className=" homeContiner">
